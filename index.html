@@ -13,7 +13,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-brand">
-            <img src="./image/NowOrNever-logo-white.jpg" alt="Now Or Never Magazine Logo" class="brand-logo">
+            <img src="./image/brandLogo.png" alt="Now Or Never Magazine Logo" class="brand-logo">
             <h2>Now Or Never</h2>
         </div>
         <div class="nav-links">
@@ -48,6 +48,22 @@
             <img src="./image/MagazineCover.jpg" alt="Now Or Never Magazine Cover">
         </div>
     </section>
+
+    <!-- Add after the hero section -->
+    <div class="social-proof">
+        <div class="counter-item">
+            <span class="counter" data-target="420">0</span>
+            <span class="counter-label">Limited Copies</span>
+        </div>
+        <div class="counter-item">
+            <span class="counter" data-target="12">0</span>
+            <span class="counter-label">Featured Artists</span>
+        </div>
+        <div class="counter-item">
+            <span class="counter" data-target="24">0</span>
+            <span class="counter-label">Unique Stories</span>
+        </div>
+    </div>
 
     <!-- Journey Section -->
     <section class="journey">
@@ -121,7 +137,7 @@
             <h2>The Author</h2>
             <div class="author-grid">
                 <div class="author-image">
-                    <img src="./image/bud9.jpg" alt="Magazine Author">
+                    <img src="./image/author.jpg" alt="Magazine Author">
                 </div>
                 <div class="author-info">
                     <h3>Beam Klongluang</h3>
@@ -144,7 +160,7 @@
             <div class="topics-grid">
                 <div class="topic-card">
                     <div class="topic-icon">
-                        <img src="./image/growing.jpg" alt="Growing Cultures Icon">
+                        <img src="./image/marijuana.png" alt="Growing Cultures Icon">
                     </div>
                     <h3>Growing Cultures</h3>
                     <p>Discover the rich traditions and modern techniques of cannabis cultivation in Thailand. From traditional farming methods to contemporary grow operations, explore how Thai cultivators are shaping the future of cannabis.</p>
@@ -152,7 +168,7 @@
 
                 <div class="topic-card">
                     <div class="topic-icon">
-                        <img src="./image/therapy.jpeg" alt="Healing Therapy Icon">
+                        <img src="./image/healing1.png" alt="Healing Therapy Icon">
                     </div>
                     <h3>Healing Therapy</h3>
                     <p>Explore the therapeutic applications of cannabis in traditional Thai medicine. Learn how ancient wisdom meets modern healing practices in Thailand's emerging medical cannabis landscape.</p>
@@ -160,7 +176,7 @@
 
                 <div class="topic-card">
                     <div class="topic-icon">
-                        <img src="./image/spiritart.jpeg" alt="Spiritual Art Icon">
+                        <img src="./image/mandala.png" alt="Spiritual Art Icon">
                     </div>
                     <h3>Spiritual Art</h3>
                     <p>Journey through the intersection of cannabis and Thai spirituality. From temple art to contemporary expressions, see how cannabis has influenced Thai artistic and spiritual traditions.</p>
@@ -265,17 +281,72 @@
                             <label for="phone">Phone Number</label>
                         </div>
 
-                        <div class="form-group">
-                            <textarea id="address" name="address" required></textarea>
-                            <label for="address">Shipping Address</label>
+                        <div class="address-form">
+                            <h4>Delivery Address</h4>
+                            
+                            <div class="form-group">
+                                <input type="text" id="address_line" name="address_line" required>
+                                <label for="address_line">Address Line</label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" id="building" name="building" required>
+                                <label for="building">Building/Village Name</label>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="street" name="street" required>
+                                    <label for="street">Street</label>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" id="subdistrict" name="subdistrict" required>
+                                    <label for="subdistrict">Subdistrict (Tambon)</label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="district" name="district" required>
+                                    <label for="district">District (Amphoe)</label>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" id="province" name="province" required>
+                                    <label for="province">Province</label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="postal_code" name="postal_code" required>
+                                    <label for="postal_code">Postal Code</label>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" id="country" name="country" value="Thailand" readonly>
+                                    <label for="country" class="active">Country</label>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="paymentSlip" class="file-label">
-                                Upload Payment Slip
-                                <input type="file" id="paymentSlip" name="paymentSlip" accept="image/*" required>
-                            </label>
-                            <div id="filePreview" class="file-preview"></div>
+                        <div class="payment-upload">
+                            <h4>Payment Confirmation</h4>
+                            <div class="form-group file-upload">
+                                <div class="upload-container">
+                                    <input type="file" id="paymentSlip" name="paymentSlip" accept="image/*" required>
+                                    <button type="button" class="upload-btn" onclick="document.getElementById('paymentSlip').click()">
+                                        <svg class="upload-icon" viewBox="0 0 24 24">
+                                            <path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/>
+                                        </svg>
+                                        Upload Payment Slip
+                                    </button>
+                                </div>
+                                <div id="filePreview" class="file-preview">
+                                    <p class="upload-instruction">Please upload your payment slip image</p>
+                                </div>
+                            </div>
                         </div>
 
                         <button type="submit" class="submit-order">Complete Order</button>

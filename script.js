@@ -167,4 +167,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Counter Animation
+    const counters = document.querySelectorAll('.counter');
+    
+    function animateCounter(counter) {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / 200;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(() => animateCounter(counter), 1);
+        } else {
+            counter.innerText = target;
+        }
+    }
+
+    // Intersection Observer for counters
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    });
+
+    counters.forEach(counter => counterObserver.observe(counter));
 }); 
