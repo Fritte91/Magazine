@@ -1877,4 +1877,146 @@ a, button, input, .topic-card, .journal-entry {
     background-image: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%),
                       url('path-to-texture.png');
     background-blend-mode: overlay;
+}
+
+/* Mobile styles for shop section */
+@media (max-width: 768px) {
+    .shop {
+        padding: 60px 15px;
+    }
+
+    .shop h2 {
+        font-size: 2.2rem;
+        margin-bottom: 30px;
+    }
+
+    .shop-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .order-details {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        order: -1; /* Ensures this appears first */
+    }
+
+    .magazine-preview {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .magazine-preview img {
+        max-width: 220px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .payment-info {
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    .qr-code {
+        max-width: 180px;
+        margin: 20px auto;
+    }
+
+    /* Form improvements */
+    .order-form {
+        padding: 0;
+        margin-top: 20px;
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-form h3 {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 14px;
+        font-size: 16px;
+        border: 1px solid rgba(46, 125, 50, 0.2);
+        border-radius: 8px;
+        background: white;
+    }
+
+    .address-form {
+        padding: 20px;
+        margin: 20px 0;
+        background: #f9f9f9;
+        border-radius: 10px;
+    }
+
+    .address-form h4 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        color: #2e7d32;
+        text-align: center;
+    }
+
+    /* Payment upload area improvements */
+    .payment-upload {
+        margin: 20px 0;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+    }
+
+    .payment-upload h4 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        color: #2e7d32;
+        text-align: center;
+    }
+
+    .upload-container {
+        gap: 12px;
+    }
+
+    .upload-btn {
+        padding: 16px;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .file-preview {
+        min-height: 60px;
+        padding: 12px;
+        background: white;
+    }
+
+    /* Submit button adjustments */
+    .submit-order {
+        padding: 18px;
+        font-size: 1.1rem;
+        margin-top: 30px;
+        width: 100%;
+    }
 } 
