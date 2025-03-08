@@ -42,11 +42,57 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Form submission
     const orderForm = document.getElementById('orderForm');
-    orderForm.addEventListener('submit', function(e) {
+    orderForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        // Add your form submission logic here
-        // You might want to use fetch API to send the data to your server
-        alert('Thank you for your order! We will process it shortly.');
+        
+        // Show loading state
+        const submitButton = this.querySelector('.submit-order');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Processing...';
+        submitButton.disabled = true;
+
+        try {
+            // Create a new FormData without the file
+            const formData = new FormData();
+            
+            // Add all form fields except the file
+            formData.append('name', this.querySelector('#name').value);
+            formData.append('email', this.querySelector('#email').value);
+            formData.append('phone', this.querySelector('#phone').value);
+            formData.append('address_line', this.querySelector('#address_line').value);
+            formData.append('building', this.querySelector('#building').value);
+            formData.append('street', this.querySelector('#street').value);
+            formData.append('subdistrict', this.querySelector('#subdistrict').value);
+            formData.append('district', this.querySelector('#district').value);
+            formData.append('province', this.querySelector('#province').value);
+            formData.append('postal_code', this.querySelector('#postal_code').value);
+            formData.append('country', this.querySelector('#country').value);
+            formData.append('payment_confirmation', 'Customer will send payment confirmation via email');
+
+            const response = await fetch('https://formspree.io/f/mblgrpzb', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                // Show success message
+                showNotification('Order submitted successfully! Please send your payment confirmation to our email.', 'success');
+                // Redirect to thank you page
+                window.location.href = 'thank-you.html';
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showNotification('There was an error submitting your order. Please try again.', 'error');
+            
+            // Reset button state
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+        }
     });
 
     // Flipbook functionality
@@ -195,4 +241,71 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     counters.forEach(counter => counterObserver.observe(counter));
-}); 
+});
+
+// Handle file input change
+document.getElementById('paymentSlip').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const preview = document.getElementById('filePreview');
+    
+    if (file) {
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.innerHTML = `
+                    <img src="${e.target.result}" alt="Payment Slip Preview">
+                    <p>${file.name}</p>
+                `;
+            };
+            reader.readAsDataURL(file);
+        } else {
+            preview.innerHTML = '<p class="error">Please select an image file</p>';
+        }
+    } else {
+        preview.innerHTML = '<p class="upload-instruction">Please upload your payment slip image</p>';
+    }
+});
+
+// Notification function
+function showNotification(message, type) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <p>${message}</p>
+            <button class="notification-close">&times;</button>
+        </div>
+    `;
+
+    // Add notification styles
+    notification.style.position = 'fixed';
+    notification.style.top = '20px';
+    notification.style.right = '20px';
+    notification.style.padding = '15px 25px';
+    notification.style.borderRadius = '8px';
+    notification.style.backgroundColor = type === 'success' ? '#2e7d32' : '#d32f2f';
+    notification.style.color = 'white';
+    notification.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+    notification.style.zIndex = '10000';
+    notification.style.transition = 'all 0.3s ease';
+
+    // Add to document
+    document.body.appendChild(notification);
+
+    // Remove notification after 5 seconds
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 5000);
+
+    // Close button functionality
+    notification.querySelector('.notification-close').addEventListener('click', () => {
+        notification.style.opacity = '0';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    });
+} 
