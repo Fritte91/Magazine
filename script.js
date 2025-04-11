@@ -35,33 +35,40 @@ document.addEventListener('DOMContentLoaded', function() {
         orderForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
+            const formData = new FormData(this);
+            const errors = validateForm(formData);
+            
+            if (errors.length > 0) {
+                errors.forEach(error => showNotification(error, 'error'));
+                return;
+            }
+            
             // Show loading state
             const submitButton = this.querySelector('.submit-order');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'Processing...';
+            submitButton.innerHTML = '<span class="loading-spinner"></span> Processing...';
             submitButton.disabled = true;
-
+            
             try {
                 // Create a new FormData without the file
-                const formData = new FormData();
+                const formDataWithoutFile = new FormData();
                 
                 // Add all form fields except the file
-                formData.append('name', this.querySelector('#name').value);
-                formData.append('email', this.querySelector('#email').value);
-                formData.append('phone', this.querySelector('#phone').value);
-                formData.append('address_line', this.querySelector('#address_line').value);
-                formData.append('building', this.querySelector('#building').value);
-                formData.append('street', this.querySelector('#street').value);
-                formData.append('subdistrict', this.querySelector('#subdistrict').value);
-                formData.append('district', this.querySelector('#district').value);
-                formData.append('province', this.querySelector('#province').value);
-                formData.append('postal_code', this.querySelector('#postal_code').value);
-                formData.append('country', this.querySelector('#country').value);
-                formData.append('payment_confirmation', 'Customer will send payment confirmation via email');
+                formDataWithoutFile.append('name', formData.get('name'));
+                formDataWithoutFile.append('email', formData.get('email'));
+                formDataWithoutFile.append('phone', formData.get('phone'));
+                formDataWithoutFile.append('address_line', formData.get('address_line'));
+                formDataWithoutFile.append('building', formData.get('building'));
+                formDataWithoutFile.append('street', formData.get('street'));
+                formDataWithoutFile.append('subdistrict', formData.get('subdistrict'));
+                formDataWithoutFile.append('district', formData.get('district'));
+                formDataWithoutFile.append('province', formData.get('province'));
+                formDataWithoutFile.append('postal_code', formData.get('postal_code'));
+                formDataWithoutFile.append('country', formData.get('country'));
+                formDataWithoutFile.append('payment_confirmation', 'Customer will send payment confirmation via email');
 
                 const response = await fetch('https://formspree.io/f/mblgrpzb', {
                     method: 'POST',
-                    body: formData,
+                    body: formDataWithoutFile,
                     headers: {
                         'Accept': 'application/json'
                     }
@@ -78,9 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
             } catch (error) {
                 console.error('Error:', error);
                 showNotification('There was an error submitting your order. Please try again.', 'error');
-                
-                // Reset button state
-                submitButton.textContent = originalText;
+            } finally {
+                submitButton.innerHTML = 'Complete Order';
                 submitButton.disabled = false;
             }
         });
@@ -195,14 +201,80 @@ document.addEventListener('DOMContentLoaded', function() {
                     behavior: 'smooth',
                     block: 'start'
                 });
+                
+                // Close mobile menu if open
+                const navLinks = document.querySelector('.nav-links');
+                const navToggle = document.querySelector('.nav-toggle');
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    navToggle.classList.remove('active');
+                }
             }
         });
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Add fade-in class to elements you want to animate
+    document.querySelectorAll('.hero-content, .journey-content, .character-card, .topic-card, .journal-entry').forEach(el => {
+        el.classList.add('fade-in');
+        observer.observe(el);
+    });
+
+    // Handle journal article links
+    document.querySelectorAll('.read-more').forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Only prevent default if the href is not set or is #
+            if (!this.getAttribute('href') || this.getAttribute('href') === '#') {
+                e.preventDefault();
+                // Show a message that the article is coming soon
+                showNotification('This article will be available soon!', 'info');
+            }
+            // If href is set, let the link work normally
+        });
+    });
+
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const storiesPage = document.querySelector('.stories-page');
+
+    // Check if there's a saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        storiesPage.classList.add('dark-mode');
+        themeToggle.textContent = 'Switch to Light Theme';
+    }
+
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        storiesPage.classList.toggle('dark-mode');
+        
+        // Update button text
+        const isDark = body.classList.contains('dark-mode');
+        themeToggle.textContent = isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme';
+        
+        // Save preference
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 });
 
 // Notification function
-function showNotification(message, type) {
-    // Create notification element
+function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
     notification.innerHTML = `
@@ -211,35 +283,94 @@ function showNotification(message, type) {
             <button class="notification-close">&times;</button>
         </div>
     `;
-
-    // Add notification styles
-    notification.style.position = 'fixed';
-    notification.style.top = '20px';
-    notification.style.right = '20px';
-    notification.style.padding = '15px 25px';
-    notification.style.borderRadius = '8px';
-    notification.style.backgroundColor = type === 'success' ? '#2e7d32' : '#d32f2f';
-    notification.style.color = 'white';
-    notification.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-    notification.style.zIndex = '10000';
-    notification.style.transition = 'all 0.3s ease';
-
-    // Add to document
+    
     document.body.appendChild(notification);
-
-    // Remove notification after 5 seconds
+    
+    // Remove notification after 3 seconds
     setTimeout(() => {
-        notification.style.opacity = '0';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 5000);
+        notification.remove();
+    }, 3000);
 
-    // Close button functionality
+    // Handle close button
     notification.querySelector('.notification-close').addEventListener('click', () => {
-        notification.style.opacity = '0';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
+        notification.remove();
     });
-} 
+}
+
+function validateForm(formData) {
+    const errors = [];
+    
+    // Thai phone number validation (starts with 0, followed by 9 digits)
+    const phone = formData.get('phone');
+    const thaiPhoneRegex = /^0\d{9}$/;  // Updated to exactly 10 digits (0 + 9 digits)
+    if (!phone || !thaiPhoneRegex.test(phone)) {
+        errors.push('Please enter a valid Thai phone number (10 digits starting with 0)');
+    }
+    
+    // Thai postal code (5 digits)
+    const postalCode = formData.get('postal_code');
+    const postalRegex = /^[0-9]{5}$/;
+    if (!postalCode || !postalRegex.test(postalCode)) {
+        errors.push('Please enter a valid Thai postal code (5 digits)');
+    }
+    
+    // Name validation (at least 2 characters)
+    const name = formData.get('name');
+    if (!name || name.trim().length < 2) {
+        errors.push('Please enter your full name (at least 2 characters)');
+    }
+    
+    // Email validation
+    const email = formData.get('email');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+        errors.push('Please enter a valid email address');
+    }
+    
+    // Required address fields
+    const requiredFields = ['address_line', 'district', 'province'];
+    requiredFields.forEach(field => {
+        if (!formData.get(field)) {
+            errors.push(`Please enter your ${field.replace('_', ' ')}`);
+        }
+    });
+    
+    return errors;
+}
+
+// Replace the real-time validation code at the bottom of script.js with this:
+document.querySelectorAll('#orderForm input').forEach(input => {
+    input.addEventListener('blur', function() {
+        // Only validate the specific field that was changed
+        if (this.name === 'phone') {
+            const phone = this.value;
+            const thaiPhoneRegex = /^0\d{9}$/;
+            if (!phone || !thaiPhoneRegex.test(phone)) {
+                showNotification('Please enter a valid Thai phone number (10 digits starting with 0)', 'warning');
+            }
+        }
+        else if (this.name === 'postal_code') {
+            const postalCode = this.value;
+            const postalRegex = /^[0-9]{5}$/;
+            if (!postalCode || !postalRegex.test(postalCode)) {
+                showNotification('Please enter a valid Thai postal code (5 digits)', 'warning');
+            }
+        }
+        else if (this.name === 'email') {
+            const email = this.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                showNotification('Please enter a valid email address', 'warning');
+            }
+        }
+        else if (this.name === 'name' && this.value.trim().length < 2) {
+            showNotification('Please enter your full name (at least 2 characters)', 'warning');
+        }
+    });
+});
+
+function addCookieConsent() {
+  if (!localStorage.getItem('cookieConsent')) {
+    const banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.innerHTML = `

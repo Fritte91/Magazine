@@ -3,31 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon configuration for multiple sizes -->
+    <link rel="icon" type="image/png" href="./image/brandLogo.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="./image/brandLogo.png" sizes="16x16">
+    <link rel="apple-touch-icon" href="./image/brandLogo.png" sizes="180x180">
+    <link rel="icon" type="image/png" href="./image/brandLogo.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="./image/brandLogo.png" sizes="512x512">
+    <meta name="theme-color" content="#2e7d32">
     <title>Now Or Never 420 Magazine</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" as="style">
+    
+    <!-- Preload critical images -->
+    <link rel="preload" href="./image/brandLogo.png" as="image">
+    
+    <!-- Add meta description for SEO -->
+    <meta name="description" content="Thailand's Premier Cannabis Culture Magazine - Discover the cultural renaissance of cannabis through art, spirituality, and healing traditions.">
+    
+    <!-- Add Open Graph tags for social sharing -->
+    <meta property="og:title" content="Now Or Never 420 Magazine">
+    <meta property="og:description" content="Thailand's Premier Cannabis Culture Magazine">
+    <meta property="og:image" content="./image/MagazineCover.jpg">
+    
+    <!-- Add Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Now Or Never 420 Magazine">
+    <meta name="twitter:description" content="Thailand's Premier Cannabis Culture Magazine">
+
+    <!-- Add in head -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://formspree.io https://www.google.com https://www.gstatic.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'YOUR_GA_ID');
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Now Or Never 420 Magazine",
+      "description": "Thailand's Premier Cannabis Culture Magazine",
+      "offers": {
+        "@type": "Offer",
+        "price": "1420",
+        "priceCurrency": "THB"
+      }
+    }
+    </script>
 </head>
 <body>
+    <!-- Add skip link at the start of body -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-brand">
             <img src="./image/brandLogo.png" alt="Now Or Never Magazine Logo" class="brand-logo">
             <h2>Now Or Never</h2>
         </div>
-        <div class="nav-links">
-            <a href="#hero">Home</a>
-            <a href="#culture">Culture</a>
-            <a href="#description">Growing</a>
-            <a href="#description">Healing</a>
-            <a href="#description">Spiritual</a>
-            <a href="#shop">Shop</a>
-        </div>
-        <div class="nav-toggle">
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
+        </button>
+        <div class="nav-links" role="menu">
+            <a href="#hero" role="menuitem">Home</a>
+            <a href="stories.html" role="menuitem">Stories</a>
+            <a href="#description" role="menuitem">Growing</a>
+            <a href="#description" role="menuitem">Healing</a>
+            <a href="#description" role="menuitem">Spiritual</a>
+            <a href="#shop" role="menuitem">Shop</a>
         </div>
     </nav>
 
@@ -45,7 +99,21 @@
             </div>
         </div>
         <div class="hero-image">
-            <img src="./image/MagazineCover.jpg" alt="Now Or Never Magazine Cover">
+            <img 
+                src="./image/MagazineCover.jpg" 
+                srcset="
+                    ./image/MagazineCover-small.jpg 300w,
+                    ./image/MagazineCover-medium.jpg 600w,
+                    ./image/MagazineCover.jpg 1200w
+                "
+                sizes="
+                    (max-width: 600px) 300px,
+                    (max-width: 1200px) 600px,
+                    1200px
+                "
+                alt="Now Or Never Magazine Cover"
+                loading="lazy"
+            >
         </div>
     </section>
 
@@ -153,7 +221,63 @@
         </div>
     </section>
 
-    <!-- After the author section -->
+    <!-- Add this section between Author and Topics sections -->
+    <section class="testimonials">
+        <div class="testimonials-slider">
+            <div class="testimonial-track">
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"This magazine perfectly captures the essence of Thailand's cannabis culture. The photography is breathtaking!"</p>
+                    <div class="author-info">
+                        <span class="name">Fredrik Lindberg</span>
+                        <span class="title">Cannabis Culture Magazine</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"A masterpiece that bridges traditional wisdom with modern cannabis culture. Every page tells a story."</p>
+                    <div class="author-info">
+                        <span class="name">Vatchanan Sukjaloan</span>
+                        <span class="title">Herbal Enthusiast</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"The artistic direction and cultural insights make this magazine a must-have collector's item."</p>
+                    <div class="author-info">
+                        <span class="name">Maria Santos</span>
+                        <span class="title">Art Director</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"A masterpiece that bridges traditional wisdom with modern cannabis culture. Every page tells a story."</p>
+                    <div class="author-info">
+                        <span class="name">Vatchanan Sukjaloan</span>
+                        <span class="title">Herbal Enthusiast</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"A masterpiece that bridges traditional wisdom with modern cannabis culture. Every page tells a story."</p>
+                    <div class="author-info">
+                        <span class="name">Vatchanan Sukjaloan</span>
+                        <span class="title">Herbal Enthusiast</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"A masterpiece that bridges traditional wisdom with modern cannabis culture. Every page tells a story."</p>
+                    <div class="author-info">
+                        <span class="name">Vatchanan Sukjaloan</span>
+                        <span class="title">Herbal Enthusiast</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Topics Section (A Story About) -->
     <section class="topics" id="description">
         <div class="topics-content">
             <h2>A Story About</h2>
@@ -208,13 +332,13 @@
                     <p class="journal-text">
                         The journey of creating this magazine began like diving into unknown waters. Each interview, each story uncovered, brought new depths of understanding about Thailand's cannabis culture. The first waves of research led me to hidden communities of traditional healers.
                     </p>
-                    <a href="#" class="read-more">Read More</a>
+                    <a href="journal-article-waves.html" class="read-more" data-article="waves">Read More</a>
                 </div>
             </article>
 
             <article class="journal-entry">
                 <div class="journal-image">
-                    <img src="./image/weed2.jpg" alt="A Night in The Circus">
+                    <img src="./image/weed2.jpg" alt="Meeting the Legends">
                 </div>
                 <div class="journal-content">
                     <h3>Meeting the Legends</h3>
@@ -222,13 +346,13 @@
                     <p class="journal-text">
                         From remote mountain villages to bustling city dispensaries, each legend I met shared their unique perspective on cannabis culture. Their stories weaved together like ancient tapestries, revealing the rich history of Thailand's relationship with this sacred plant.
                     </p>
-                    <a href="#" class="read-more">Read More</a>
+                    <a href="journal-article-legends.html" class="read-more" data-article="legends">Read More</a>
                 </div>
             </article>
 
             <article class="journal-entry">
                 <div class="journal-image">
-                    <img src="./image/weed1.jpg" alt="If One Only Knew the Right Way">
+                    <img src="./image/weed1.jpg" alt="The Art of Understanding">
                 </div>
                 <div class="journal-content">
                     <h3>The Art of Understanding</h3>
@@ -236,9 +360,17 @@
                     <p class="journal-text">
                         The most profound discoveries came from unexpected places. Through temple artwork, ancient texts, and modern interpretations, I found that cannabis culture in Thailand is not just about the plant—it's about community, healing, and spiritual growth.
                     </p>
-                    <a href="#" class="read-more">Read More</a>
+                    <a href="journal-article-understanding.html" class="read-more" data-article="understanding">Read More</a>
                 </div>
             </article>
+        </div>
+
+        <!-- Add this after your journal-grid in the journal section -->
+        <div class="view-all-container">
+            <a href="stories.html" class="view-all-button">
+                View All Stories
+                <span class="arrow">→</span>
+            </a>
         </div>
     </section>
 
@@ -265,19 +397,27 @@
 
                 <div class="order-form">
                     <h3>Shipping Details</h3>
-                    <form id="orderForm" action="https://formspree.io/f/mblgrpzb" method="POST" enctype="multipart/form-data">
+                    <form id="orderForm" role="form" aria-label="Order form" action="https://formspree.io/f/mblgrpzb" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <input type="text" id="name" name="name" required>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                required 
+                                aria-required="true"
+                                aria-label="Full Name"
+                                aria-invalid="false"
+                            >
                             <label for="name">Full Name</label>
                         </div>
 
                         <div class="form-group">
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" required aria-required="true">
                             <label for="email">Email</label>
                         </div>
 
                         <div class="form-group">
-                            <input type="tel" id="phone" name="phone" required>
+                            <input type="tel" id="phone" name="phone" required aria-required="true">
                             <label for="phone">Phone Number</label>
                         </div>
 
@@ -285,47 +425,47 @@
                             <h4>Delivery Address</h4>
                             
                             <div class="form-group">
-                                <input type="text" id="address_line" name="address_line" required>
+                                <input type="text" id="address_line" name="address_line" required aria-required="true">
                                 <label for="address_line">Address Line</label>
                             </div>
 
                             <div class="form-group">
-                                <input type="text" id="building" name="building" required>
+                                <input type="text" id="building" name="building" required aria-required="true">
                                 <label for="building">Building/Village Name</label>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
-                                    <input type="text" id="street" name="street" required>
+                                    <input type="text" id="street" name="street" required aria-required="true">
                                     <label for="street">Street</label>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" id="subdistrict" name="subdistrict" required>
+                                    <input type="text" id="subdistrict" name="subdistrict" required aria-required="true">
                                     <label for="subdistrict">Subdistrict (Tambon)</label>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
-                                    <input type="text" id="district" name="district" required>
+                                    <input type="text" id="district" name="district" required aria-required="true">
                                     <label for="district">District (Amphoe)</label>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" id="province" name="province" required>
+                                    <input type="text" id="province" name="province" required aria-required="true">
                                     <label for="province">Province</label>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
-                                    <input type="text" id="postal_code" name="postal_code" required>
+                                    <input type="text" id="postal_code" name="postal_code" required aria-required="true">
                                     <label for="postal_code">Postal Code</label>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" id="country" name="country" value="Thailand" readonly>
+                                    <input type="text" id="country" name="country" value="Thailand" readonly aria-readonly="true">
                                     <label for="country" class="active">Country</label>
                                 </div>
                             </div>
@@ -339,6 +479,8 @@
                                 <p class="payment-instruction">Include your order name and email in the subject line.</p>
                             </div>
                         </div>
+
+                        <div class="g-recaptcha" data-sitekey="your_actual_site_key_here"></div>
 
                         <input type="hidden" name="_subject" value="New Magazine Order">
                         <input type="hidden" name="_next" value="thank-you.html">
@@ -396,5 +538,15 @@
             </div>
         </div>
     </div>
+
+    <!-- Add error handling for images -->
+    <script>
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = './image/placeholder.jpg';
+            this.alt = 'Image failed to load';
+        });
+    });
+    </script>
 </body>
 </html>
