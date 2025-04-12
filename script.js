@@ -165,16 +165,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
     
     if (navToggle && navLinks) {
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        navToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             navToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
                 navToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navLinks.classList.remove('active');
             });
         });
     }
@@ -252,25 +261,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const body = document.body;
     const storiesPage = document.querySelector('.stories-page');
 
-    // Check if there's a saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        body.classList.add('dark-mode');
-        storiesPage.classList.add('dark-mode');
-        themeToggle.textContent = 'Switch to Light Theme';
-    }
+    if (themeToggle && storiesPage) { // Only run this code if elements exist
+        // Check if there's a saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            storiesPage.classList.add('dark-mode');
+            themeToggle.textContent = 'Switch to Light Theme';
+        }
 
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        storiesPage.classList.toggle('dark-mode');
-        
-        // Update button text
-        const isDark = body.classList.contains('dark-mode');
-        themeToggle.textContent = isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme';
-        
-        // Save preference
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            storiesPage.classList.toggle('dark-mode');
+            
+            // Update button text
+            const isDark = body.classList.contains('dark-mode');
+            themeToggle.textContent = isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme';
+            
+            // Save preference
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+    }
 });
 
 // Notification function
@@ -370,7 +381,24 @@ document.querySelectorAll('#orderForm input').forEach(input => {
 });
 
 function addCookieConsent() {
-  if (!localStorage.getItem('cookieConsent')) {
-    const banner = document.createElement('div');
-    banner.className = 'cookie-banner';
-    banner.innerHTML = `
+    if (!localStorage.getItem('cookieConsent')) {
+        const banner = document.createElement('div');
+        banner.className = 'cookie-banner';
+        banner.innerHTML = `
+            <p>We use cookies to enhance your experience.</p>
+            <button onclick="acceptCookies()">Accept</button>
+        `;
+        document.body.appendChild(banner);
+    }
+}
+
+function acceptCookies() {
+    localStorage.setItem('cookieConsent', 'true');
+    const banner = document.querySelector('.cookie-banner');
+    if (banner) {
+        banner.remove();
+    }
+}
+
+// Initialize cookie consent
+document.addEventListener('DOMContentLoaded', addCookieConsent);
