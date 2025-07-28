@@ -1,15 +1,74 @@
+// Performance optimization: Use requestAnimationFrame for smooth animations
+function smoothScroll(target, duration = 800) {
+    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = ease(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    function ease(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+}
+
+// Debounce function for performance
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Character slider functionality
+    // Character slider functionality with improved debugging
     const cards = document.querySelectorAll('.character-card');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
+
+    console.log('Character slider initialization:', {
+        cardsFound: cards.length,
+        prevBtnFound: !!prevBtn,
+        nextBtnFound: !!nextBtn
+    });
 
     if (cards.length && prevBtn && nextBtn) {
         let currentIndex = 0;
 
         function showCard(index) {
-            cards.forEach(card => card.classList.remove('active'));
-            cards[index].classList.add('active');
+            console.log('Showing card:', index);
+            cards.forEach((card, i) => {
+                if (i === index) {
+                    card.classList.add('active');
+                    card.style.display = 'grid';
+                    // Update ARIA attributes for accessibility
+                    card.setAttribute('aria-hidden', 'false');
+                } else {
+                    card.classList.remove('active');
+                    card.style.display = 'none';
+                    card.setAttribute('aria-hidden', 'true');
+                }
+            });
+            
+            // Update button states
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === cards.length - 1;
         }
 
         function nextCard() {
@@ -22,11 +81,38 @@ document.addEventListener('DOMContentLoaded', function() {
             showCard(currentIndex);
         }
 
-        nextBtn.addEventListener('click', nextCard);
-        prevBtn.addEventListener('click', prevCard);
+        // Add event listeners with error handling
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('Next button clicked');
+            nextCard();
+        });
 
-        // Optional: Auto-slide every 5 seconds
-        setInterval(nextCard, 5000);
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('Prev button clicked');
+            prevCard();
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevCard();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextCard();
+            }
+        });
+
+        // Initialize first card
+        showCard(0);
+    } else {
+        console.error('Character slider elements not found:', {
+            cards: cards.length,
+            prevBtn: !!prevBtn,
+            nextBtn: !!nextBtn
+        });
     }
 
     // Form submission
@@ -282,6 +368,140 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
     }
+
+    // Initialize form validation
+    setupFormValidation();
+    
+    // Initialize performance tracking
+    trackPerformance();
+    
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('SW registered: ', registration);
+                })
+                .catch(registrationError => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+        });
+    }
+    
+    // Initialize lazy loading
+    setupLazyLoading();
+    
+    // Initialize scroll progress and back to top
+    setupScrollProgress();
+    setupBackToTop();
+    
+    // Enhanced error handling and loading states
+    function showLoading() {
+        const overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+            overlay.classList.add('active');
+        }
+    }
+
+    function hideLoading() {
+        const overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+            overlay.classList.remove('active');
+        }
+    }
+
+    // Enhanced form submission with better UX
+    function handleFormSubmission(form, endpoint) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                showLoading();
+                
+                const formData = new FormData(form);
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    resolve(result);
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                reject(error);
+            } finally {
+                hideLoading();
+            }
+        });
+    }
+
+    // Enhanced image loading with lazy loading
+    function setupLazyLoading() {
+        const images = document.querySelectorAll('img[data-src]');
+        
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+    }
+
+    // Enhanced performance monitoring
+    function trackPerformance() {
+        if ('performance' in window) {
+            window.addEventListener('load', () => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart);
+                console.log('DOM Content Loaded:', perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart);
+            });
+        }
+    }
+    
+    // Scroll progress indicator
+    function setupScrollProgress() {
+        const progressBar = document.getElementById('scrollProgress');
+        if (!progressBar) return;
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
+        });
+    }
+    
+    // Back to top functionality
+    function setupBackToTop() {
+        const backToTopBtn = document.getElementById('backToTop');
+        if (!backToTopBtn) return;
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });
 
 // Notification function
@@ -308,12 +528,13 @@ function showNotification(message, type = 'info') {
     });
 }
 
+// Enhanced form validation with better user experience
 function validateForm(formData) {
     const errors = [];
     
     // Thai phone number validation (starts with 0, followed by 9 digits)
     const phone = formData.get('phone');
-    const thaiPhoneRegex = /^0\d{9}$/;  // Updated to exactly 10 digits (0 + 9 digits)
+    const thaiPhoneRegex = /^0\d{9}$/;
     if (!phone || !thaiPhoneRegex.test(phone)) {
         errors.push('Please enter a valid Thai phone number (10 digits starting with 0)');
     }
@@ -341,7 +562,7 @@ function validateForm(formData) {
     // Required address fields
     const requiredFields = ['address_line', 'district', 'province'];
     requiredFields.forEach(field => {
-        if (!formData.get(field)) {
+        if (!formData.get(field) || formData.get(field).trim().length === 0) {
             errors.push(`Please enter your ${field.replace('_', ' ')}`);
         }
     });
@@ -349,36 +570,88 @@ function validateForm(formData) {
     return errors;
 }
 
-// Replace the real-time validation code at the bottom of script.js with this:
-document.querySelectorAll('#orderForm input').forEach(input => {
-    input.addEventListener('blur', function() {
-        // Only validate the specific field that was changed
-        if (this.name === 'phone') {
-            const phone = this.value;
-            const thaiPhoneRegex = /^0\d{9}$/;
-            if (!phone || !thaiPhoneRegex.test(phone)) {
-                showNotification('Please enter a valid Thai phone number (10 digits starting with 0)', 'warning');
-            }
-        }
-        else if (this.name === 'postal_code') {
-            const postalCode = this.value;
-            const postalRegex = /^[0-9]{5}$/;
-            if (!postalCode || !postalRegex.test(postalCode)) {
-                showNotification('Please enter a valid Thai postal code (5 digits)', 'warning');
-            }
-        }
-        else if (this.name === 'email') {
-            const email = this.value;
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!email || !emailRegex.test(email)) {
-                showNotification('Please enter a valid email address', 'warning');
-            }
-        }
-        else if (this.name === 'name' && this.value.trim().length < 2) {
-            showNotification('Please enter your full name (at least 2 characters)', 'warning');
-        }
+// Real-time validation with visual feedback
+function setupFormValidation() {
+    const form = document.getElementById('orderForm');
+    if (!form) return;
+
+    const inputs = form.querySelectorAll('input[required], textarea[required]');
+    
+    inputs.forEach(input => {
+        // Add visual feedback classes
+        input.addEventListener('blur', function() {
+            validateField(this);
+        });
+        
+        input.addEventListener('input', debounce(function() {
+            validateField(this);
+        }, 300));
     });
-});
+}
+
+function validateField(field) {
+    const value = field.value.trim();
+    const fieldName = field.name;
+    
+    // Remove existing validation classes
+    field.classList.remove('valid', 'invalid');
+    
+    // Skip validation if field is empty (let blur handle required validation)
+    if (!value) return;
+    
+    let isValid = true;
+    
+    switch (fieldName) {
+        case 'phone':
+            const thaiPhoneRegex = /^0\d{9}$/;
+            isValid = thaiPhoneRegex.test(value);
+            break;
+        case 'postal_code':
+            const postalRegex = /^[0-9]{5}$/;
+            isValid = postalRegex.test(value);
+            break;
+        case 'email':
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            isValid = emailRegex.test(value);
+            break;
+        case 'name':
+            isValid = value.length >= 2;
+            break;
+        default:
+            isValid = value.length > 0;
+    }
+    
+    // Add appropriate class
+    field.classList.add(isValid ? 'valid' : 'invalid');
+    
+    // Show/hide error message
+    let errorElement = field.parentNode.querySelector('.field-error');
+    if (!errorElement) {
+        errorElement = document.createElement('div');
+        errorElement.className = 'field-error';
+        field.parentNode.appendChild(errorElement);
+    }
+    
+    if (!isValid) {
+        errorElement.textContent = getErrorMessage(fieldName);
+        errorElement.style.display = 'block';
+    } else {
+        errorElement.style.display = 'none';
+    }
+}
+
+function getErrorMessage(fieldName) {
+    const messages = {
+        phone: 'Please enter a valid Thai phone number (10 digits starting with 0)',
+        postal_code: 'Please enter a valid Thai postal code (5 digits)',
+        email: 'Please enter a valid email address',
+        name: 'Please enter your full name (at least 2 characters)',
+        address_line: 'Please enter your address',
+        district: 'Please enter your district',
+        province: 'Please enter your province'
+    };
+    return messages[fieldName] || 'This field is required';
+}
 
 function addCookieConsent() {
     if (!localStorage.getItem('cookieConsent')) {

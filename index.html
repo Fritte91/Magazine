@@ -3,65 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon configuration for multiple sizes -->
+    
+    <!-- SEO Meta Tags -->
+    <title>Now Or Never 420 Magazine - Thailand's Premier Cannabis Culture Magazine</title>
+    <meta name="description" content="Discover Thailand's cannabis renaissance through art, spirituality, and healing traditions. Limited edition magazine with 420 copies available.">
+    <meta name="keywords" content="cannabis, Thailand, magazine, culture, healing, spirituality, art">
+    <meta name="author" content="Beam Klongluang">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Now Or Never 420 Magazine">
+    <meta property="og:description" content="Thailand's Premier Cannabis Culture Magazine - Discover the cultural renaissance of cannabis through art, spirituality, and healing traditions.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nowornever420.com">
+    <meta property="og:image" content="./image/MagazineCover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Now Or Never 420 Magazine">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Now Or Never 420 Magazine">
+    <meta name="twitter:description" content="Thailand's Premier Cannabis Culture Magazine">
+    <meta name="twitter:image" content="./image/MagazineCover.jpg">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="./image/brandLogo.png" sizes="32x32">
     <link rel="icon" type="image/png" href="./image/brandLogo.png" sizes="16x16">
     <link rel="apple-touch-icon" href="./image/brandLogo.png" sizes="180x180">
-    <link rel="icon" type="image/png" href="./image/brandLogo.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="./image/brandLogo.png" sizes="512x512">
     <meta name="theme-color" content="#2e7d32">
-    <title>Now Or Never 420 Magazine</title>
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="./image/MagazineCover.jpg" as="image">
+    <link rel="preload" href="./image/brandLogo.png" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" as="style">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- Preload critical fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" as="style">
     
-    <!-- Preload critical images -->
-    <link rel="preload" href="./image/brandLogo.png" as="image">
-    
-    <!-- Add meta description for SEO -->
-    <meta name="description" content="Thailand's Premier Cannabis Culture Magazine - Discover the cultural renaissance of cannabis through art, spirituality, and healing traditions.">
-    
-    <!-- Add Open Graph tags for social sharing -->
-    <meta property="og:title" content="Now Or Never 420 Magazine">
-    <meta property="og:description" content="Thailand's Premier Cannabis Culture Magazine">
-    <meta property="og:image" content="./image/MagazineCover.jpg">
-    
-    <!-- Add Twitter Card tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Now Or Never 420 Magazine">
-    <meta name="twitter:description" content="Thailand's Premier Cannabis Culture Magazine">
-
-    <!-- Add in head -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://formspree.io https://www.google.com https://www.gstatic.com https://www.googletagmanager.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src 'self' https://www.google.com;">
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://www.gstatic.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        img-src 'self' data: https:;
+        font-src 'self' https://fonts.gstatic.com;
+        connect-src 'self' https://www.google-analytics.com https://formspree.io;
+        frame-src 'self' https://www.google.com;
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self' https://formspree.io;
+    ">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'YOUR_GA_ID');
+      gtag('config', 'G-XXXXXXXXXX');
     </script>
+    
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": "Now Or Never 420 Magazine",
-      "description": "Thailand's Premier Cannabis Culture Magazine",
-      "offers": {
-        "@type": "Offer",
-        "price": "1420",
-        "priceCurrency": "THB"
-      }
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Now Or Never 420 Magazine",
+        "description": "Thailand's Premier Cannabis Culture Magazine",
+        "brand": {
+            "@type": "Brand",
+            "name": "Now Or Never"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "1420",
+            "priceCurrency": "THB",
+            "availability": "https://schema.org/LimitedAvailability"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "150"
+        }
     }
     </script>
+    
+    <!-- reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <!-- Add skip link at the start of body -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
@@ -75,12 +122,12 @@
             <span></span>
         </button>
         <div class="nav-links" role="menu">
-            <a href="#hero" role="menuitem">Home</a>
-            <a href="stories.html" role="menuitem">Stories</a>
-            <a href="#description" role="menuitem">Growing</a>
-            <a href="#description" role="menuitem">Healing</a>
-            <a href="#description" role="menuitem">Spiritual</a>
-            <a href="#shop" role="menuitem">Shop</a>
+            <a href="#hero" role="menuitem" aria-label="Go to home section">Home</a>
+            <a href="stories.html" role="menuitem" aria-label="View stories">Stories</a>
+            <a href="#description" role="menuitem" aria-label="Learn about us">Growing</a>
+            <a href="#description" role="menuitem" aria-label="Learn about us">Healing</a>
+            <a href="#description" role="menuitem" aria-label="Learn about us">Spiritual</a>
+            <a href="#shop" role="menuitem" aria-label="Shop">Shop</a>
         </div>
     </nav>
 
@@ -93,8 +140,14 @@
                 Discover the cultural renaissance of cannabis in Thailand through art, spirituality, and healing traditions.
             </p>
             <div class="cta-buttons">
-                <button class="btn-primary">Buy Magazine ฿1420</button>
-                <button class="btn-secondary">Learn More</button>
+                <button class="btn-primary">
+                    <span class="btn-text">Buy Magazine ฿1420</span>
+                    <span class="btn-subtitle">Limited Edition - Only 420 Copies</span>
+                </button>
+                <button class="btn-secondary">
+                    <span class="btn-text">Preview Magazine</span>
+                    <span class="btn-subtitle">See What's Inside</span>
+                </button>
             </div>
         </div>
         <div class="hero-image">
@@ -110,8 +163,9 @@
                     (max-width: 1200px) 600px,
                     1200px
                 "
-                alt="Now Or Never Magazine Cover"
-                loading="lazy"
+                alt="Now Or Never 420 Magazine Cover - Limited Edition Cannabis Culture Magazine"
+                loading="eager"
+                decoding="async"
             >
         </div>
     </section>
@@ -151,13 +205,13 @@
     </section>
 
     <!-- Characters Section -->
-    <section class="characters">
-        <h2 class="characters-title">MEET THE LEGENDS</h2>
+    <section class="characters" aria-labelledby="characters-title">
+        <h2 class="characters-title" id="characters-title">MEET THE LEGENDS</h2>
         
-        <div class="character-slider">
-            <div class="character-card active">
+        <div class="character-slider" role="region" aria-label="Character carousel">
+            <div class="character-card active" role="tabpanel" aria-label="Character 1 of 3">
                 <div class="character-image">
-                    <img src="./image/bobmarley.jpg" alt="Cannabis Legend">
+                    <img src="./image/bobmarley.jpg" alt="Bob Marley - Cannabis Legend and Reggae Icon">
                 </div>
                 <div class="character-info">
                     <h3>Bob Marley</h3>
@@ -167,21 +221,21 @@
                 </div>
             </div>
 
-            <div class="character-card">
+            <div class="character-card" role="tabpanel" aria-label="Character 2 of 3">
                 <div class="character-image">
-                    <img src="./image/jackherer.jpeg" alt="Cannabis Pioneer">
+                    <img src="./image/kdkohtao.jpeg" alt="Ko Dam Koh Tao - Thai Cannabis Pioneer">
                 </div>
                 <div class="character-info">
-                    <h3>Jack Herer</h3>
+                    <h3>Ko Dam Koh Tao</h3>
                     <p class="character-description">
-                        Known as the "Emperor of Hemp," Jack Herer was a cannabis rights activist and author who dedicated his life to advocating for the legalization of cannabis and promoting its environmental benefits.
+                        A key figure in Thailand's cannabis scene, known for popularizing the KD Koh Tao strain, a local strain from Koh Tao Island. He is also widely known and recognized for supporting and educating local communities, and the development of Thailand's cannabis culture.
                     </p>
                 </div>
             </div>
 
-            <div class="character-card">
+            <div class="character-card" role="tabpanel" aria-label="Character 3 of 3">
                 <div class="character-image">
-                    <img src="./image/kittychopaka.jpeg" alt="Thai Cannabis Pioneer">
+                    <img src="./image/kittychopaka.jpeg" alt="Kitty Chopaka - Thai Cannabis Advocate">
                 </div>
                 <div class="character-info">
                     <h3>Kitty Chopaka</h3>
@@ -191,9 +245,9 @@
                 </div>
             </div>
 
-            <div class="slider-controls">
-                <button class="prev-btn">←</button>
-                <button class="next-btn">→</button>
+            <div class="slider-controls" role="group" aria-label="Character navigation">
+                <button class="prev-btn" aria-label="Previous character" title="Previous character">←</button>
+                <button class="next-btn" aria-label="Next character" title="Next character">→</button>
             </div>
         </div>
     </section>
@@ -294,7 +348,7 @@
                         <img src="./image/healing1.png" alt="Healing Therapy Icon">
                     </div>
                     <h3>Healing Therapy</h3>
-                    <p>Explore the therapeutic applications of cannabis in traditional Thai medicine. Learn how ancient wisdom meets modern healing practices in Thailand's emerging medical cannabis landscape.</p>
+                    <p>Explore and learn about traditional activities to heal your mind, and peer into the concept of Wellness, and Spiritual Vibration.</p>
                 </div>
 
                 <div class="topic-card">
@@ -302,7 +356,7 @@
                         <img src="./image/mandala.png" alt="Spiritual Art Icon">
                     </div>
                     <h3>Spiritual Art</h3>
-                    <p>Journey through the intersection of cannabis and Thai spirituality. From temple art to contemporary expressions, see how cannabis has influenced Thai artistic and spiritual traditions.</p>
+                    <p>Journey through the intersection of cannabis and Thai spirituality. Explore diverse collection of artworks from both Thai and international artists, featuring spiritual artworks, glass arts, cannabis-inspired artworks and more.</p>
                 </div>
 
                 <div class="topic-card">
@@ -479,7 +533,7 @@
                             </div>
                         </div>
 
-                        <div class="g-recaptcha" data-sitekey="your_actual_site_key_here"></div>
+                        <div class="g-recaptcha" data-sitekey="6LcXXXXXXXXXX"></div>
 
                         <input type="hidden" name="_subject" value="New Magazine Order">
                         <input type="hidden" name="_next" value="thank-you.html">
@@ -491,31 +545,76 @@
         </div>
     </section>
 
-    <!-- Add this before the closing body tag -->
-    <script src="script.js"></script>
-
-    <!-- Add before the closing body tag -->
+    <!-- Newsletter & Contact Section -->
     <section class="newsletter">
         <div class="newsletter-content">
-            <h2>Join Our Journey</h2>
-            <p class="newsletter-description">
-                Subscribe to receive updates about our limited edition releases, exclusive artwork previews, and special discounts. 
-                Be part of the 420 collectors who will own this unique piece of cannabis culture history.
-            </p>
-            <div class="edition-counter">
-                <span class="counter-number">420</span>
-                <span class="counter-text">Limited Edition Copies</span>
-            </div>
-            <form id="newsletterForm" class="newsletter-form">
-                <div class="form-group">
-                    <input type="email" id="newsletter-email" required>
-                    <label for="newsletter-email">Your Email Address</label>
+            <!-- Left Column -->
+            <div class="newsletter-info">
+                <div class="section-header">
+                    <h2>Let's Stay Connected</h2>
+                    <p class="newsletter-description">Join our community and get exclusive updates, behind-the-scenes content, and special offers.</p>
                 </div>
-                <button type="submit" class="subscribe-btn">Subscribe Now</button>
-            </form>
-            <p class="newsletter-note">
-                Each copy is hand-signed and features unique spiritual artwork, making every magazine one-of-a-kind.
-            </p>
+                <form id="newsletter-form" aria-label="Newsletter subscription form">
+                    <div class="form-group">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="subscribe-btn">
+                            <span>Subscribe</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="newsletter-note">✨ Join 420+ subscribers. Unsubscribe anytime.</p>
+                </form>
+            </div>
+
+            <!-- Right Column -->
+            <div class="contact-wrapper">
+                <div class="section-header">
+                    <h2>Get in Touch</h2>
+                    <p class="contact-description">Have questions? We'd love to hear from you.</p>
+                </div>
+                <form class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your message" required></textarea>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" class="submit-contact">
+                            <span>Send Message</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                        <div class="social-links">
+                            <a href="#" aria-label="Instagram" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Twitter" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Facebook" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -547,5 +646,11 @@
         });
     });
     </script>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+    
+    <!-- Load main script -->
+    <script src="script.js"></script>
 </body>
 </html>

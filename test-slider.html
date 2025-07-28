@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Slider Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .character-slider {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .character-card {
+            display: none;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        
+        .character-card.active {
+            display: grid;
+        }
+        
+        .character-image {
+            width: 100%;
+            height: 200px;
+            background: #ddd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        
+        .character-info h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        
+        .character-description {
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .slider-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .prev-btn, .next-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .prev-btn:hover, .next-btn:hover {
+            background: #555;
+        }
+        
+        .prev-btn:disabled, .next-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .debug-info {
+            background: #e8f4fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Character Slider Test</h1>
+        
+        <div class="debug-info">
+            <h3>Debug Information</h3>
+            <div id="debug-output">Loading...</div>
+        </div>
+        
+        <div class="character-slider">
+            <div class="character-card active">
+                <div class="character-image">
+                    Bob Marley Image
+                </div>
+                <div class="character-info">
+                    <h3>Bob Marley</h3>
+                    <p class="character-description">
+                        A global icon who helped spread the message of cannabis spirituality and consciousness.
+                    </p>
+                </div>
+            </div>
+
+            <div class="character-card">
+                <div class="character-image">
+                    Ko Dam Koh Tao Image
+                </div>
+                <div class="character-info">
+                    <h3>Ko Dam Koh Tao</h3>
+                    <p class="character-description">
+                        A key figure in Thailand's cannabis scene, known for popularizing the KD Koh Tao strain.
+                    </p>
+                </div>
+            </div>
+
+            <div class="character-card">
+                <div class="character-image">
+                    Kitty Chopaka Image
+                </div>
+                <div class="character-info">
+                    <h3>Kitty Chopaka</h3>
+                    <p class="character-description">
+                        A prominent cannabis advocate in Thailand who played a crucial role in the legalization movement.
+                    </p>
+                </div>
+            </div>
+
+            <div class="slider-controls">
+                <button class="prev-btn">← Previous</button>
+                <button class="next-btn">Next →</button>
+            </div>
+        </div>
+        
+        <div id="status"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.character-card');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const debugOutput = document.getElementById('debug-output');
+            const statusDiv = document.getElementById('status');
+            
+            let currentIndex = 0;
+            
+            function updateDebugInfo() {
+                const activeCard = document.querySelector('.character-card.active');
+                const activeIndex = Array.from(cards).indexOf(activeCard);
+                debugOutput.innerHTML = `
+                    <p><strong>Cards found:</strong> ${cards.length}</p>
+                    <p><strong>Current index:</strong> ${currentIndex}</p>
+                    <p><strong>Active card index:</strong> ${activeIndex}</p>
+                    <p><strong>Active card title:</strong> ${activeCard ? activeCard.querySelector('h3').textContent : 'None'}</p>
+                    <p><strong>Buttons found:</strong> Prev: ${!!prevBtn}, Next: ${!!nextBtn}</p>
+                    <p><strong>Prev button disabled:</strong> ${prevBtn.disabled}</p>
+                    <p><strong>Next button disabled:</strong> ${nextBtn.disabled}</p>
+                `;
+            }
+            
+            function showStatus(message, type = 'success') {
+                statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+                setTimeout(() => {
+                    statusDiv.innerHTML = '';
+                }, 3000);
+            }
+            
+            function showCard(index) {
+                console.log('Showing card:', index);
+                cards.forEach((card, i) => {
+                    if (i === index) {
+                        card.classList.add('active');
+                        card.style.display = 'grid';
+                    } else {
+                        card.classList.remove('active');
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Update button states
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === cards.length - 1;
+                
+                updateDebugInfo();
+                showStatus(`Switched to card ${index + 1}`);
+            }
+            
+            function nextCard() {
+                currentIndex = (currentIndex + 1) % cards.length;
+                showCard(currentIndex);
+            }
+            
+            function prevCard() {
+                currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+                showCard(currentIndex);
+            }
+            
+            if (cards.length && prevBtn && nextBtn) {
+                // Add event listeners
+                nextBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    console.log('Next button clicked');
+                    nextCard();
+                });
+                
+                prevBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    console.log('Prev button clicked');
+                    prevCard();
+                });
+                
+                // Add keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        prevCard();
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        nextCard();
+                    }
+                });
+                
+                // Initialize
+                showCard(0);
+                showStatus('Slider initialized successfully!');
+            } else {
+                showStatus('Error: Required elements not found!', 'error');
+                console.error('Slider elements not found:', {
+                    cards: cards.length,
+                    prevBtn: !!prevBtn,
+                    nextBtn: !!nextBtn
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
