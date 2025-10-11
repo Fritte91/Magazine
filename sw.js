@@ -1,4 +1,4 @@
-const CACHE_NAME = 'now-or-never-v1.2';
+const CACHE_NAME = 'now-or-never-v2.0';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -6,6 +6,12 @@ const urlsToCache = [
   '/script.js',
   '/image/brandLogo.png',
   '/image/MagazineCover.jpg',
+  '/image/Cover.webp',
+  '/image/PHONOTYPE.webp',
+  '/image/protest.webp',
+  '/journal-article-waves.html',
+  '/journal-article-legends.html',
+  '/journal-article-understanding.html',
   '/stories.html',
   '/thank-you.html'
 ];
@@ -21,13 +27,38 @@ self.addEventListener('install', event => {
   );
 });
 
-// Fetch event - serve from cache if available
+// Fetch event - serve from cache with network fallback
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
+        // If we have a cached version, return it but also fetch from network to update cache
+        if (response) {
+          // For HTML files, always try to fetch fresh content
+          if (event.request.url.includes('.html') || event.request.url.includes('/')) {
+            fetch(event.request).then(fetchResponse => {
+              if (fetchResponse.status === 200) {
+                const responseClone = fetchResponse.clone();
+                caches.open(CACHE_NAME).then(cache => {
+                  cache.put(event.request, responseClone);
+                });
+              }
+            }).catch(() => {
+              // If network fails, continue with cached version
+            });
+          }
+          return response;
+        }
+        // If no cached version, fetch from network and cache it
+        return fetch(event.request).then(response => {
+          if (response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, responseClone);
+            });
+          }
+          return response;
+        });
       })
   );
 });
