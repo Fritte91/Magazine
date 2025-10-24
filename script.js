@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Form submission
+    // Form submission with Make.com webhook
     const orderForm = document.getElementById('orderForm');
     if (orderForm) {
         orderForm.addEventListener('submit', async function(e) {
@@ -168,30 +168,23 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Show loading state
             const submitButton = this.querySelector('.submit-order');
+            const originalText = submitButton.innerHTML;
             submitButton.innerHTML = '<span class="loading-spinner"></span> Processing...';
             submitButton.disabled = true;
             
             try {
-                // Create a new FormData without the file
-                const formDataWithoutFile = new FormData();
-                
-                // Add all form fields except the file
-                formDataWithoutFile.append('name', formData.get('name'));
-                formDataWithoutFile.append('email', formData.get('email'));
-                formDataWithoutFile.append('phone', formData.get('phone'));
-                formDataWithoutFile.append('address_line', formData.get('address_line'));
-                formDataWithoutFile.append('building', formData.get('building'));
-                formDataWithoutFile.append('street', formData.get('street'));
-                formDataWithoutFile.append('subdistrict', formData.get('subdistrict'));
-                formDataWithoutFile.append('district', formData.get('district'));
-                formDataWithoutFile.append('province', formData.get('province'));
-                formDataWithoutFile.append('postal_code', formData.get('postal_code'));
-                formDataWithoutFile.append('country', formData.get('country'));
-                formDataWithoutFile.append('payment_confirmation', 'Customer will send payment confirmation via email');
+                // Validate file size if uploaded
+                const paymentSlip = formData.get('payment_slip');
+                if (paymentSlip && paymentSlip.size > 10 * 1024 * 1024) { // 10MB limit
+                    throw new Error('Payment slip file is too large. Maximum size is 10MB.');
+                }
 
-                const response = await fetch('https://formspree.io/f/mblgrpzb', {
+                // Make.com webhook URL
+                const webhookUrl = 'https://hook.eu2.make.com/y6xtjumg4hnaam76tbxm7e4jgnfi3isp';
+                
+                const response = await fetch(webhookUrl, {
                     method: 'POST',
-                    body: formDataWithoutFile,
+                    body: formData,
                     headers: {
                         'Accept': 'application/json'
                     }
@@ -199,17 +192,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (response.ok) {
                     // Show success message
-                    showNotification('Order submitted successfully! Please send your payment confirmation to our email.', 'success');
-                    // Redirect to thank you page
-                    window.location.href = 'thank-you.html';
+                    showNotification('Order sent! Please check your email for confirmation.', 'success');
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Optional: Redirect to thank you page after a delay
+                    setTimeout(() => {
+                        window.location.href = 'thank-you.html';
+                    }, 2000);
                 } else {
-                    throw new Error('Form submission failed');
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.message || `Server error: ${response.status}`);
                 }
             } catch (error) {
                 console.error('Error:', error);
-                showNotification('There was an error submitting your order. Please try again.', 'error');
+                showNotification(`There was an error submitting your order: ${error.message}`, 'error');
             } finally {
-                submitButton.innerHTML = 'Complete Order';
+                submitButton.innerHTML = originalText;
                 submitButton.disabled = false;
             }
         });
@@ -424,6 +424,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize testimonials touch/drag functionality
     setupTestimonialsScroll();
     
+    // Initialize QR code toggle functionality
+    setupQRCodeToggle();
+    
     // Enhanced error handling and loading states
     function showLoading() {
         const overlay = document.getElementById('loadingOverlay');
@@ -595,6 +598,21 @@ function validateForm(formData) {
             errors.push(`Please enter your ${field.replace('_', ' ')}`);
         }
     });
+    
+    // File validation (optional but if provided, check format and size)
+    const paymentSlip = formData.get('payment_slip');
+    if (paymentSlip && paymentSlip.size > 0) {
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+        const maxSize = 10 * 1024 * 1024; // 10MB
+        
+        if (!allowedTypes.includes(paymentSlip.type)) {
+            errors.push('Payment slip must be a JPG, PNG, or PDF file');
+        }
+        
+        if (paymentSlip.size > maxSize) {
+            errors.push('Payment slip file is too large. Maximum size is 10MB');
+        }
+    }
     
     return errors;
 }
@@ -819,4 +837,32 @@ function setupTestimonialsScroll() {
             }, 1000);
         }
     }, 3000);
+}
+
+// QR Code Toggle Functionality
+function setupQRCodeToggle() {
+    const qrToggleBtn = document.getElementById('qrToggleBtn');
+    const qrCodeContainer = document.getElementById('qrCodeContainer');
+    const qrBtnText = qrToggleBtn?.querySelector('.qr-btn-text');
+    const qrBtnIcon = qrToggleBtn?.querySelector('.qr-btn-icon');
+    
+    if (!qrToggleBtn || !qrCodeContainer) return;
+    
+    qrToggleBtn.addEventListener('click', function() {
+        const isVisible = qrCodeContainer.style.display !== 'none';
+        
+        if (isVisible) {
+            // Hide QR code
+            qrCodeContainer.style.display = 'none';
+            qrBtnText.textContent = 'Show QR Code';
+            qrBtnIcon.textContent = '↓';
+            qrToggleBtn.classList.remove('active');
+        } else {
+            // Show QR code
+            qrCodeContainer.style.display = 'block';
+            qrBtnText.textContent = 'Hide QR Code';
+            qrBtnIcon.textContent = '↑';
+            qrToggleBtn.classList.add('active');
+        }
+    });
 }

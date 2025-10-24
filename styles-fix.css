@@ -1,5 +1,141 @@
 /* EMERGENCY STYLING FIX - Simple, clean styles that will definitely work */
 
+/* Payment Section Styles - Force Override */
+.payment-section {
+    margin-top: 0 !important;
+    padding: 30px 25px !important;
+    background: linear-gradient(135deg, rgba(46, 125, 50, 0.03), rgba(46, 125, 50, 0.08)) !important;
+    border-radius: 16px !important;
+    border: 2px solid rgba(46, 125, 50, 0.15) !important;
+    box-shadow: 0 8px 32px rgba(46, 125, 50, 0.1) !important;
+}
+
+.payment-section h4 {
+    color: #2e7d32 !important;
+    margin-bottom: 25px !important;
+    font-size: 20px !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+}
+
+.qr-toggle-btn {
+    width: 100% !important;
+    padding: 18px 25px !important;
+    background: linear-gradient(135deg, #2e7d32, #388e3c) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3) !important;
+    letter-spacing: 0.5px !important;
+    margin-bottom: 20px !important;
+}
+
+.qr-toggle-btn:hover {
+    background: linear-gradient(135deg, #1b5e20, #2e7d32) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4) !important;
+}
+
+.payment-upload {
+    margin-top: 25px !important;
+    padding: 25px !important;
+    background: white !important;
+    border-radius: 12px !important;
+    border: 2px solid rgba(46, 125, 50, 0.1) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Custom file upload styling */
+.payment-upload .form-group input[type="file"] {
+    width: 100% !important;
+    padding: 16px 20px !important;
+    border: 3px dashed rgba(46, 125, 50, 0.3) !important;
+    border-radius: 12px !important;
+    background: linear-gradient(135deg, rgba(46, 125, 50, 0.05), rgba(46, 125, 50, 0.08)) !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: #2e7d32 !important;
+    text-align: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Style the file input button */
+.payment-upload .form-group input[type="file"]::-webkit-file-upload-button {
+    background: linear-gradient(135deg, #2e7d32, #388e3c) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 12px 24px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3) !important;
+    margin-right: 15px !important;
+}
+
+.payment-upload .form-group input[type="file"]::-webkit-file-upload-button:hover {
+    background: linear-gradient(135deg, #1b5e20, #2e7d32) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4) !important;
+}
+
+/* For Firefox */
+.payment-upload .form-group input[type="file"]::-moz-file-upload-button {
+    background: linear-gradient(135deg, #2e7d32, #388e3c) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 12px 24px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3) !important;
+    margin-right: 15px !important;
+}
+
+.payment-upload .form-group input[type="file"]:hover {
+    border-color: rgba(46, 125, 50, 0.6) !important;
+    background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(46, 125, 50, 0.15)) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.2) !important;
+}
+
+.submit-order {
+    width: 100% !important;
+    padding: 18px 30px !important;
+    background: linear-gradient(135deg, #2e7d32, #388e3c) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3) !important;
+    margin-top: 30px !important;
+}
+
+.submit-order:hover {
+    background: linear-gradient(135deg, #1b5e20, #2e7d32) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4) !important;
+}
+
 /* Preview Button Fix */
 button.btn-preview {
     padding: 1rem 2rem;

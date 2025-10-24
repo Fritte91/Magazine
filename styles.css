@@ -2493,27 +2493,27 @@ blockquote p {
 /* Complete Order Button Styles */
 .submit-order {
     width: 100%;
-    padding: 18px;
-    background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+    padding: 18px 30px;
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 1.2rem;
-    font-weight: 500;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 30px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.2);
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3);
     position: relative;
     overflow: hidden;
 }
 
 .submit-order:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3);
-    background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+    background: linear-gradient(135deg, #1b5e20, #2e7d32);
 }
 
 .submit-order:active {
@@ -2833,10 +2833,12 @@ a, button, input, .topic-card, .journal-entry {
 
     /* Payment upload area improvements */
     .payment-upload {
-        margin: 20px 0;
-        padding: 20px;
-        background: #f9f9f9;
-        border-radius: 10px;
+        margin: 25px 0;
+        padding: 25px;
+        background: white;
+        border-radius: 12px;
+        border: 2px solid rgba(46, 125, 50, 0.1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
 
     .payment-upload h4 {
@@ -3928,6 +3930,457 @@ button:focus, input:focus, textarea:focus, a:focus {
 .form-group input:focus, .form-group textarea:focus {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(46, 125, 50, 0.15);
+}
+
+/* File input styling */
+.form-group input[type="file"] {
+    padding: 12px 15px;
+    border: 2px dashed rgba(46, 125, 50, 0.3);
+    border-radius: 8px;
+    background: rgba(46, 125, 50, 0.05);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-group input[type="file"]:hover {
+    border-color: rgba(46, 125, 50, 0.5);
+    background: rgba(46, 125, 50, 0.1);
+}
+
+.form-group input[type="file"]:focus {
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+    outline: none;
+}
+
+.file-help {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.payment-note {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(46, 125, 50, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid #2e7d32;
+}
+
+.payment-note p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.email-highlight {
+    font-weight: 600;
+    color: #2e7d32;
+    font-family: 'Courier New', monospace;
+}
+
+.payment-instruction {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* QR Code Toggle Styling */
+.payment-section {
+    margin-top: 0;
+    padding: 30px 25px;
+    background: linear-gradient(135deg, rgba(46, 125, 50, 0.03), rgba(46, 125, 50, 0.08));
+    border-radius: 16px;
+    border: 2px solid rgba(46, 125, 50, 0.15);
+    box-shadow: 0 8px 32px rgba(46, 125, 50, 0.1);
+}
+
+.payment-section h4 {
+    color: #2e7d32;
+    margin-bottom: 25px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.qr-section {
+    margin-bottom: 25px;
+}
+
+.qr-toggle-btn {
+    width: 100%;
+    padding: 18px 25px;
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3);
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+}
+
+.qr-toggle-btn:hover {
+    background: linear-gradient(135deg, #1b5e20, #2e7d32);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+}
+
+.qr-toggle-btn.active {
+    background: linear-gradient(135deg, #388e3c, #4caf50);
+}
+
+.qr-btn-icon {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.qr-toggle-btn.active .qr-btn-icon {
+    transform: rotate(180deg);
+}
+
+.qr-code-container {
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    border: 2px solid rgba(46, 125, 50, 0.1);
+    text-align: center;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.qr-info h5 {
+    color: #2e7d32;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.qr-info p {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.qr-code {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.qr-note {
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Improved shop section layout */
+.shop-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .shop-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+.order-details {
+    position: sticky;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 400px;
+}
+
+.magazine-preview {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(46, 125, 50, 0.1);
+}
+
+.magazine-preview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.magazine-preview img:hover {
+    transform: scale(1.02);
+}
+
+.price-tag {
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
+    color: white;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.price {
+    display: block;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.shipping {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Payment section in left column */
+.payment-section {
+    margin-top: 0 !important;
+    padding: 30px 25px !important;
+    background: linear-gradient(135deg, rgba(46, 125, 50, 0.03), rgba(46, 125, 50, 0.08)) !important;
+    border-radius: 16px !important;
+    border: 2px solid rgba(46, 125, 50, 0.15) !important;
+    box-shadow: 0 8px 32px rgba(46, 125, 50, 0.1) !important;
+}
+
+.payment-section h4 {
+    color: #2e7d32 !important;
+    margin-bottom: 25px !important;
+    font-size: 20px !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* QR code styling for left column */
+.qr-section {
+    margin-bottom: 30px;
+}
+
+.qr-code {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    margin: 20px auto;
+    border: 3px solid white;
+}
+
+.qr-info h5 {
+    color: #2e7d32;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.qr-info p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.qr-note {
+    font-size: 13px;
+    color: #666;
+    font-style: italic;
+    margin: 15px 0 0 0;
+    text-align: center;
+}
+
+/* File upload styling for left column */
+.payment-upload {
+    margin-top: 25px !important;
+    padding: 25px !important;
+    background: white !important;
+    border-radius: 12px !important;
+    border: 2px solid rgba(46, 125, 50, 0.1) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+.payment-upload .form-group {
+    margin-bottom: 20px;
+}
+
+.payment-upload .form-group input[type="file"] {
+    width: 100% !important;
+    padding: 16px 20px !important;
+    border: 3px dashed rgba(46, 125, 50, 0.3) !important;
+    border-radius: 12px !important;
+    background: linear-gradient(135deg, rgba(46, 125, 50, 0.05), rgba(46, 125, 50, 0.08)) !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: #2e7d32 !important;
+    text-align: center !important;
+}
+
+.payment-upload .form-group input[type="file"]:hover {
+    border-color: rgba(46, 125, 50, 0.6) !important;
+    background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(46, 125, 50, 0.15)) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.2) !important;
+}
+
+.payment-upload .form-group input[type="file"]:focus {
+    outline: none;
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+}
+
+.payment-upload .form-group label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #2e7d32;
+    font-size: 16px;
+    text-align: center;
+}
+
+.payment-upload .file-help {
+    font-size: 13px;
+    color: #666;
+    margin-top: 8px;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.payment-note {
+    margin-top: 20px !important;
+    padding: 20px !important;
+    background: linear-gradient(135deg, rgba(46, 125, 50, 0.05), rgba(46, 125, 50, 0.08)) !important;
+    border-radius: 10px !important;
+    border-left: 5px solid #2e7d32 !important;
+    box-shadow: 0 2px 10px rgba(46, 125, 50, 0.1) !important;
+}
+
+.payment-note p {
+    margin: 8px 0;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.email-highlight {
+    font-weight: 700;
+    color: #2e7d32;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    background: rgba(46, 125, 50, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 5px 0;
+}
+
+.payment-instruction {
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Enhanced QR Toggle Button */
+.qr-toggle-btn {
+    width: 100% !important;
+    padding: 18px 25px !important;
+    background: linear-gradient(135deg, #2e7d32, #388e3c) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3) !important;
+    letter-spacing: 0.5px !important;
+    margin-bottom: 20px !important;
+}
+
+.qr-toggle-btn:hover {
+    background: linear-gradient(135deg, #1b5e20, #2e7d32) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4) !important;
+}
+
+.qr-toggle-btn.active {
+    background: linear-gradient(135deg, #388e3c, #4caf50) !important;
+}
+
+.qr-btn-icon {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+    font-weight: bold;
+}
+
+.qr-toggle-btn.active .qr-btn-icon {
+    transform: rotate(180deg);
+}
+
+/* Enhanced Complete Order Button */
+.submit-order {
+    width: 100% !important;
+    padding: 18px 30px !important;
+    background: linear-gradient(135deg, #2e7d32, #388e3c) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3) !important;
+    margin-top: 30px !important;
+}
+
+.submit-order:hover {
+    background: linear-gradient(135deg, #1b5e20, #2e7d32) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4) !important;
+}
+
+.submit-order:active {
+    transform: translateY(-1px);
+}
+
+.submit-order:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 /* Enhanced button styling */

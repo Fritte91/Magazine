@@ -45,8 +45,8 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" as="style">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="styles.css?v=2.3">
-    <link rel="stylesheet" href="styles-fix.css?v=2.3">
+    <link rel="stylesheet" href="styles.css?v=3.0">
+    <link rel="stylesheet" href="styles-fix.css?v=3.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -484,17 +484,46 @@ With passion and a free spirit, he continues to grow and cultivate the community
                             <span class="shipping">Free Shipping in Thailand</span>
                         </div>
                     </div>
-                    <div class="payment-info">
-                        <h3>Payment Method</h3>
-                        <p>Scan QR Code to pay via PromptPay</p>
-                        <img src="./image/qrtest.png?v=2.3" alt="PromptPay QR Code" class="qr-code">
-                        <p class="payment-note">After payment, please upload your slip below</p>
+                    
+                    <!-- Payment Section - Moved to left column -->
+                    <div class="payment-section">
+                        <h4>Payment & Confirmation</h4>
+                        
+                        <!-- QR Code Section -->
+                        <div class="qr-section">
+                            <button type="button" class="qr-toggle-btn" id="qrToggleBtn">
+                                <span class="qr-btn-text">Show QR Code</span>
+                                <span class="qr-btn-icon">↓</span>
+                            </button>
+                            <div class="qr-code-container" id="qrCodeContainer" style="display: none;">
+                                <div class="qr-info">
+                                    <h5>Payment Method</h5>
+                                    <p>Scan QR Code to pay via PromptPay</p>
+                                </div>
+                                <img src="./image/qrtest.png?v=2.3" alt="PromptPay QR Code" class="qr-code">
+                                <p class="qr-note">After payment, upload your slip below</p>
+                            </div>
+                        </div>
+
+                        <!-- Payment Upload Section -->
+                        <div class="payment-upload">
+                            <div class="form-group">
+                                <input type="file" id="payment_slip" name="payment_slip" accept="image/*,.pdf" aria-label="Upload payment slip">
+                                <label for="payment_slip">Upload Payment Slip (Image or PDF)</label>
+                                <p class="file-help">Supported formats: JPG, PNG, PDF (Max 10MB)</p>
+                            </div>
+                            <div class="payment-note">
+                                <p>Or send your payment slip to:</p>
+                                <p class="email-highlight">orders@nowornever420.com</p>
+                                <p class="payment-instruction">Include your order name and email in the subject line.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="order-form">
                     <h3>Shipping Details</h3>
-                    <form id="orderForm" role="form" aria-label="Order form" action="https://formspree.io/f/mblgrpzb" method="POST" enctype="multipart/form-data">
+                    <form id="orderForm" role="form" aria-label="Order form" enctype="multipart/form-data">
                         <div class="form-group">
                             <input 
                                 type="text" 
@@ -568,20 +597,14 @@ With passion and a free spirit, he continues to grow and cultivate the community
                             </div>
                         </div>
 
-                        <div class="payment-upload">
-                            <h4>Payment Confirmation</h4>
-                        <div class="form-group">
-                            <p class="payment-note">After submitting your order, please send your payment slip to:</p>
-                            <p class="email-highlight">orders@nowornever420.com</p>
-                            <p class="payment-instruction">Include your order name and email in the subject line.</p>
-                        </div>
-                        </div>
 
                         <!-- reCAPTCHA v3 - Replace with your actual site key -->
                         <!-- <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY_HERE"></div> -->
 
-                        <input type="hidden" name="_subject" value="New Magazine Order">
-                        <input type="hidden" name="_next" value="thank-you.html">
+                        <input type="hidden" name="order_type" value="magazine_order">
+                        <input type="hidden" name="product" value="Now Or Never 420 Magazine">
+                        <input type="hidden" name="price" value="1420">
+                        <input type="hidden" name="currency" value="THB">
 
                         <button type="submit" class="submit-order">Complete Order</button>
                     </form>
