@@ -1,12 +1,7 @@
 [build]
   publish = "."
 
-# Simple redirect to fix the stories page issue
-[[redirects]]
-  from = "/stories"
-  to = "/stories-styled.html"
-  status = 301
-
+# Redirect old stories.html to the correct stories-styled.html
 [[redirects]]
   from = "/stories.html"
   to = "/stories-styled.html"

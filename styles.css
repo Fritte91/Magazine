@@ -4065,7 +4065,7 @@ button.btn-preview:hover {
 }
 
 /* View All Stories Button Critical Fix */
-a.view-all-button[href="stories.html"] {
+a.view-all-button[href="stories-styled.html"] {
     display: inline-flex !important;
     align-items: center !important;
     gap: 10px !important;
@@ -4093,7 +4093,7 @@ a.view-all-button[href="stories.html"] {
     min-width: auto !important;
 }
 
-a.view-all-button[href="stories.html"]:hover {
+a.view-all-button[href="stories-styled.html"]:hover {
     transform: translateY(-2px) !important;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
     background: linear-gradient(135deg, #2d2d2d, #1a1a1a) !important;
@@ -4174,5 +4174,4 @@ section.stories-page {
     border: 1px solid rgba(46, 125, 50, 0.1) !important;
     display: block !important;
     visibility: visible !important;
-}}  
- 
+}
