@@ -1,134 +1,81 @@
-# Apache Configuration for Now Or Never Magazine
-# Security and Performance Settings
+# Cache Busting Configuration for Now Or Never Magazine
+# This file helps control caching behavior on Apache servers
 
-# Enable Rewrite Engine
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /
-    
-    # Force HTTPS
-    RewriteCond %{HTTPS} off
-    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-    
-    # Remove www
-    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
-</IfModule>
+# Enable mod_rewrite
+RewriteEngine On
 
-# Security Headers
-<IfModule mod_headers.c>
-    # Prevent clickjacking
-    Header set X-Frame-Options "SAMEORIGIN"
-    
-    # Prevent MIME sniffing
-    Header set X-Content-Type-Options "nosniff"
-    
-    # XSS Protection
-    Header set X-XSS-Protection "1; mode=block"
-    
-    # Referrer Policy
-    Header set Referrer-Policy "strict-origin-when-cross-origin"
-    
-    # Content Security Policy
-    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://formspree.io; frame-src 'self' https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io;"
-    
-    # HSTS (uncomment after testing)
-    # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-    
-    # Remove Server signature
-    Header unset Server
-    Header unset X-Powered-By
-</IfModule>
-
-# Cache Control for Better Performance
+# Set cache headers for different file types
 <IfModule mod_expires.c>
     ExpiresActive On
     
-    # HTML files - no cache (always fresh)
-    ExpiresByType text/html "access plus 0 seconds"
+    # Images - cache for 1 year but allow versioning to override
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
     
-    # CSS and JavaScript - 1 hour cache for better performance
-    ExpiresByType text/css "access plus 1 hour"
-    ExpiresByType text/javascript "access plus 1 hour"
-    ExpiresByType application/javascript "access plus 1 hour"
+    # CSS and JS - cache for 1 month
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
     
-    # Images - 1 month
-    ExpiresByType image/jpeg "access plus 1 month"
-    ExpiresByType image/jpg "access plus 1 month"
-    ExpiresByType image/png "access plus 1 month"
-    ExpiresByType image/gif "access plus 1 month"
-    ExpiresByType image/webp "access plus 1 month"
-    ExpiresByType image/svg+xml "access plus 1 month"
+    # HTML - cache for 1 hour
+    ExpiresByType text/html "access plus 1 hour"
     
-    # Fonts - 1 year
+    # Fonts - cache for 1 year
     ExpiresByType font/woff "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
     ExpiresByType application/font-woff "access plus 1 year"
     ExpiresByType application/font-woff2 "access plus 1 year"
-    
-    # Default - 1 month
-    ExpiresDefault "access plus 1 month"
 </IfModule>
 
-# Cache-Control Headers
+# Add cache control headers
 <IfModule mod_headers.c>
-    # HTML - no cache
-    <FilesMatch "\.(html|htm)$">
+    # For files with version parameters, set no-cache
+    <FilesMatch "\.(css|js|png|jpg|jpeg|webp|gif|svg)\?v=">
         Header set Cache-Control "no-cache, no-store, must-revalidate"
         Header set Pragma "no-cache"
         Header set Expires "0"
     </FilesMatch>
     
-    # CSS and JS - short cache for better performance
-    <FilesMatch "\.(css|js)$">
-        Header set Cache-Control "public, max-age=3600, must-revalidate"
+    # For versioned files, ensure they're not cached
+    <FilesMatch "\.(css|js|png|jpg|jpeg|webp|gif|svg)$">
+        Header set Cache-Control "public, max-age=31536000"
     </FilesMatch>
     
-    # Images - cache for 1 month
-    <FilesMatch "\.(jpg|jpeg|png|gif|ico|webp|svg)$">
-        Header set Cache-Control "public, max-age=2592000"
+    # For HTML files, set shorter cache time
+    <FilesMatch "\.html$">
+        Header set Cache-Control "public, max-age=3600"
     </FilesMatch>
 </IfModule>
 
-# Compression for faster loading
+# Force refresh for versioned assets
+RewriteCond %{QUERY_STRING} ^v=([0-9.]+)$
+RewriteRule ^(.*)$ $1 [E=CACHE_BUST:$1,L]
+
+# Add ETags for better caching
+FileETag MTime Size
+
+# Compress files for better performance
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE image/svg+xml
 </IfModule>
 
-# Disable directory browsing
-Options -Indexes
-
-# Custom Error Pages
-ErrorDocument 404 /404.html
-ErrorDocument 500 /500.html
-
-# Protect sensitive files
-<FilesMatch "\.(htaccess|htpasswd|ini|log|txt)$">
-    Order Allow,Deny
-    Deny from all
-</FilesMatch>
-
-# Protect PHP files from direct access (except allowed ones)
-<FilesMatch "\.php$">
-    Order Deny,Allow
-    Deny from all
-</FilesMatch>
-
-# Allow only specific PHP files
-<FilesMatch "^(submit-order)\.php$">
-    Order Allow,Deny
-    Allow from all
-</FilesMatch>
-
-# File upload security
-<FilesMatch "\.(php|phtml|php3|php4|php5|pl|py|jsp|asp|sh|cgi)$">
-    deny from all
-</FilesMatch>
-
-# Prevent access to version control
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteRule ^\.git - [F,L]
-    RewriteRule ^\.env - [F,L]
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
-
