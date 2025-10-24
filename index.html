@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Cache Control -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <!-- Cache Control - Force Fresh Load -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
+    <meta name="cache-bust" content="2024-10-24-v4">
     
     <!-- SEO Meta Tags -->
     <title>Now Or Never 420 Magazine - Thailand's Premier Cannabis Culture Magazine</title>
@@ -694,6 +695,8 @@ With passion and a free spirit, he continues to grow and cultivate the community
     <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
     
+    <!-- Force cache clear for all users -->
+    <script src="force-cache-clear.js?v=4.0"></script>
     <!-- Load main script -->
     <script src="script.js?v=3.0"></script>
 </body>
