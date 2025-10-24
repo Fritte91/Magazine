@@ -3,6 +3,7 @@
     background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
     color: #fff;
     min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
 }
 
 .dark-stories-page {
@@ -10,6 +11,7 @@
     padding: 120px 40px 60px;
     max-width: 1400px;
     margin: 0 auto;
+    min-height: 100vh;
 }
 
 /* Header styling */

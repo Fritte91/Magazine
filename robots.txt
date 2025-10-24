@@ -1,6 +1,10 @@
 User-agent: *
 Allow: /
 Disallow: /thank-you.html
+Disallow: /clear-cache.html
+Disallow: /test-slider.html
+Disallow: /debug.html
+Disallow: /submit-order.php
 
 # Sitemap location
-Sitemap: https://yourwebsite.com/sitemap.xml 
+Sitemap: https://nowornever420.com/sitemap.xml 

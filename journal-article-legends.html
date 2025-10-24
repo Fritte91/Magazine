@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meeting the Legends - Now Or Never Magazine</title>
+    <title>The Root of Everything - Magazine Creation Journey - Now Or Never Magazine</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-fix.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -32,14 +33,20 @@
     </nav>
 
     <article class="journal-article">
+        <!-- Language Toggle -->
+        <div class="language-toggle">
+            <button id="langToggle" class="lang-btn active" data-lang="en">English</button>
+            <button id="langToggle" class="lang-btn" data-lang="th">ไทย</button>
+        </div>
+
         <header class="article-header">
             <div class="article-hero">
-                <img src="./image/weed2.jpg" alt="Meeting the Legends">
+                <img src="./image/5. Root of Everything (11).webp" alt="The Root of Everything">
                 <div class="article-meta">
-                    <h1>Meeting the Legends</h1>
+                    <h1 data-en="The Root of Everything" data-th="รากฐานของทุกสิ่ง">The Root of Everything</h1>
                     <div class="article-info">
-                        <span class="article-date">February 3, 2024</span>
-                        <span class="article-author">By Beam Klongluang</span>
+                        <span class="article-date">November 2024</span>
+                        <span class="article-author" data-en="By Beam Klongluang" data-th="โดย Beam Klongluang">By Beam Klongluang</span>
                     </div>
                 </div>
             </div>
@@ -47,63 +54,67 @@
 
         <div class="article-content">
             <div class="article-intro">
-                <p class="lead">
-                    From remote mountain villages to bustling city dispensaries, each legend I met shared their unique perspective on cannabis culture. Their stories weaved together like ancient tapestries, revealing the rich history of Thailand's relationship with this sacred plant.
+                <p class="lead" data-en="At first, I never imagined that creating a magazine would be so complex and challenging. Only after diving into the process, step by step, did I realize that success required more than just 'doing the work.' It meant 'thinking through every detail,' from advance planning to on-the-spot decisions at each stage." data-th="ในช่วงเริ่มต้น ผมไม่เคยคาดคิดมาก่อนเลยว่า 'การทำแมกกาซีน' จะเป็นงานที่ซับซ้อนและท้าทายได้ถึงเพียงนี้ จนกระทั่งได้ลงมือทำจริง ทีละขั้น ทีละวัน ผมจึงค่อย ๆ เรียนรู้ว่า หากต้องการให้แมกกาซีนฉบับนี้สำเร็จตามที่ตั้งใจไว้ ไม่ใช่เพียงแค่ 'ลงมือทำ' เท่านั้น แต่ต้อง 'คิดให้รอบด้าน' ทั้งในมิติของการวางแผนล่วงหน้า และการตัดสินใจเฉพาะหน้าในทุกช่วงจังหวะของการทำงาน">
+                    At first, I never imagined that creating a magazine would be so complex and challenging. Only after diving into the process, step by step, did I realize that success required more than just "doing the work." It meant "thinking through every detail," from advance planning to on-the-spot decisions at each stage.
                 </p>
             </div>
 
             <div class="article-body">
                 <section class="article-section">
-                    <h2>The Mountain Sage</h2>
-                    <p>
-                        High in the mountains of northern Thailand, I met with Uncle Som, a third-generation cannabis cultivator. His family's techniques have been passed down through generations, carefully preserved like the rare landrace strains they protect.
+                    <h2 data-en="Every Step Matters" data-th="ทุกขั้นตอนมีความสำคัญ">Every Step Matters</h2>
+                    <p data-en="Every step of the process involves careful attention to 'details' and 'steps' to ensure each section moves towards its goal with clarity. My main objective was to ensure that readers gain 'knowledge' from each feature and feel the unique style and identity of each interviewee." data-th="ทุกกระบวนการล้วนเต็มไปด้วย 'ขั้นตอน' และ 'รายละเอียด' ที่ต้องใส่ใจ เพื่อขับเคลื่อนให้แต่ละส่วนไปถึงเป้าหมายอย่างมีทิศทาง หนึ่งในเป้าหมายหลักของผมคือ อยากให้ผู้อ่านทุกคนได้รับ 'ความรู้' จากแต่ละสกู๊ปและสัมผัสได้ถึงเอกลักษณ์เฉพาะตัวของแต่ละคอลัมน์ — ที่สะท้อน 'ตัวตน' และ 'สไตล์' ของพี่ ๆ ผู้ให้สัมภาษณ์ในแบบของพวกเขาเอง">
+                        Every step of the process involves careful attention to "details" and "steps" to ensure each section moves towards its goal with clarity. My main objective was to ensure that readers gain "knowledge" from each feature and feel the unique style and identity of each interviewee.
                     </p>
                     <div class="article-image-grid">
                         <figure>
-                            <img src="./image/weed2.jpg" alt="Mountain cultivation">
-                            <figcaption>Traditional cultivation methods in the northern highlands</figcaption>
+                            <img src="./image/5. Root of Everything (11).webp" alt="Magazine creation process">
+                            <figcaption data-en="The intricate process of magazine creation" data-th="กระบวนการสร้างนิตยสารที่ซับซ้อน">The intricate process of magazine creation</figcaption>
                         </figure>
                         <figure>
-                            <img src="./image/weed1.jpg" alt="Ancient techniques">
-                            <figcaption>Ancient drying techniques preserved through generations</figcaption>
+                            <img src="./image/5. Root of Everything (11).webp" alt="Design and planning">
+                            <figcaption data-en="Careful planning and attention to detail" data-th="การวางแผนอย่างรอบคอบและใส่ใจในรายละเอียด">Careful planning and attention to detail</figcaption>
                         </figure>
                     </div>
                 </section>
 
                 <section class="article-section">
-                    <h2>The Urban Pioneer</h2>
-                    <p>
-                        In Bangkok, I spent time with Dr. Somchai, one of the first advocates for medical cannabis in Thailand. His clinic has become a beacon of hope for patients seeking alternative treatments.
+                    <h2 data-en="Design and Visual Excellence" data-th="การออกแบบและความงามทางสายตา">Design and Visual Excellence</h2>
+                    <p data-en="I placed particular emphasis on 'design' and 'visuals,' aiming for a world-class look. To make the work more accessible globally, I decided to publish in English, believing that 'content,' 'visuals,' and 'language' are key to reaching a wider audience." data-th="ผมอยากให้ทุกหน้ามีความสวยงาม ดู World-Class และเพื่อให้ผลงานมีมิติในระดับสากล ผมจึงเลือกจัดทำในรูปแบบภาษาอังกฤษ เพราะผมเชื่อว่า 'เนื้อหา' 'งานภาพ' และ 'ภาษา' ล้วนเป็นกุญแจสำคัญที่จะเปิดประตูให้ผู้คนจากหลากหลายกลุ่มสามารถเข้าถึงได้มากขึ้น">
+                        I placed particular emphasis on "design" and "visuals," aiming for a world-class look. To make the work more accessible globally, I decided to publish in English, believing that "content," "visuals," and "language" are key to reaching a wider audience.
                     </p>
                     <blockquote>
-                        <p>"We're not just preserving plants; we're preserving wisdom that could help future generations."</p>
+                        <p data-en=""Content,' 'visuals,' and 'language' are key to reaching a wider audience." data-th=""เนื้อหา' 'งานภาพ' และ 'ภาษา' ล้วนเป็นกุญแจสำคัญที่จะเปิดประตูให้ผู้คนจากหลากหลายกลุ่มสามารถเข้าถึงได้มากขึ้น">"Content," "visuals," and "language" are key to reaching a wider audience.</p>
                     </blockquote>
                 </section>
 
                 <section class="article-section">
-                    <h2>The Future Guardians</h2>
-                    <p>
-                        The most inspiring part of this journey was meeting young entrepreneurs who are bridging traditional knowledge with modern science, ensuring that Thailand's cannabis heritage evolves while staying true to its roots.
+                    <h2 data-en="Reaching a Broader Audience" data-th="การเข้าถึงผู้ชมที่กว้างขึ้น">Reaching a Broader Audience</h2>
+                    <p data-en="The goal wasn't just to reach a niche group, but to spread 'knowledge, understanding, and a perspective on cannabis' to the broader public." data-th="ไม่เพียงจำกัดอยู่ในกลุ่มเฉพาะทางเท่านั้น แต่ยังสามารถส่งต่อ 'ความรู้ ความเข้าใจ และมุมมองที่สวยงามเกี่ยวกับกัญชา' ไปสู่สังคมวงกว้างได้อย่างแท้จริง">
+                        The goal wasn't just to reach a niche group, but to spread "knowledge, understanding, and a perspective on cannabis" to the broader public.
                     </p>
+                    <figure class="full-width-image">
+                        <img src="./image/5. Root of Everything (11).webp" alt="The Root of Everything - Magazine Vision">
+                        <figcaption data-en="The Root of Everything — Building bridges through knowledge and understanding" data-th="รากฐานของทุกสิ่ง — การสร้างสะพานผ่านความรู้และความเข้าใจ">The Root of Everything — Building bridges through knowledge and understanding</figcaption>
+                    </figure>
                 </section>
             </div>
         </div>
 
         <!-- Related Articles -->
         <aside class="related-articles">
-            <h3>More Behind the Scenes</h3>
+            <h3 data-en="More from Now or Never" data-th="เพิ่มเติมจาก Now or Never">More from Now or Never</h3>
             <div class="related-grid">
                 <article class="related-article">
-                    <img src="./image/weed1.jpg" alt="The Journey Under the Waves">
-                    <h4>The Journey Under the Waves</h4>
-                    <p>The beginning of our magazine journey</p>
-                    <a href="journal-article-waves.html" class="read-more">Read More</a>
+                    <img src="./image/1.The Green awakening .webp" alt="The Green Awakening">
+                    <h4 data-en="The Green Awakening" data-th="การตื่นรู้สีเขียว">The Green Awakening</h4>
+                    <p data-en="The interviewing journey that opened new perspectives" data-th="การเดินทางสัมภาษณ์ที่เปิดมุมมองใหม่">The interviewing journey that opened new perspectives</p>
+                    <a href="journal-article-green-awakening.html" class="read-more" data-en="Read More" data-th="อ่านเพิ่มเติม">Read More</a>
                 </article>
                 <article class="related-article">
-                    <img src="./image/weed1.jpg" alt="The Art of Understanding">
-                    <h4>The Art of Understanding</h4>
-                    <p>Exploring cannabis through Thai art and culture</p>
-                    <a href="journal-article-understanding.html" class="read-more">Read More</a>
+                    <img src="./image/2.Journey under the waves .webp" alt="The Journey Under the Waves">
+                    <h4 data-en="The Journey Under the Waves" data-th="การเดินทางใต้ผืนน้ำที่ไร้ขอบเขต">The Journey Under the Waves</h4>
+                    <p data-en="The protest story that sparked our magazine" data-th="เรื่องราวการประท้วงที่จุดประกายนิตยสารของเรา">The protest story that sparked our magazine</p>
+                    <a href="journal-article-journey-waves.html" class="read-more" data-en="Read More" data-th="อ่านเพิ่มเติม">Read More</a>
                 </article>
             </div>
         </aside>

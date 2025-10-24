@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Add styled version CSS -->
     <link rel="stylesheet" href="stories-styled.css">
+    <link rel="stylesheet" href="styles-fix.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -34,100 +35,111 @@
     </nav>
 
     <section class="dark-stories-page">
+        <!-- Language Toggle -->
+        <div class="language-toggle">
+            <button id="langToggle" class="lang-btn active" data-lang="en">English</button>
+            <button id="langToggle" class="lang-btn" data-lang="th">ไทย</button>
+        </div>
+
         <div class="dark-stories-header">
-            <h1>Behind The Production</h1>
-            <p class="dark-subtitle">A collection of stories documenting our journey in creating Now Or Never Magazine</p>
+            <h1 data-en="Behind The Production" data-th="เบื้องหลังการผลิต">Behind The Production</h1>
+            <p class="dark-subtitle" data-en="A collection of stories documenting our journey in creating Now Or Never Magazine" data-th="ชุดเรื่องราวที่บันทึกการเดินทางของเราในการสร้างนิตยสาร Now Or Never">A collection of stories documenting our journey in creating Now Or Never Magazine</p>
         </div>
 
         <div class="dark-stories-grid">
-            <!-- Featured Story -->
+            <!-- Featured Story - Now or Never 1st Issue -->
             <article class="dark-story-card">
                 <div class="dark-story-image">
-                    <img src="./image/weed1.jpg" alt="The Journey Under the Waves">
+                    <img src="./image/6. Now or never 1st.png" alt="Now or Never 1st Issue">
                     <span class="dark-tag dark-tag-featured">Featured</span>
                 </div>
                 <div class="dark-story-content">
-                    <h3>The Journey Under the Waves</h3>
-                    <p class="dark-story-date">January 15, 2024</p>
-                    <p class="dark-story-excerpt">
-                        The journey of creating this magazine began like diving into unknown waters. Each interview, each story uncovered, brought new depths of understanding about Thailand's cannabis culture.
+                    <h3 data-en="Now or Never 1st Issue" data-th="Now or Never ฉบับที่ 1">Now or Never 1st Issue</h3>
+                    <p class="dark-story-date">November 2024</p>
+                    <p class="dark-story-excerpt" data-en="Introducing the first issue of Now or Never magazine — a groundbreaking publication that explores cannabis from perspectives in Thailand you've never seen before. If not now, then when?" data-th="แนะนำนิตยสาร Now or Never ฉบับแรก — สิ่งพิมพ์ที่ก้าวล้ำที่สำรวจกัญชาในมุมที่คุณไม่เคยเห็นในประเทศไทย ถ้าไม่ใช่ตอนนี้ แล้วเมื่อไหร่?">
+                        Introducing the first issue of Now or Never magazine — a groundbreaking publication that explores cannabis from perspectives in Thailand you've never seen before. If not now, then when?
                     </p>
-                    <a href="journal-article-waves.html" class="dark-read-more">Read Story</a>
+                    <a href="journal-article-waves.html" class="dark-read-more" data-en="Read Story" data-th="อ่านเรื่อง">Read Story</a>
                 </div>
             </article>
 
-            <!-- Second Story -->
+            <!-- The Root of Everything -->
             <article class="dark-story-card">
                 <div class="dark-story-image">
-                    <img src="./image/weed2.jpg" alt="Meeting the Legends">
+                    <img src="./image/5. Root of Everything (11).webp" alt="The Root of Everything">
                     <span class="dark-tag dark-tag-latest">Latest</span>
                 </div>
                 <div class="dark-story-content">
-                    <h3>Meeting the Legends</h3>
-                    <p class="dark-story-date">February 3, 2024</p>
-                    <p class="dark-story-excerpt">
-                        From remote mountain villages to bustling city dispensaries, each legend I met shared their unique perspective on cannabis culture.
+                    <h3 data-en="The Root of Everything" data-th="รากฐานของทุกสิ่ง">The Root of Everything</h3>
+                    <p class="dark-story-date">November 2024</p>
+                    <p class="dark-story-excerpt" data-en="At first, I never imagined that creating a magazine would be so complex and challenging. Only after diving into the process, step by step, did I realize that success required more than just 'doing the work.'" data-th="ในช่วงเริ่มต้น ผมไม่เคยคาดคิดมาก่อนเลยว่า 'การทำแมกกาซีน' จะเป็นงานที่ซับซ้อนและท้าทายได้ถึงเพียงนี้ จนกระทั่งได้ลงมือทำจริง ทีละขั้น ทีละวัน">
+                        At first, I never imagined that creating a magazine would be so complex and challenging. Only after diving into the process, step by step, did I realize that success required more than just "doing the work."
                     </p>
-                    <a href="journal-article-legends.html" class="dark-read-more">Read Story</a>
+                    <a href="journal-article-legends.html" class="dark-read-more" data-en="Read Story" data-th="อ่านเรื่อง">Read Story</a>
                 </div>
             </article>
 
-            <!-- Third Story -->
+            <!-- Through the Lens -->
             <article class="dark-story-card">
                 <div class="dark-story-image">
-                    <img src="./image/weed1.jpg" alt="The Art of Understanding">
+                    <img src="./image/4.Through the lens.webp" alt="Through the Lens">
                     <span class="dark-tag dark-tag-latest">Latest</span>
                 </div>
                 <div class="dark-story-content">
-                    <h3>The Art of Understanding</h3>
-                    <p class="dark-story-date">March 21, 2024</p>
-                    <p class="dark-story-excerpt">
-                        The most profound discoveries came from unexpected places. Through temple artwork, ancient texts, and modern interpretations.
+                    <h3 data-en="Through the Lens" data-th="ผ่านเลนส์">Through the Lens</h3>
+                    <p class="dark-story-date">November 2024</p>
+                    <p class="dark-story-excerpt" data-en="We begin by capturing every light, shadow, and fiber of the cannabis. Painting stories that cannot simply be told. This is the beginning of NowOrNever Magazine—a space for knowledge, creativity, and experience." data-th="ผมเริ่มต้นด้วยเลนส์กล้อง จับทุกแสง เงา และเส้นใยของดอกกัญชา ถ่ายทอดเรื่องราวที่คำพูดไม่อาจอธิบายได้ นี่คือจุดขับเคลื่อนของ Nowornever Magazine">
+                        We begin by capturing every light, shadow, and fiber of the cannabis. Painting stories that cannot simply be told. This is the beginning of NowOrNever Magazine—a space for knowledge, creativity, and experience.
                     </p>
-                    <a href="journal-article-understanding.html" class="dark-read-more">Read Story</a>
+                    <a href="journal-article-through-lens.html" class="dark-read-more" data-en="Read Story" data-th="อ่านเรื่อง">Read Story</a>
                 </div>
             </article>
 
-            <!-- Upcoming Stories -->
-            <article class="dark-story-card dark-story-upcoming">
+            <!-- The Beginning -->
+            <article class="dark-story-card">
                 <div class="dark-story-image">
-                    <img src="./image/weed2.jpg" alt="The Sacred Gardens">
-                    <span class="dark-tag dark-tag-upcoming">Coming Soon</span>
+                    <img src="./image/3.The beginging.webp" alt="The Beginning">
+                    <span class="dark-tag dark-tag-latest">Latest</span>
                 </div>
                 <div class="dark-story-content">
-                    <h3>The Sacred Gardens</h3>
-                    <p class="dark-story-date">April 2024</p>
-                    <p class="dark-story-excerpt">
-                        Exploring the ancient traditions of temple gardens and their connection to modern cannabis cultivation.
+                    <h3 data-en="The Beginning" data-th="จุดเริ่มต้น">The Beginning</h3>
+                    <p class="dark-story-date">November 2024</p>
+                    <p class="dark-story-excerpt" data-en="The beginning of the journey was simple. I wanted to create a book—not just as a published work, but as a record of many different journeys converging into one place: the magazine." data-th="การเดินทางครั้งนี้เริ่มต้นด้วยความตั้งใจง่าย ๆ — อยากสร้างหนังสือที่ไม่ได้เป็นเพียงสิ่งพิมพ์ แต่เป็นเหมือนบันทึกเส้นทางของความคิด และภาพจำที่เราเลือกหยิบมาเล่า">
+                        The beginning of the journey was simple. I wanted to create a book—not just as a published work, but as a record of many different journeys converging into one place: the magazine.
                     </p>
+                    <a href="journal-article-beginning.html" class="dark-read-more" data-en="Read Story" data-th="อ่านเรื่อง">Read Story</a>
                 </div>
             </article>
 
-            <article class="dark-story-card dark-story-upcoming">
+            <!-- The Journey Under the Waves -->
+            <article class="dark-story-card">
                 <div class="dark-story-image">
-                    <img src="./image/weed1.jpg" alt="Healing Traditions">
-                    <span class="dark-tag dark-tag-upcoming">Coming Soon</span>
+                    <img src="./image/2.Journey under the waves .webp" alt="The Journey Under the Waves">
+                    <span class="dark-tag dark-tag-latest">Latest</span>
                 </div>
                 <div class="dark-story-content">
-                    <h3>Healing Traditions</h3>
-                    <p class="dark-story-date">May 2024</p>
-                    <p class="dark-story-excerpt">
-                        Discovering the ancient healing practices that have been passed down through generations.
+                    <h3 data-en="The Journey Under the Waves" data-th="การเดินทางใต้ผืนน้ำที่ไร้ขอบเขต">The Journey Under the Waves</h3>
+                    <p class="dark-story-date">November 2024</p>
+                    <p class="dark-story-excerpt" data-en="It all started around month 6 or 8 of 2024. By that time, cannabis had been legal for almost two years. Then, suddenly, news started circulating that it might be outlawed again." data-th="มันมาจาก ช่วงเดือน 7-8 ของปี 2567 ในตอนนั้นกัญชาเปิดเสรีในไทย มาประมาณ เกือบ 2 ปี และเกิดกระแสของกัญชา ที่จะกำลังจะกลับไปผิดกฎหมายอีกครั้งนึง">
+                        It all started around month 6 or 8 of 2024. By that time, cannabis had been legal for almost two years. Then, suddenly, news started circulating that it might be outlawed again.
                     </p>
+                    <a href="journal-article-journey-waves.html" class="dark-read-more" data-en="Read Story" data-th="อ่านเรื่อง">Read Story</a>
                 </div>
             </article>
 
-            <article class="dark-story-card dark-story-upcoming">
+            <!-- The Green Awakening -->
+            <article class="dark-story-card">
                 <div class="dark-story-image">
-                    <img src="./image/weed2.jpg" alt="Modern Renaissance">
-                    <span class="dark-tag dark-tag-upcoming">Coming Soon</span>
+                    <img src="./image/1.The Green awakening .webp" alt="The Green Awakening">
+                    <span class="dark-tag dark-tag-latest">Latest</span>
                 </div>
                 <div class="dark-story-content">
-                    <h3>Modern Renaissance</h3>
-                    <p class="dark-story-date">June 2024</p>
-                    <p class="dark-story-excerpt">
-                        How Thailand's cannabis culture is evolving in the modern era while honoring its roots.
+                    <h3 data-en="The Green Awakening" data-th="การตื่นรู้สีเขียว">The Green Awakening</h3>
+                    <p class="dark-story-date">November 2024</p>
+                    <p class="dark-story-excerpt" data-en="The interviewing journey really opened me up to various perspectives. Each lesson I learned taught me about tenacity and resilience. It allowed me to reflect on conflicts in life—whether they stem from society, the law, or other factors." data-th="การเดินทางไปสัมภาษณ์พี่ ๆ หลายท่าน เหมือนเป็นการเปิดประตูสู่ความเข้าใจในมิติใหม่ ๆ ให้กับผม ทุกมุมมองที่ได้รับล้วนเป็นบทเรียนแห่งความอดทน">
+                        The interviewing journey really opened me up to various perspectives. Each lesson I learned taught me about tenacity and resilience. It allowed me to reflect on conflicts in life—whether they stem from society, the law, or other factors.
                     </p>
+                    <a href="journal-article-green-awakening.html" class="dark-read-more" data-en="Read Story" data-th="อ่านเรื่อง">Read Story</a>
                 </div>
             </article>
         </div>

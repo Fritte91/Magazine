@@ -40,6 +40,7 @@
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-fix.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -61,14 +62,14 @@
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Analytics - Replace G-XXXXXXXXXX with your actual tracking ID -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-XXXXXXXXXX');
-    </script>
+    </script> -->
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -95,8 +96,8 @@
     }
     </script>
     
-    <!-- reCAPTCHA -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- reCAPTCHA - Uncomment when you have a valid site key -->
+    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
 </head>
 <body>
     <!-- Add skip link at the start of body -->
@@ -123,7 +124,7 @@
         </button>
         <div class="nav-links" role="menu">
             <a href="#hero" role="menuitem" aria-label="Go to home section">Home</a>
-            <a href="stories.html" role="menuitem" aria-label="View stories">Stories</a>
+            <a href="stories-styled.html" role="menuitem" aria-label="View stories">Stories</a>
             <a href="#description" role="menuitem" aria-label="Learn about us">Growing</a>
             <a href="#description" role="menuitem" aria-label="Learn about us">Healing</a>
             <a href="#description" role="menuitem" aria-label="Learn about us">Spiritual</a>
@@ -154,16 +155,6 @@
         <div class="hero-image">
             <img 
                 src="./image/Cover.webp" 
-                srcset="
-                    ./image/Cover-small.webp 300w,
-                    ./image/Cover-medium.webp 600w,
-                    ./image/Cover.webp 1200w
-                "
-                sizes="
-                    (max-width: 600px) 300px,
-                    (max-width: 1200px) 600px,
-                    1200px
-                "
                 alt="Now Or Never 420 Magazine Cover - Limited Edition Cannabis Culture Magazine"
                 loading="eager"
                 decoding="async"
@@ -235,9 +226,9 @@
                 </div>
             </div>
 
-            <div class="character-card" role="tabpanel" aria-label="Character 2 of 3">
+            <div class="character-card" role="tabpanel" aria-label="Character 3 of 3">
                 <div class="character-image">
-                    <img src="./image/kdkohtao.jpeg" alt="Ko Dam Koh Tao - Thai Cannabis Pioneer">
+                    <img src="./image/highthai.webp" alt="Dr.Highthai - Thai Cannabis Pioneer">
                 </div>
                 <div class="character-info">
                     <h3>Dr.Highthai</h3>
@@ -248,7 +239,7 @@ With passion and a free spirit, he continues to grow and cultivate the community
                 </div>
             </div>
 
-            <div class="character-card" role="tabpanel" aria-label="Character 3 of 3">
+            <div class="character-card" role="tabpanel" aria-label="Character 4 of 4">
                 <div class="character-image">
                     <img src="./image/kittychopaka.jpeg" alt="Kitty Chopaka - Thai Cannabis Advocate">
                 </div>
@@ -278,16 +269,28 @@ With passion and a free spirit, he continues to grow and cultivate the community
                 <div class="author-info">
                     <h3>Phonotype_247</h3>
                     <p class="author-title">Cannabis Culture Journalist & Advocate</p>
-                    <p class="author-description">
-                        Hello, I'm Phototype_247, the author of Now or Never magazine. For a long time, I've always been in love with cannabis and the cultures surrounding it. Ever since I got to know and use it, many things in my life changed. It has helped me connect more deeply with myself and others, and expand myself to be more in tune with the surroundings. 
-
-In artistic fields like music, and visual arts, it has enhanced both my enjoyment and the creative process, allowing me to connect and learn from others more. 
-
-With my background in photography, cannabis media design, and personal experience as a grower, I created the Now or Never magazine to share this journey—in hopes that others will be able to learn more about cannabis and come to appreciate it like I have.
-                    </p>
-                    <p class="author-description">
-                        As the founder of Now Or Never Magazine, he brings together his passion for cannabis culture, deep understanding of traditional Thai medicine, and commitment to responsible advocacy to create a publication that bridges the gap between traditional wisdom and modern cannabis culture.
-                    </p>
+                    
+                    <div class="author-bio">
+                        <div class="bio-section">
+                            <h4>My Journey</h4>
+                            <p>Hello, I'm Phonotype_247, the author of Now or Never magazine. For a long time, I've always been in love with cannabis and the cultures surrounding it. Ever since I got to know and use it, many things in my life changed. It has helped me connect more deeply with myself and others, and expand myself to be more in tune with the surroundings.</p>
+                        </div>
+                        
+                        <div class="bio-section">
+                            <h4>Creative Impact</h4>
+                            <p>In artistic fields like music and visual arts, it has enhanced both my enjoyment and the creative process, allowing me to connect and learn from others more. The plant has opened new doors of perception and creativity that I never knew existed.</p>
+                        </div>
+                        
+                        <div class="bio-section">
+                            <h4>The Mission</h4>
+                            <p>With my background in photography, cannabis media design, and personal experience as a grower, I created the Now or Never magazine to share this journey—in hopes that others will be able to learn more about cannabis and come to appreciate it like I have.</p>
+                        </div>
+                        
+                        <div class="bio-section highlight">
+                            <h4>Vision</h4>
+                            <p>As the founder of Now Or Never Magazine, I bring together my passion for cannabis culture, deep understanding of traditional Thai medicine, and commitment to responsible advocacy to create a publication that bridges the gap between traditional wisdom and modern cannabis culture.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -331,18 +334,34 @@ With my background in photography, cannabis media design, and personal experienc
                 </div>
                 <div class="testimonial-item">
                     <div class="quote-icon">❝</div>
-                    <p class="quote">"A masterpiece that bridges traditional wisdom with modern cannabis culture. Every page tells a story."</p>
+                    <p class="quote">"This magazine showcases the beautiful intersection of cannabis culture and Thai traditions like never before."</p>
                     <div class="author-info">
-                        <span class="name">Vatchanan Sukjaloan</span>
-                        <span class="title">Herbal Enthusiast</span>
+                        <span class="name">Dr. Somchai Patel</span>
+                        <span class="title">Traditional Medicine Expert</span>
                     </div>
                 </div>
                 <div class="testimonial-item">
                     <div class="quote-icon">❝</div>
-                    <p class="quote">"A masterpiece that bridges traditional wisdom with modern cannabis culture. Every page tells a story."</p>
+                    <p class="quote">"The photography and storytelling in this magazine are absolutely stunning. A true celebration of cannabis culture."</p>
                     <div class="author-info">
-                        <span class="name">Vatchanan Sukjaloan</span>
-                        <span class="title">Herbal Enthusiast</span>
+                        <span class="name">Sarah Johnson</span>
+                        <span class="title">Photography Enthusiast</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"Finally, a publication that respects both the spiritual and medicinal aspects of cannabis. Highly recommended!"</p>
+                    <div class="author-info">
+                        <span class="name">Michael Chen</span>
+                        <span class="title">Cannabis Advocate</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"The limited edition approach makes this magazine feel truly special. Every copy is a work of art."</p>
+                    <div class="author-info">
+                        <span class="name">Emma Thompson</span>
+                        <span class="title">Art Collector</span>
                     </div>
                 </div>
             </div>
@@ -396,13 +415,13 @@ With my background in photography, cannabis media design, and personal experienc
         <div class="journal-grid">
             <article class="journal-entry">
                 <div class="journal-image">
-                    <img src="./image/weed1.jpg" alt="The Journey Under the Waves">
+                    <img src="./image/6. Now or never 1st.png" alt="Now or Never 1st Issue">
                 </div>
                 <div class="journal-content">
-                    <h3>The Journey Under the Waves</h3>
-                    <p class="journal-date">January 15, 2024</p>
+                    <h3>Now or Never 1st Issue</h3>
+                    <p class="journal-date">November 2024</p>
                     <p class="journal-text">
-                        The journey of creating this magazine began like diving into unknown waters. Each interview, each story uncovered, brought new depths of understanding about Thailand's cannabis culture. The first waves of research led me to hidden communities of traditional healers.
+                        Introducing the first issue of Now or Never magazine — a groundbreaking publication that explores cannabis from perspectives in Thailand you've never seen before. If not now, then when? Stay tuned for updates and pre-orders this November.
                     </p>
                     <a href="journal-article-waves.html" class="read-more" data-article="waves">Read More</a>
                 </div>
@@ -410,13 +429,13 @@ With my background in photography, cannabis media design, and personal experienc
 
             <article class="journal-entry">
                 <div class="journal-image">
-                    <img src="./image/weed2.jpg" alt="Meeting the Legends">
+                    <img src="./image/5. Root of Everything (11).webp" alt="The Root of Everything">
                 </div>
                 <div class="journal-content">
-                    <h3>Meeting the Legends</h3>
-                    <p class="journal-date">February 3, 2024</p>
+                    <h3>The Root of Everything</h3>
+                    <p class="journal-date">November 2024</p>
                     <p class="journal-text">
-                        From remote mountain villages to bustling city dispensaries, each legend I met shared their unique perspective on cannabis culture. Their stories weaved together like ancient tapestries, revealing the rich history of Thailand's relationship with this sacred plant.
+                        At first, I never imagined that creating a magazine would be so complex and challenging. Only after diving into the process, step by step, did I realize that success required more than just "doing the work." It meant "thinking through every detail."
                     </p>
                     <a href="journal-article-legends.html" class="read-more" data-article="legends">Read More</a>
                 </div>
@@ -424,22 +443,22 @@ With my background in photography, cannabis media design, and personal experienc
 
             <article class="journal-entry">
                 <div class="journal-image">
-                    <img src="./image/weed1.jpg" alt="The Art of Understanding">
+                    <img src="./image/4.Through the lens.webp" alt="Through the Lens">
                 </div>
                 <div class="journal-content">
-                    <h3>The Art of Understanding</h3>
-                    <p class="journal-date">March 21, 2024</p>
+                    <h3>Through the Lens</h3>
+                    <p class="journal-date">November 2024</p>
                     <p class="journal-text">
-                        The most profound discoveries came from unexpected places. Through temple artwork, ancient texts, and modern interpretations, I found that cannabis culture in Thailand is not just about the plant—it's about community, healing, and spiritual growth.
+                        We begin by capturing every light, shadow, and fiber of the cannabis. Painting stories that cannot simply be told. This is the beginning of NowOrNever Magazine—a space for knowledge, creativity, and experience.
                     </p>
-                    <a href="journal-article-understanding.html" class="read-more" data-article="understanding">Read More</a>
+                    <a href="journal-article-through-lens.html" class="read-more" data-article="through-lens">Read More</a>
                 </div>
             </article>
         </div>
 
         <!-- Add this after your journal-grid in the journal section -->
         <div class="view-all-container">
-            <a href="stories.html" class="view-all-button">
+            <a href="stories-styled.html" class="view-all-button">
                 View All Stories
                 <span class="arrow">→</span>
             </a>
@@ -545,14 +564,15 @@ With my background in photography, cannabis media design, and personal experienc
 
                         <div class="payment-upload">
                             <h4>Payment Confirmation</h4>
-                            <div class="form-group">
-                                <p class="payment-note">After submitting your order, please send your payment slip to:</p>
-                                <p class="email-highlight">fredriklindberg1991@gmail.com</p>
-                                <p class="payment-instruction">Include your order name and email in the subject line.</p>
-                            </div>
+                        <div class="form-group">
+                            <p class="payment-note">After submitting your order, please send your payment slip to:</p>
+                            <p class="email-highlight">orders@nowornever420.com</p>
+                            <p class="payment-instruction">Include your order name and email in the subject line.</p>
+                        </div>
                         </div>
 
-                        <div class="g-recaptcha" data-sitekey="6LcXXXXXXXXXX"></div>
+                        <!-- reCAPTCHA v3 - Replace with your actual site key -->
+                        <!-- <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY_HERE"></div> -->
 
                         <input type="hidden" name="_subject" value="New Magazine Order">
                         <input type="hidden" name="_next" value="thank-you.html">

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Art of Understanding - Now Or Never Magazine</title>
+    <title>Through the Lens - Creative Process - Now Or Never Magazine</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-fix.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -32,14 +33,20 @@
     </nav>
 
     <article class="journal-article">
+        <!-- Language Toggle -->
+        <div class="language-toggle">
+            <button id="langToggle" class="lang-btn active" data-lang="en">English</button>
+            <button id="langToggle" class="lang-btn" data-lang="th">ไทย</button>
+        </div>
+
         <header class="article-header">
             <div class="article-hero">
-                <img src="./image/weed1.jpg" alt="The Art of Understanding">
+                <img src="./image/4.Through the lens.webp" alt="Through the Lens">
                 <div class="article-meta">
-                    <h1>The Art of Understanding</h1>
+                    <h1 data-en="Through the Lens" data-th="ผ่านเลนส์">Through the Lens</h1>
                     <div class="article-info">
-                        <span class="article-date">March 21, 2024</span>
-                        <span class="article-author">By Beam Klongluang</span>
+                        <span class="article-date">November 2024</span>
+                        <span class="article-author" data-en="By Beam Klongluang" data-th="โดย Beam Klongluang">By Beam Klongluang</span>
                     </div>
                 </div>
             </div>
@@ -47,63 +54,94 @@
 
         <div class="article-content">
             <div class="article-intro">
-                <p class="lead">
-                    The most profound discoveries came from unexpected places. Through temple artwork, ancient texts, and modern interpretations, I found that cannabis culture in Thailand is not just about the plant—it's about community, healing, and spiritual growth.
+                <p class="lead" data-en="We begin by capturing every light, shadow, and fiber of the cannabis. Painting stories that cannot simply be told. This is the beginning of NowOrNever Magazine—a space for knowledge, creativity, and experience." data-th="ผมเริ่มต้นด้วยเลนส์กล้อง จับทุกแสง เงา และเส้นใยของดอกกัญชา ถ่ายทอดเรื่องราวที่คำพูดไม่อาจอธิบายได้ นี่คือจุดขับเคลื่อนของ Nowornever Magazine พื้นที่ที่รวบรวมความรู้ ความคิดสร้างสรรค์ และประสบการณ์เข้าด้วยกัน">
+                    We begin by capturing every light, shadow, and fiber of the cannabis. Painting stories that cannot simply be told. This is the beginning of NowOrNever Magazine—a space for knowledge, creativity, and experience.
                 </p>
             </div>
 
             <div class="article-body">
                 <section class="article-section">
-                    <h2>Ancient Wisdom in Modern Times</h2>
-                    <p>
-                        In the quiet corners of ancient temples, cannabis leaves appear in murals telling stories of healing and spiritual enlightenment. These artworks became the inspiration for our magazine's visual direction.
+                    <h2 data-en="Capturing the Essence" data-th="จับภาพแก่นแท้">Capturing the Essence</h2>
+                    <p data-en="We begin by capturing every light, shadow, and fiber of the cannabis. Painting stories that cannot simply be told. Through the lens, we see beyond the surface—into the very soul of the plant and its cultural significance." data-th="ผมเริ่มต้นด้วยเลนส์กล้อง จับทุกแสง เงา และเส้นใยของดอกกัญชา ถ่ายทอดเรื่องราวที่คำพูดไม่อาจอธิบายได้ ผ่านเลนส์ เรามองเห็นเกินกว่าผิวเผิน — เข้าสู่จิตวิญญาณของพืชและความสำคัญทางวัฒนธรรม">
+                        We begin by capturing every light, shadow, and fiber of the cannabis. Painting stories that cannot simply be told. Through the lens, we see beyond the surface—into the very soul of the plant and its cultural significance.
                     </p>
                     <div class="article-image-grid">
                         <figure>
-                            <img src="./image/weed1.jpg" alt="Temple artwork">
-                            <figcaption>Ancient temple murals depicting medicinal plants</figcaption>
+                            <img src="./image/4.Through the lens.webp" alt="Through the lens photography">
+                            <figcaption data-en="Capturing every detail through the lens" data-th="จับภาพทุกรายละเอียดผ่านเลนส์">Capturing every detail through the lens</figcaption>
                         </figure>
                         <figure>
-                            <img src="./image/weed2.jpg" alt="Modern interpretation">
-                            <figcaption>Modern artists reinterpreting traditional motifs</figcaption>
+                            <img src="./image/4.Through the lens.webp" alt="Cannabis photography">
+                            <figcaption data-en="Stories that words cannot express" data-th="เรื่องราวที่คำพูดไม่อาจอธิบายได้">Stories that words cannot express</figcaption>
                         </figure>
                     </div>
                 </section>
 
                 <section class="article-section">
-                    <h2>The Cultural Canvas</h2>
-                    <p>
-                        Working with local artists, we explored how traditional Thai art styles could be used to tell contemporary cannabis stories. The result was a unique fusion of ancient and modern perspectives.
+                    <h2 data-en="Designing the Scenery" data-th="ออกแบบฉาก">Designing the Scenery</h2>
+                    <p data-en="Next comes the scenery. Arranging the buds, and the scenery, to express with not words, but pictures. Through graphic design, we create visual narratives that speak directly to the heart." data-th="ต่อมาผมออกแบบกราฟิก จัดวางดอกไม้และองค์ประกอบให้สื่อสารด้วยภาพ ผ่านการออกแบบกราฟิก เราสร้างเรื่องเล่าทางสายตาที่พูดคุยกับหัวใจโดยตรง">
+                        Next comes the scenery. Arranging the buds, and the scenery, to express with not words, but pictures. Through graphic design, we create visual narratives that speak directly to the heart.
                     </p>
+                    <figure class="full-width-image">
+                        <img src="./image/4.Through the lens.webp" alt="Graphic design process">
+                        <figcaption data-en="Creating visual narratives through design" data-th="การสร้างเรื่องเล่าทางสายตาผ่านการออกแบบ">Creating visual narratives through design</figcaption>
+                    </figure>
                     <blockquote>
-                        <p>"Art bridges the gap between what we know and what we feel. It helps us understand complex cultural relationships in ways words cannot express."</p>
+                        <p data-en=""Arranging the buds, and the scenery, to express with not words, but pictures."" data-th=""จัดวางดอกไม้และองค์ประกอบให้สื่อสารด้วยภาพ"">"Arranging the buds, and the scenery, to express with not words, but pictures."</p>
                     </blockquote>
                 </section>
 
                 <section class="article-section">
-                    <h2>A New Visual Language</h2>
-                    <p>
-                        The design process for the magazine became a journey of creating a new visual language that honors tradition while embracing modern cannabis culture. Each page was crafted to reflect this delicate balance.
+                    <h2 data-en="Bridging Science and Art" data-th="เชื่อมโยงวิทยาศาสตร์และศิลปะ">Bridging Science and Art</h2>
+                    <p data-en="Then, the knowledge as both a budtender and a planter: Bridging science and art, every prep, every care, every moment of resilience. And every emotion within. This understanding creates the foundation for authentic storytelling." data-th="การเรียนรู้ศาสตร์ของบัดเทนเดอร์และการปลูกต้นไม้ ทำให้ผมเข้าใจความเชื่อมโยงของศาสตร์และศิลป์ ทุกการจัดเตรียมและดูแล ล้วนต้องมีความเอาใจใส่ ความอดทนและความรู้สึกจากภายใน ความเข้าใจนี้สร้างรากฐานสำหรับการเล่าเรื่องที่แท้จริง">
+                        Then, the knowledge as both a budtender and a planter: Bridging science and art, every prep, every care, every moment of resilience. And every emotion within. This understanding creates the foundation for authentic storytelling.
                     </p>
+                    <div class="article-image-grid">
+                        <figure>
+                            <img src="./image/4.Through the lens.webp" alt="Science and art connection">
+                            <figcaption data-en="Bridging science and art in cannabis culture" data-th="เชื่อมโยงวิทยาศาสตร์และศิลปะในวัฒนธรรมกัญชา">Bridging science and art in cannabis culture</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="./image/4.Through the lens.webp" alt="Emotional connection">
+                            <figcaption data-en="Every emotion within the process" data-th="ความรู้สึกในทุกขั้นตอนของกระบวนการ">Every emotion within the process</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="article-section">
+                    <h2 data-en="The NowOrNever Vision" data-th="วิสัยทัศน์ของ NowOrNever">The NowOrNever Vision</h2>
+                    <p data-en="This is the beginning of NowOrNever Magazine. A space for knowledge, creativity, and experience. The stories, knowledge, and art, waiting for the readers to gaze upon. Each page's emotions, waiting to be unraveled." data-th="นี่คือจุดขับเคลื่อนของ Nowornever Magazine พื้นที่ที่รวบรวมความรู้ ความคิดสร้างสรรค์ และประสบการณ์เข้าด้วยกัน ให้ผู้อ่านได้สัมผัสเรื่องราว ข้อมูล และกราฟิกที่เป็นศิลปะ พร้อมแรงบันดาลใจในทุกหน้า">
+                        This is the beginning of NowOrNever Magazine. A space for knowledge, creativity, and experience. The stories, knowledge, and art, waiting for the readers to gaze upon. Each page's emotions, waiting to be unraveled.
+                    </p>
+                    <div class="emoji-section">
+                        <p class="emoji-text">📸🌿🫶🌍</p>
+                        <p data-en="Pre-order NowOrNever Magazine on our website—coming soon.📚🌿" data-th="ติดตามเว็บไซต์สำหรับการจองเล่มได้เร็วๆนี้📚🌿">Pre-order NowOrNever Magazine on our website—coming soon.📚🌿</p>
+                    </div>
                 </section>
             </div>
         </div>
 
         <!-- Related Articles -->
         <aside class="related-articles">
-            <h3>More Behind the Scenes</h3>
+            <h3 data-en="More from Now or Never" data-th="เพิ่มเติมจาก Now or Never">More from Now or Never</h3>
             <div class="related-grid">
                 <article class="related-article">
-                    <img src="./image/weed1.jpg" alt="The Journey Under the Waves">
-                    <h4>The Journey Under the Waves</h4>
-                    <p>The beginning of our magazine journey</p>
-                    <a href="journal-article-waves.html" class="read-more">Read More</a>
+                    <img src="./image/1.The Green awakening .webp" alt="The Green Awakening">
+                    <h4 data-en="The Green Awakening" data-th="การตื่นรู้สีเขียว">The Green Awakening</h4>
+                    <p data-en="The interviewing journey that opened new perspectives" data-th="การเดินทางสัมภาษณ์ที่เปิดมุมมองใหม่">The interviewing journey that opened new perspectives</p>
+                    <a href="journal-article-green-awakening.html" class="read-more" data-en="Read More" data-th="อ่านเพิ่มเติม">Read More</a>
                 </article>
                 <article class="related-article">
-                    <img src="./image/weed2.jpg" alt="Meeting the Legends">
-                    <h4>Meeting the Legends</h4>
-                    <p>Stories from Thailand's cannabis pioneers</p>
-                    <a href="journal-article-legends.html" class="read-more">Read More</a>
+                    <img src="./image/5. Root of Everything (11).webp" alt="The Root of Everything">
+                    <h4 data-en="The Root of Everything" data-th="รากฐานของทุกสิ่ง">The Root of Everything</h4>
+                    <p data-en="The foundation of our creative process" data-th="รากฐานของกระบวนการสร้างสรรค์ของเรา">The foundation of our creative process</p>
+                    <a href="journal-article-legends.html" class="read-more" data-en="Read More" data-th="อ่านเพิ่มเติม">Read More</a>
+                </article>
+                <article class="related-article">
+                    <img src="./image/2.Journey under the waves .webp" alt="The Journey Under the Waves">
+                    <h4 data-en="The Journey Under the Waves" data-th="การเดินทางใต้ผืนน้ำที่ไร้ขอบเขต">The Journey Under the Waves</h4>
+                    <p data-en="The protest story that sparked our magazine" data-th="เรื่องราวการประท้วงที่จุดประกายนิตยสารของเรา">The protest story that sparked our magazine</p>
+                    <a href="journal-article-journey-waves.html" class="read-more" data-en="Read More" data-th="อ่านเพิ่มเติม">Read More</a>
                 </article>
             </div>
         </aside>

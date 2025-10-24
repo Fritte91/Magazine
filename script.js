@@ -37,6 +37,43 @@ function debounce(func, wait) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Language toggle functionality
+    const langButtons = document.querySelectorAll('.lang-btn');
+    const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+    
+    // Initialize language
+    function setLanguage(lang) {
+        const elements = document.querySelectorAll('[data-en], [data-th]');
+        elements.forEach(element => {
+            const text = element.getAttribute(`data-${lang}`);
+            if (text) {
+                element.textContent = text;
+            }
+        });
+        
+        // Update button states
+        langButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-lang') === lang) {
+                btn.classList.add('active');
+            }
+        });
+        
+        // Save preference
+        localStorage.setItem('preferredLanguage', lang);
+    }
+    
+    // Set initial language
+    setLanguage(currentLang);
+    
+    // Add click handlers for language buttons
+    langButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const lang = this.getAttribute('data-lang');
+            setLanguage(lang);
+        });
+    });
+
     // Character slider functionality with improved debugging
     const cards = document.querySelectorAll('.character-card');
     const prevBtn = document.querySelector('.prev-btn');
@@ -375,18 +412,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize performance tracking
     trackPerformance();
     
-    // Register service worker
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
-                .then(registration => {
-                    console.log('SW registered: ', registration);
-                })
-                .catch(registrationError => {
-                    console.log('SW registration failed: ', registrationError);
-                });
-        });
-    }
+    // Service Worker removed - was causing caching issues
     
     // Initialize lazy loading
     setupLazyLoading();
@@ -394,6 +420,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize scroll progress and back to top
     setupScrollProgress();
     setupBackToTop();
+    
+    // Initialize testimonials touch/drag functionality
+    setupTestimonialsScroll();
     
     // Enhanced error handling and loading states
     function showLoading() {
@@ -675,3 +704,119 @@ function acceptCookies() {
 
 // Initialize cookie consent
 document.addEventListener('DOMContentLoaded', addCookieConsent);
+
+// Testimonials touch/drag scroll functionality
+function setupTestimonialsScroll() {
+    const slider = document.querySelector('.testimonials-slider');
+    const track = document.querySelector('.testimonial-track');
+    
+    if (!slider || !track) return;
+    
+    // Duplicate testimonials for seamless looping
+    const testimonials = track.querySelectorAll('.testimonial-item');
+    testimonials.forEach(item => {
+        const clone = item.cloneNode(true);
+        track.appendChild(clone);
+    });
+    
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let animationPaused = false;
+    let resumeTimeout;
+    
+    // Mouse events for desktop
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.classList.add('grabbing');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+        pauseAnimation();
+    });
+    
+    slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.classList.remove('grabbing');
+        resumeAnimationAfterDelay();
+    });
+    
+    slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove('grabbing');
+        resumeAnimationAfterDelay();
+    });
+    
+    slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed multiplier
+        slider.scrollLeft = scrollLeft - walk;
+    });
+    
+    // Touch events for mobile/tablet
+    slider.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+        pauseAnimation();
+    }, { passive: true });
+    
+    slider.addEventListener('touchend', () => {
+        isDown = false;
+        resumeAnimationAfterDelay();
+    }, { passive: true });
+    
+    slider.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2;
+        slider.scrollLeft = scrollLeft - walk;
+    }, { passive: true });
+    
+    // Prevent context menu on long press
+    slider.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+    });
+    
+    // Pause animation when user interacts
+    function pauseAnimation() {
+        if (!animationPaused) {
+            track.classList.add('paused');
+            animationPaused = true;
+        }
+    }
+    
+    // Resume animation after a delay
+    function resumeAnimationAfterDelay() {
+        clearTimeout(resumeTimeout);
+        resumeTimeout = setTimeout(() => {
+            if (animationPaused) {
+                track.classList.remove('paused');
+                animationPaused = false;
+            }
+        }, 2000); // Resume after 2 seconds of inactivity
+    }
+    
+    // Pause animation on scroll (user is actively scrolling)
+    slider.addEventListener('scroll', () => {
+        pauseAnimation();
+        resumeAnimationAfterDelay();
+    });
+    
+    // Add smooth scrolling behavior
+    slider.style.scrollBehavior = 'smooth';
+    
+    // Initialize with animation paused briefly to show it can be controlled
+    setTimeout(() => {
+        if (!animationPaused) {
+            pauseAnimation();
+            setTimeout(() => {
+                if (animationPaused) {
+                    track.classList.remove('paused');
+                    animationPaused = false;
+                }
+            }, 1000);
+        }
+    }, 3000);
+}
