@@ -1,7 +1,7 @@
 // Cache Busting Script for Now Or Never Magazine
 // This script automatically adds version parameters to all static assets
 
-const CACHE_VERSION = '2.2'; // Update this when you make changes
+const CACHE_VERSION = '2.3'; // Update this when you make changes
 const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg'];
 
 // Function to add cache busting to image sources

@@ -1,0 +1,72 @@
+[build]
+  publish = "."
+
+# Netlify cache control headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache control for HTML files - short cache time
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+    ETag = "true"
+
+# Cache control for CSS and JS files
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+    ETag = "true"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+    ETag = "true"
+
+# Cache control for images - longer cache but with ETag
+[[headers]]
+  for = "/image/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+    ETag = "true"
+
+# Force no-cache for versioned assets
+[[headers]]
+  for = "*.css?v=*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+
+[[headers]]
+  for = "*.js?v=*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+
+[[headers]]
+  for = "/image/*?v=*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+
+# Redirect rules
+[[redirects]]
+  from = "/stories"
+  to = "/stories-styled.html"
+  status = 301
+
+# Force refresh for development
+[[redirects]]
+  from = "/stories.html"
+  to = "/stories-styled.html"
+  status = 301
