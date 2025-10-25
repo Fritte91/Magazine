@@ -753,120 +753,161 @@ function acceptCookies() {
 // Initialize cookie consent
 document.addEventListener('DOMContentLoaded', addCookieConsent);
 
-// Testimonials touch/drag scroll functionality
+// Optimized Testimonials touch/drag scroll functionality
 function setupTestimonialsScroll() {
     const slider = document.querySelector('.testimonials-slider');
     const track = document.querySelector('.testimonial-track');
     
     if (!slider || !track) return;
     
-    // Duplicate testimonials for seamless looping
-    const testimonials = track.querySelectorAll('.testimonial-item');
-    testimonials.forEach(item => {
-        const clone = item.cloneNode(true);
-        track.appendChild(clone);
-    });
-    
+    // Performance optimization variables
     let isDown = false;
-    let startX;
-    let scrollLeft;
-    let animationPaused = false;
-    let resumeTimeout;
+    let startX = 0;
+    let scrollLeft = 0;
+    let velocity = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let animationId = null;
+    let isScrolling = false;
+    
+    // Throttle function for smooth performance
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        }
+    }
+    
+    // Smooth momentum scrolling
+    function momentumScroll() {
+        if (Math.abs(velocity) < 0.1) {
+            velocity = 0;
+            return;
+        }
+        
+        slider.scrollLeft -= velocity;
+        velocity *= 0.95; // Friction
+        
+        if (Math.abs(velocity) > 0.1) {
+            animationId = requestAnimationFrame(momentumScroll);
+        }
+    }
     
     // Mouse events for desktop
     slider.addEventListener('mousedown', (e) => {
         isDown = true;
+        isScrolling = true;
         slider.classList.add('grabbing');
         startX = e.pageX - slider.offsetLeft;
         scrollLeft = slider.scrollLeft;
-        pauseAnimation();
+        velocity = 0;
+        lastX = e.pageX;
+        lastTime = Date.now();
+        
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+        }
     });
     
     slider.addEventListener('mouseleave', () => {
         isDown = false;
         slider.classList.remove('grabbing');
-        resumeAnimationAfterDelay();
+        isScrolling = false;
     });
     
     slider.addEventListener('mouseup', () => {
         isDown = false;
         slider.classList.remove('grabbing');
-        resumeAnimationAfterDelay();
+        isScrolling = false;
+        
+        // Apply momentum
+        if (Math.abs(velocity) > 0.5) {
+            momentumScroll();
+        }
     });
     
-    slider.addEventListener('mousemove', (e) => {
+    slider.addEventListener('mousemove', throttle((e) => {
         if (!isDown) return;
         e.preventDefault();
+        
         const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 2; // Scroll speed multiplier
+        const walk = (x - startX) * 1.5; // Reduced multiplier for smoother feel
         slider.scrollLeft = scrollLeft - walk;
-    });
+        
+        // Calculate velocity for momentum
+        const currentTime = Date.now();
+        const deltaTime = currentTime - lastTime;
+        if (deltaTime > 0) {
+            velocity = (lastX - e.pageX) / deltaTime * 10;
+        }
+        lastX = e.pageX;
+        lastTime = currentTime;
+    }, 16)); // 60fps throttling
     
-    // Touch events for mobile/tablet
+    // Touch events for mobile/tablet - optimized
     slider.addEventListener('touchstart', (e) => {
         isDown = true;
+        isScrolling = true;
         startX = e.touches[0].pageX - slider.offsetLeft;
         scrollLeft = slider.scrollLeft;
-        pauseAnimation();
+        velocity = 0;
+        lastX = e.touches[0].pageX;
+        lastTime = Date.now();
+        
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+        }
     }, { passive: true });
     
     slider.addEventListener('touchend', () => {
         isDown = false;
-        resumeAnimationAfterDelay();
+        isScrolling = false;
+        
+        // Apply momentum
+        if (Math.abs(velocity) > 0.5) {
+            momentumScroll();
+        }
     }, { passive: true });
     
-    slider.addEventListener('touchmove', (e) => {
+    slider.addEventListener('touchmove', throttle((e) => {
         if (!isDown) return;
+        
         const x = e.touches[0].pageX - slider.offsetLeft;
-        const walk = (x - startX) * 2;
+        const walk = (x - startX) * 1.5; // Reduced multiplier for smoother feel
         slider.scrollLeft = scrollLeft - walk;
-    }, { passive: true });
+        
+        // Calculate velocity for momentum
+        const currentTime = Date.now();
+        const deltaTime = currentTime - lastTime;
+        if (deltaTime > 0) {
+            velocity = (lastX - e.touches[0].pageX) / deltaTime * 10;
+        }
+        lastX = e.touches[0].pageX;
+        lastTime = currentTime;
+    }, 16), { passive: true }); // 60fps throttling
     
     // Prevent context menu on long press
     slider.addEventListener('contextmenu', (e) => {
         e.preventDefault();
     });
     
-    // Pause animation when user interacts
-    function pauseAnimation() {
-        if (!animationPaused) {
-            track.classList.add('paused');
-            animationPaused = true;
+    // Optimize scroll behavior
+    slider.style.scrollBehavior = 'auto'; // Disable smooth scroll for better performance
+    slider.style.overflowX = 'auto';
+    slider.style.overflowY = 'hidden';
+    
+    // Add momentum on scroll end
+    slider.addEventListener('scroll', throttle(() => {
+        if (!isScrolling && Math.abs(velocity) > 0.1) {
+            momentumScroll();
         }
-    }
-    
-    // Resume animation after a delay
-    function resumeAnimationAfterDelay() {
-        clearTimeout(resumeTimeout);
-        resumeTimeout = setTimeout(() => {
-            if (animationPaused) {
-                track.classList.remove('paused');
-                animationPaused = false;
-            }
-        }, 2000); // Resume after 2 seconds of inactivity
-    }
-    
-    // Pause animation on scroll (user is actively scrolling)
-    slider.addEventListener('scroll', () => {
-        pauseAnimation();
-        resumeAnimationAfterDelay();
-    });
-    
-    // Add smooth scrolling behavior
-    slider.style.scrollBehavior = 'smooth';
-    
-    // Initialize with animation paused briefly to show it can be controlled
-    setTimeout(() => {
-        if (!animationPaused) {
-            pauseAnimation();
-            setTimeout(() => {
-                if (animationPaused) {
-                    track.classList.remove('paused');
-                    animationPaused = false;
-                }
-            }, 1000);
-        }
-    }, 3000);
+    }, 16));
 }
 
 // QR Code Toggle Functionality

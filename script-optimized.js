@@ -350,88 +350,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Testimonials drag functionality
+    // Testimonials drag functionality - DISABLED to prevent conflicts with main script
     const testimonialsSlider = document.querySelector('.testimonials-slider');
     if (testimonialsSlider) {
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        testimonialsSlider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            testimonialsSlider.classList.add('active');
-            startX = e.pageX - testimonialsSlider.offsetLeft;
-            scrollLeft = testimonialsSlider.scrollLeft;
-        });
-
-        testimonialsSlider.addEventListener('mouseleave', () => {
-            isDown = false;
-            testimonialsSlider.classList.remove('active');
-        });
-
-        testimonialsSlider.addEventListener('mouseup', () => {
-            isDown = false;
-            testimonialsSlider.classList.remove('active');
-        });
-
-        testimonialsSlider.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - testimonialsSlider.offsetLeft;
-            const walk = (x - startX) * 2;
-            testimonialsSlider.scrollLeft = scrollLeft - walk;
-        });
-
-        // Touch events for mobile
-        testimonialsSlider.addEventListener('touchstart', (e) => {
-            isDown = true;
-            startX = e.touches[0].pageX - testimonialsSlider.offsetLeft;
-            scrollLeft = testimonialsSlider.scrollLeft;
-        });
-
-        testimonialsSlider.addEventListener('touchend', () => {
-            isDown = false;
-        });
-
-        testimonialsSlider.addEventListener('touchmove', (e) => {
-            if (!isDown) return;
-            const x = e.touches[0].pageX - testimonialsSlider.offsetLeft;
-            const walk = (x - startX) * 2;
-            testimonialsSlider.scrollLeft = scrollLeft - walk;
-        });
-
-        // Prevent context menu
-        testimonialsSlider.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-        });
-
-        // Auto-scroll
-        let autoScroll = true;
-        const scrollSpeed = 1;
-
-        setInterval(() => {
-            if (autoScroll) {
-                testimonialsSlider.scrollLeft += scrollSpeed;
-            }
-        }, 50);
-
-        // Pause auto-scroll on hover
-        testimonialsSlider.addEventListener('mouseenter', () => {
-            autoScroll = false;
-        });
-
-        testimonialsSlider.addEventListener('mouseleave', () => {
-            autoScroll = true;
-        });
-
-        // Reset scroll position when reaching end
-        testimonialsSlider.addEventListener('scroll', () => {
-            if (testimonialsSlider.scrollLeft >= testimonialsSlider.scrollWidth - testimonialsSlider.clientWidth) {
-                setTimeout(() => {
-                    testimonialsSlider.scrollLeft = 0;
-                }, 1000);
-            }
-        });
+        // Testimonial slider is handled by main script.js to prevent conflicts
+        console.log('Testimonial slider handled by main script');
     }
 
     // QR Code toggle functionality
