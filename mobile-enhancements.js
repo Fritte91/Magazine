@@ -126,38 +126,11 @@
         }
     }
     
-    // Mobile navigation enhancements
+    // Mobile navigation enhancements - DISABLED to prevent conflicts with main script
     function initMobileNavigation() {
         try {
-            const navToggle = document.querySelector('.nav-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            
-            if (navToggle && navLinks) {
-                navToggle.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                    navLinks.classList.toggle('active');
-                    document.body.classList.toggle('nav-open');
-                });
-                
-                // Close navigation when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!navToggle.contains(event.target) && !navLinks.contains(event.target)) {
-                        navToggle.classList.remove('active');
-                        navLinks.classList.remove('active');
-                        document.body.classList.remove('nav-open');
-                    }
-                });
-                
-                // Close navigation when clicking on links
-                const navLinksItems = navLinks.querySelectorAll('a');
-                navLinksItems.forEach(link => {
-                    link.addEventListener('click', function() {
-                        navToggle.classList.remove('active');
-                        navLinks.classList.remove('active');
-                        document.body.classList.remove('nav-open');
-                    });
-                });
-            }
+            // Navigation is handled in main script.js to prevent conflicts
+            console.log('Mobile navigation handled by main script');
             
         } catch (error) {
             console.warn('Mobile navigation failed:', error);

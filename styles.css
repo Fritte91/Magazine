@@ -374,6 +374,19 @@ blockquote p {
         right: 1rem;
         top: 50%;
         transform: translateY(-50%);
+        z-index: 1001;
+    }
+    
+    .nav-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .nav-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
     }
 
     .nav-links {
@@ -394,6 +407,11 @@ blockquote p {
 
     .nav-links.active {
         left: 0;
+    }
+    
+    /* Prevent body scroll when menu is open */
+    body.nav-open {
+        overflow: hidden;
     }
 
     .nav-links a {
