@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Optimized CSS - Now Or Never Magazine</title>
+    <link rel="stylesheet" href="styles-optimized.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Test Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="./image/brandLogo.webp" alt="Now Or Never Magazine Logo" class="brand-logo">
+            <h2>Now Or Never</h2>
+        </div>
+        <button class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links">
+            <a href="#hero">Home</a>
+            <a href="#stories">Stories</a>
+            <a href="#about">About</a>
+            <a href="#shop">Shop</a>
+        </div>
+    </nav>
+
+    <!-- Test Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>Now Or Never 1st Edition</h1>
+            <h2>ตอนนี้หรือไม่มีอีกแล้ว</h2>
+            <p class="subtitle">Thailand's Premier Cannabis Culture Magazine</p>
+            <p class="description">
+                Discover the beauty of Thailand's cannabis culture through real people, real plants, and true stories.
+            </p>
+            <div class="cta-buttons">
+                <button class="btn-primary">
+                    <span class="btn-text">Buy Magazine ฿1420</span>
+                    <span class="btn-subtitle">Limited Edition - Only 420 Copies</span>
+                </button>
+                <button class="btn-secondary">
+                    <span class="btn-text">Preview Magazine</span>
+                    <span class="btn-subtitle">See What's Inside</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Payment Section -->
+    <section style="padding: 100px 5%; background: #f8f8f8;">
+        <div class="payment-section">
+            <h4>Payment & Confirmation</h4>
+            <button class="qr-toggle-btn">
+                <span>Show QR Code</span>
+                <span>↓</span>
+            </button>
+            <div class="payment-upload">
+                <div class="form-group">
+                    <input type="file" placeholder="Upload Payment Slip">
+                </div>
+            </div>
+            <button class="submit-order">Complete Order</button>
+        </div>
+    </section>
+
+    <!-- Test Dark Theme -->
+    <section class="dark-theme" style="padding: 100px 5%;">
+        <div class="dark-stories-page">
+            <div class="dark-stories-header">
+                <h1>Behind The Production</h1>
+                <p class="dark-subtitle">A collection of stories documenting our journey</p>
+            </div>
+            <div class="dark-stories-grid">
+                <article class="dark-story-card">
+                    <div class="dark-story-image">
+                        <img src="./image/1.The Green awakening.webp" alt="The Green Awakening">
+                        <span class="dark-tag dark-tag-featured">Featured</span>
+                    </div>
+                    <div class="dark-story-content">
+                        <h3>The Green Awakening</h3>
+                        <p class="dark-story-date">November 2024</p>
+                        <p class="dark-story-excerpt">The interviewing journey really opened me up to various perspectives...</p>
+                        <a href="#" class="dark-read-more">Read Story</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Images -->
+    <section style="padding: 100px 5%;">
+        <div class="full-width-image">
+            <img src="./image/Cover.webp" alt="Magazine Cover">
+            <figcaption>Now Or Never Magazine Cover</figcaption>
+        </div>
+        
+        <div class="article-image-grid">
+            <figure>
+                <img src="./image/1.The Green awakening.webp" alt="Green Awakening">
+                <figcaption>The Green Awakening</figcaption>
+            </figure>
+            <figure>
+                <img src="./image/2.Journey under the waves.webp" alt="Journey Under Waves">
+                <figcaption>Journey Under the Waves</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <script>
+        // Simple test script
+        console.log('✅ Optimized CSS loaded successfully');
+        
+        // Test button interactions
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+            btn.addEventListener('click', () => {
+                console.log('✅ Button click working');
+            });
+        });
+    </script>
+</body>
+</html>

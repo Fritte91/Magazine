@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Cache Control - Force Fresh Load -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="cache-bust" content="2024-10-24-v4">
+    
+    <!-- SEO Meta Tags -->
+    <title>Now Or Never 420 Magazine - Thailand's Premier Cannabis Culture Magazine</title>
+    <meta name="description" content="Discover Thailand's cannabis renaissance through art, spirituality, and healing traditions. Limited edition magazine with 420 copies available.">
+    <meta name="keywords" content="cannabis, Thailand, magazine, culture, healing, spirituality, art">
+    <meta name="author" content="Beam Klongluang">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Now Or Never 420 Magazine">
+    <meta property="og:description" content="Thailand's Premier Cannabis Culture Magazine - Discover the cultural renaissance of cannabis through art, spirituality, and healing traditions.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nowornever420.com">
+    <meta property="og:image" content="./image/MagazineCover.jpg?v=2.3">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Now Or Never 420 Magazine">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Now Or Never 420 Magazine">
+    <meta name="twitter:description" content="Thailand's Premier Cannabis Culture Magazine">
+    <meta name="twitter:image" content="./image/MagazineCover.jpg?v=2.3">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./image/brandLogo.webp?v=2.3" sizes="32x32">
+    <link rel="icon" type="image/png" href="./image/brandLogo.webp?v=2.3" sizes="16x16">
+    <link rel="apple-touch-icon" href="./image/brandLogo.webp?v=2.3" sizes="180x180">
+    <meta name="theme-color" content="#2e7d32">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="styles.css?v=2.3" as="style">
+    <link rel="preload" href="./image/MagazineCover.jpg?v=2.3" as="image">
+    <link rel="preload" href="./image/brandLogo.webp?v=2.3" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" as="style">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css?v=3.0">
+    <link rel="stylesheet" href="styles-minimal-optimized.css?v=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://www.gstatic.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        img-src 'self' data: https:;
+        font-src 'self' https://fonts.gstatic.com;
+        connect-src 'self' https://www.google-analytics.com https://formspree.io;
+        frame-src 'self' https://www.google.com;
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self' https://formspree.io;
+    ">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <!-- Google Analytics - Replace G-XXXXXXXXXX with your actual tracking ID -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Now Or Never 420 Magazine",
+        "description": "Thailand's Premier Cannabis Culture Magazine",
+        "brand": {
+            "@type": "Brand",
+            "name": "Now Or Never"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "1420",
+            "priceCurrency": "THB",
+            "availability": "https://schema.org/LimitedAvailability"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "150"
+        }
+    }
+    </script>
+    
+    <!-- reCAPTCHA - Uncomment when you have a valid site key -->
+    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+</head>
+<body>
+    <!-- Add skip link at the start of body -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-brand">
+            <img src="./image/brandLogo.webp?v=2.3" alt="Now Or Never Magazine Logo" class="brand-logo">
+            <h2>Now Or Never</h2>
+        </div>
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" role="menu">
+            <a href="#hero" role="menuitem" aria-label="Go to home section">Home</a>
+            <a href="stories-styled.html" role="menuitem" aria-label="View stories">Stories</a>
+            <a href="#description" role="menuitem" aria-label="Learn about us">About</a>
+            <a href="#journal" role="menuitem" aria-label="View journal">Blog</a>
+            <a href="#author" role="menuitem" aria-label="Meet the author">Author</a>
+            <a href="#shop" role="menuitem" aria-label="Shop">Shop</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>Now Or Never 1st Edition</h1>
+            <h2>ตอนนี้หรือไม่มีอีกแล้ว</h2>
+            <p class="subtitle">Thailand's Premier Cannabis Culture Magazine</p>
+            <p class="description">
+                Discover the beauty of Thailand’s cannabis culture through real people, real plants, and true stories — from those who live and breathe it.
+            </p>
+            <div class="cta-buttons">
+                <button class="btn-primary">
+                    <span class="btn-text">Buy Magazine ฿1420</span>
+                    <span class="btn-subtitle">Limited Edition - Only 420 Copies</span>
+                </button>
+                <button class="btn-secondary">
+                    <span class="btn-text">Preview Magazine</span>
+                    <span class="btn-subtitle">See What's Inside</span>
+                </button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img 
+                src="./image/Cover.webp?v=2.3" 
+                alt="Now Or Never 420 Magazine Cover - Limited Edition Cannabis Culture Magazine"
+                loading="eager"
+                decoding="async"
+            >
+        </div>
+    </section>
+
+    <!-- Add after the hero section -->
+    <div class="social-proof">
+        <div class="counter-item">
+            <span class="counter">420</span>
+            <span class="counter-label">Limited Copies</span>
+        </div>
+        <div class="counter-item">
+            <span class="counter">12</span>
+            <span class="counter-label">Featured Artists</span>
+        </div>
+        <div class="counter-item">
+            <span class="counter">24</span>
+            <span class="counter-label">Unique Stories</span>
+        </div>
+    </div>
+
+    <!-- Journey Section -->
+    <section class="journey">
+        <div class="journey-content">
+            <h2>Go on a Journey</h2>
+            <h3>เริ่มการเดินทางของคุณ… ตอนนี้เลย</h3>
+            <p class="journey-subtitle">Dive into the story right now.</p>
+            <p class="journey-description">
+                Explore the fascinating world of Thai cannabis culture, from traditional healing practices to modern cultivation techniques. Our magazine brings you authentic stories, expert insights, and beautiful photography that captures the essence of Thailand's emerging cannabis renaissance.
+            </p>
+            <div class="cta-buttons">
+                <button class="btn-outline">Buy Magazine (฿1420)</button>
+                <button class="btn-preview" id="openFlipbook">Preview Magazine</button>
+            </div>
+        </div>
+        <div class="journey-image">
+            <img src="./image/Cover.webp?v=2.3" alt="Open Magazine Preview">
+        </div>
+    </section>
+
+    <!-- Characters Section -->
+    <section class="characters" aria-labelledby="characters-title">
+        <h2 class="characters-title" id="characters-title">MEET THE LEGENDS</h2>
+        
+        <div class="character-slider" role="region" aria-label="Character carousel">
+            <div class="character-card active" role="tabpanel" aria-label="Character 1 of 3">
+                <div class="character-image">
+                    <img src="./image/bobmarley.jpg?v=2.3" alt="Bob Marley - Cannabis Legend and Reggae Icon">
+                </div>
+                <div class="character-info">
+                    <h3>Bob Marley</h3>
+                    <p class="character-description">
+                        A global icon who helped spread the message of cannabis spirituality and consciousness. His influence on cannabis culture and reggae music created a lasting legacy that continues to inspire millions around the world.
+                    </p>
+                </div>
+            </div>
+
+            <div class="character-card" role="tabpanel" aria-label="Character 2 of 3">
+                <div class="character-image">
+                    <img src="./image/kdkohtao.jpeg?v=2.3" alt="Ko Dam Koh Tao - Thai Cannabis Pioneer">
+                </div>
+                <div class="character-info">
+                    <h3>Ko Dam Koh Tao</h3>
+                    <p class="character-description">
+                        A key figure in Thailand's cannabis scene, known for popularizing the KD Koh Tao strain, a local strain from Koh Tao Island. He is also widely known and recognized for supporting and educating local communities, and the development of Thailand's cannabis culture.
+                    </p>
+                </div>
+            </div>
+
+            <div class="character-card" role="tabpanel" aria-label="Character 3 of 3">
+                <div class="character-image">
+                    <img src="./image/highthai.webp?v=2.3" alt="Dr.Highthai - Thai Cannabis Pioneer">
+                </div>
+                <div class="character-info">
+                    <h3>Dr.Highthai</h3>
+                    <p class="character-description">
+                        A voice of sharing within Thailand's cannabis culture, P'K has spent over 20 years growing, teaching, and sharing his craft with an open heart. 
+With passion and a free spirit, he continues to grow and cultivate the community, rooted in love and knowledge.
+                    </p>
+                </div>
+            </div>
+
+            <div class="character-card" role="tabpanel" aria-label="Character 4 of 4">
+                <div class="character-image">
+                    <img src="./image/kittychopaka.jpeg?v=2.3" alt="Kitty Chopaka - Thai Cannabis Advocate">
+                </div>
+                <div class="character-info">
+                    <h3>Kitty Chopaka</h3>
+                    <p class="character-description">
+                        A prominent cannabis advocate in Thailand who played a crucial role in the legalization movement. Her work continues to shape the emerging legal cannabis industry in Southeast Asia.
+                    </p>
+                </div>
+            </div>
+
+            <div class="slider-controls" role="group" aria-label="Character navigation">
+                <button class="prev-btn" aria-label="Previous character" title="Previous character">←</button>
+                <button class="next-btn" aria-label="Next character" title="Next character">→</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Section -->
+    <section class="author" id="author">
+        <div class="author-content">
+            <h2>The Author</h2>
+            <div class="author-grid">
+                <div class="author-image">
+                    <img src="./image/PHONOTYPE.webp?v=2.3" alt="Magazine Author">
+                </div>
+                <div class="author-info">
+                    <h3>Phonotype_247</h3>
+                    <p class="author-title">Cannabis Culture Journalist & Advocate</p>
+                    
+                    <div class="author-bio">
+                        <div class="bio-section">
+                            <h4>My Journey</h4>
+                            <p>Hello, I'm Phonotype_247, the author of Now or Never magazine. For a long time, I've always been in love with cannabis and the cultures surrounding it. Ever since I got to know and use it, many things in my life changed. It has helped me connect more deeply with myself and others, and expand myself to be more in tune with the surroundings.</p>
+                        </div>
+                        
+                        <div class="bio-section">
+                            <h4>Creative Impact</h4>
+                            <p>In artistic fields like music and visual arts, it has enhanced both my enjoyment and the creative process, allowing me to connect and learn from others more. The plant has opened new doors of perception and creativity that I never knew existed.</p>
+                        </div>
+                        
+                        <div class="bio-section">
+                            <h4>The Mission</h4>
+                            <p>With my background in photography, cannabis media design, and personal experience as a grower, I created the Now or Never magazine to share this journey—in hopes that others will be able to learn more about cannabis and come to appreciate it like I have.</p>
+                        </div>
+                        
+                        <div class="bio-section highlight">
+                            <h4>Vision</h4>
+                            <p>As the founder of Now Or Never Magazine, I bring together my passion for cannabis culture, deep understanding of traditional Thai medicine, and commitment to responsible advocacy to create a publication that bridges the gap between traditional wisdom and modern cannabis culture.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add this section between Author and Topics sections -->
+    <section class="testimonials">
+        <div class="testimonials-slider">
+            <div class="testimonial-track">
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"This magazine perfectly captures the essence of Thailand's cannabis culture. The photography is breathtaking!"</p>
+                    <div class="author-info">
+                        <span class="name">Fredrik Lindberg</span>
+                        <span class="title">Cannabis Culture Magazine</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"A masterpiece that bridges traditional wisdom with modern cannabis culture. Every page tells a story."</p>
+                    <div class="author-info">
+                        <span class="name">Vatchanan Sukjaloan</span>
+                        <span class="title">Herbal Enthusiast</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"The artistic direction and cultural insights make this magazine a must-have collector's item."</p>
+                    <div class="author-info">
+                        <span class="name">Maria Santos</span>
+                        <span class="title">Art Director</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"A masterpiece that bridges traditional wisdom with modern cannabis culture. Every page tells a story."</p>
+                    <div class="author-info">
+                        <span class="name">Vatchanan Sukjaloan</span>
+                        <span class="title">Herbal Enthusiast</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"This magazine showcases the beautiful intersection of cannabis culture and Thai traditions like never before."</p>
+                    <div class="author-info">
+                        <span class="name">Dr. Somchai Patel</span>
+                        <span class="title">Traditional Medicine Expert</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"The photography and storytelling in this magazine are absolutely stunning. A true celebration of cannabis culture."</p>
+                    <div class="author-info">
+                        <span class="name">Sarah Johnson</span>
+                        <span class="title">Photography Enthusiast</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"Finally, a publication that respects both the spiritual and medicinal aspects of cannabis. Highly recommended!"</p>
+                    <div class="author-info">
+                        <span class="name">Michael Chen</span>
+                        <span class="title">Cannabis Advocate</span>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="quote-icon">❝</div>
+                    <p class="quote">"The limited edition approach makes this magazine feel truly special. Every copy is a work of art."</p>
+                    <div class="author-info">
+                        <span class="name">Emma Thompson</span>
+                        <span class="title">Art Collector</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Topics Section (A Story About) -->
+    <section class="topics" id="description">
+        <div class="topics-content">
+            <h2>A Story About</h2>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <div class="topic-icon">
+                        <img src="./image/marijuana.png?v=2.3" alt="Growing Cultures Icon">
+                    </div>
+                    <h3>Growing Cultures</h3>
+                    <p>Discover the rich traditions and modern techniques of cannabis cultivation in Thailand. From traditional farming methods to contemporary grow operations, explore how Thai cultivators are shaping the future of cannabis.</p>
+                </div>
+
+                <div class="topic-card">
+                    <div class="topic-icon">
+                        <img src="./image/healing1.png?v=2.3" alt="Healing Therapy Icon">
+                    </div>
+                    <h3>Healing Therapy</h3>
+                    <p>Explore and learn about traditional activities to heal your mind, and peer into the concept of Wellness, and Spiritual Vibration.</p>
+                </div>
+
+                <div class="topic-card">
+                    <div class="topic-icon">
+                        <img src="./image/mandala.png?v=2.3" alt="Spiritual Art Icon">
+                    </div>
+                    <h3>Spiritual Art</h3>
+                    <p>Journey through the intersection of cannabis and Thai spirituality. Explore diverse collection of artworks from both Thai and international artists, featuring spiritual artworks, glass arts, cannabis-inspired artworks and more.</p>
+                </div>
+
+                <div class="topic-card">
+                    <div class="topic-icon">
+                        <img src="./image/understanding.png?v=2.3" alt="Cannabis Understanding Icon">
+                    </div>
+                    <h3>The Understanding</h3>
+                    <p>Delve deep into cannabis science, culture, and society. Understand the plant's role in Thai history and its impact on contemporary culture and lifestyle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- After the topics section -->
+    <section class="journal" id="journal">
+        <h2 class="journal-title">Behind The Production</h2>
+        
+        <div class="journal-grid">
+            <article class="journal-entry">
+                <div class="journal-image">
+                    <img src="./image/6. Now or never 1st.webp?v=2.3" alt="Now or Never 1st Issue">
+                </div>
+                <div class="journal-content">
+                    <h3>Now or Never 1st Issue</h3>
+                    <p class="journal-date">November 2024</p>
+                    <p class="journal-text">
+                        Introducing the first issue of Now or Never magazine — a groundbreaking publication that explores cannabis from perspectives in Thailand you've never seen before. If not now, then when? Stay tuned for updates and pre-orders this November.
+                    </p>
+                    <a href="journal-article-waves.html" class="read-more" data-article="waves">Read More</a>
+                </div>
+            </article>
+
+            <article class="journal-entry">
+                <div class="journal-image">
+                    <img src="./image/5. Root of Everything.webp?v=2.3" alt="The Root of Everything">
+                </div>
+                <div class="journal-content">
+                    <h3>The Root of Everything</h3>
+                    <p class="journal-date">November 2024</p>
+                    <p class="journal-text">
+                        At first, I never imagined that creating a magazine would be so complex and challenging. Only after diving into the process, step by step, did I realize that success required more than just "doing the work." It meant "thinking through every detail."
+                    </p>
+                    <a href="journal-article-legends.html" class="read-more" data-article="legends">Read More</a>
+                </div>
+            </article>
+
+            <article class="journal-entry">
+                <div class="journal-image">
+                    <img src="./image/4.Through the lens.webp?v=2.3" alt="Through the Lens">
+                </div>
+                <div class="journal-content">
+                    <h3>Through the Lens</h3>
+                    <p class="journal-date">November 2024</p>
+                    <p class="journal-text">
+                        We begin by capturing every light, shadow, and fiber of the cannabis. Painting stories that cannot simply be told. This is the beginning of NowOrNever Magazine—a space for knowledge, creativity, and experience.
+                    </p>
+                    <a href="journal-article-through-lens.html" class="read-more" data-article="through-lens">Read More</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- Add this after your journal-grid in the journal section -->
+        <div class="view-all-container">
+            <a href="stories-styled.html" class="view-all-button">
+                View All Stories
+                <span class="arrow">→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section class="shop" id="shop">
+        <div class="shop-content">
+            <h2>Get Your Copy</h2>
+            <div class="shop-grid">
+                <div class="order-details">
+                    <div class="magazine-preview">
+                        <img src="./image/Cover.webp?v=2.3" alt="Magazine Preview">
+                        <div class="price-tag">
+                            <span class="price">฿1420</span>
+                            <span class="shipping">Free Shipping in Thailand</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Section - Moved to left column -->
+                    <div class="payment-section">
+                        <h4>Payment & Confirmation</h4>
+                        
+                        <!-- QR Code Section -->
+                        <div class="qr-section">
+                            <button type="button" class="qr-toggle-btn" id="qrToggleBtn">
+                                <span class="qr-btn-text">Show QR Code</span>
+                                <span class="qr-btn-icon">↓</span>
+                            </button>
+                            <div class="qr-code-container" id="qrCodeContainer" style="display: none;">
+                                <div class="qr-info">
+                                    <h5>Payment Method</h5>
+                                    <p>Scan QR Code to pay via PromptPay</p>
+                                </div>
+                                <img src="./image/qrtest.png?v=2.3" alt="PromptPay QR Code" class="qr-code">
+                                <p class="qr-note">After payment, upload your slip below</p>
+                            </div>
+                        </div>
+
+                        <!-- Payment Upload Section -->
+                        <div class="payment-upload">
+                            <div class="form-group">
+                                <input type="file" id="payment_slip" name="payment_slip" accept="image/*,.pdf" aria-label="Upload payment slip">
+                                <label for="payment_slip">Upload Payment Slip (Image or PDF)</label>
+                                <p class="file-help">Supported formats: JPG, PNG, PDF (Max 10MB)</p>
+                            </div>
+                            <div class="payment-note">
+                                <p>Or send your payment slip to:</p>
+                                <p class="email-highlight">orders@nowornever420.com</p>
+                                <p class="payment-instruction">Include your order name and email in the subject line.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-form">
+                    <h3>Shipping Details</h3>
+                    <form id="orderForm" role="form" aria-label="Order form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                required 
+                                aria-required="true"
+                                aria-label="Full Name"
+                                aria-invalid="false"
+                            >
+                            <label for="name">Full Name</label>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required aria-required="true">
+                            <label for="email">Email</label>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" required aria-required="true">
+                            <label for="phone">Phone Number</label>
+                        </div>
+
+                        <div class="address-form">
+                            <h4>Delivery Address</h4>
+                            
+                            <div class="form-group">
+                                <input type="text" id="address_line" name="address_line" required aria-required="true">
+                                <label for="address_line">Address Line</label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" id="building" name="building" required aria-required="true">
+                                <label for="building">Building/Village Name</label>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="street" name="street" required aria-required="true">
+                                    <label for="street">Street</label>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" id="subdistrict" name="subdistrict" required aria-required="true">
+                                    <label for="subdistrict">Subdistrict (Tambon)</label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="district" name="district" required aria-required="true">
+                                    <label for="district">District (Amphoe)</label>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" id="province" name="province" required aria-required="true">
+                                    <label for="province">Province</label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="postal_code" name="postal_code" required aria-required="true">
+                                    <label for="postal_code">Postal Code</label>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" id="country" name="country" value="Thailand" readonly aria-readonly="true">
+                                    <label for="country" class="active">Country</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- reCAPTCHA v3 - Replace with your actual site key -->
+                        <!-- <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY_HERE"></div> -->
+
+                        <input type="hidden" name="order_type" value="magazine_order">
+                        <input type="hidden" name="product" value="Now Or Never 420 Magazine">
+                        <input type="hidden" name="price" value="1420">
+                        <input type="hidden" name="currency" value="THB">
+
+                        <button type="submit" class="submit-order">Complete Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter & Contact Section -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <!-- Left Column -->
+            <div class="newsletter-info">
+                <div class="section-header">
+                    <h2>Let's Stay Connected</h2>
+                    <p class="newsletter-description">Join our community and get exclusive updates, behind-the-scenes content, and special offers.</p>
+                </div>
+                <form id="newsletter-form" aria-label="Newsletter subscription form">
+                    <div class="form-group">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="subscribe-btn">
+                            <span>Subscribe</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="newsletter-note">✨ Join 420+ subscribers. Unsubscribe anytime.</p>
+                </form>
+            </div>
+
+            <!-- Right Column -->
+            <div class="contact-wrapper">
+                <div class="section-header">
+                    <h2>Get in Touch</h2>
+                    <p class="contact-description">Have questions? We'd love to hear from you.</p>
+                </div>
+                <form class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your message" required></textarea>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" class="submit-contact">
+                            <span>Send Message</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                        <div class="social-links">
+                            <a href="#" aria-label="Instagram" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Twitter" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Facebook" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add the flipbook modal -->
+    <div class="flipbook-modal" id="flipbookModal">
+        <div class="flipbook-container">
+            <button class="close-flipbook" id="closeFlipbook">&times;</button>
+            <div class="flipbook" id="flipbook">
+                <div class="page" style="background-image: url('./image/hightimes1.jpg?v=2.3')"></div>
+                <div class="page" style="background-image: url('./image/hightimes2.jpg?v=2.3')"></div>
+                <div class="page" style="background-image: url('./image/hightimes3.jpeg?v=2.3')"></div>
+                <div class="page" style="background-image: url('./image/hightimes4.jpeg?v=2.3')"></div>
+                <!-- Add more pages as needed -->
+            </div>
+            <div class="flipbook-controls">
+                <button class="prev-page">←</button>
+                <span class="page-number">1 / 3</span>
+                <button class="next-page">→</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add error handling for images -->
+    <script>
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = './image/placeholder.jpg';
+            this.alt = 'Image failed to load';
+        });
+    });
+    </script>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+    
+    <!-- Force cache clear for all users -->
+    <script src="force-cache-clear.js?v=4.0"></script>
+    <!-- Load main script -->
+    <script src="script-optimized.js?v=3.0"></script>
+</body>
+</html>
