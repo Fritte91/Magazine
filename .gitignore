@@ -1,0 +1,36 @@
+# Configuration files with sensitive data
+config.js
+
+# Upload directories
+uploads/
+logs/
+*.log
+
+# Environment files
+.env
+.env.local
+
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.bak
+
+# Error logs
+error_log.txt
+php_errors.log
+
+

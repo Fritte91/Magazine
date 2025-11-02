@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Form submission with Make.com webhook
+    // Enhanced Form submission with security and validation
     const orderForm = document.getElementById('orderForm');
     if (orderForm) {
         orderForm.addEventListener('submit', async function(e) {
@@ -169,20 +169,54 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show loading state
             const submitButton = this.querySelector('.submit-order');
             const originalText = submitButton.innerHTML;
-            submitButton.innerHTML = '<span class="loading-spinner"></span> Processing...';
+            submitButton.innerHTML = '<span class="loading-spinner"></span> Processing Your Order...';
             submitButton.disabled = true;
             
             try {
-                // Validate file size if uploaded
+                // Enhanced file validation
                 const paymentSlip = formData.get('payment_slip');
-                if (paymentSlip && paymentSlip.size > 10 * 1024 * 1024) { // 10MB limit
-                    throw new Error('Payment slip file is too large. Maximum size is 10MB.');
+                if (paymentSlip && paymentSlip.size > 0) {
+                    // File size validation (10MB max)
+                    if (paymentSlip.size > 10 * 1024 * 1024) {
+                        throw new Error('Payment slip file is too large. Maximum size is 10MB.');
+                    }
+                    
+                    // File size minimum check (prevent empty/malicious files)
+                    if (paymentSlip.size < 100) {
+                        throw new Error('Payment slip file is too small. Please upload a valid file.');
+                    }
+                    
+                    // Validate file type
+                    const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+                    if (!validTypes.includes(paymentSlip.type)) {
+                        throw new Error('Invalid file type. Please upload JPG, PNG, or PDF only.');
+                    }
+                    
+                    // Validate file extension
+                    const fileName = paymentSlip.name.toLowerCase();
+                    const validExtensions = ['.jpg', '.jpeg', '.png', '.pdf'];
+                    const hasValidExtension = validExtensions.some(ext => fileName.endsWith(ext));
+                    if (!hasValidExtension) {
+                        throw new Error('Invalid file extension. Please upload JPG, PNG, or PDF only.');
+                    }
+                    
+                    // Check for suspicious file names
+                    if (fileName.includes('.php') || fileName.includes('.exe') || fileName.includes('.sh')) {
+                        throw new Error('Suspicious file detected. Please upload a valid payment slip.');
+                    }
                 }
 
-                // Make.com webhook URL
-                const webhookUrl = 'https://hook.eu2.make.com/y6xtjumg4hnaam76tbxm7e4jgnfi3isp';
+                // Choose your submission method:
+                // Option 1: Direct to Make.com webhook (for Google Sheets + Zoho integration)
+                // Option 2: To PHP handler first (for additional server-side validation)
                 
-                const response = await fetch(webhookUrl, {
+                // OPTION 1: Direct to Make.com (recommended for your use case)
+                const makeWebhookUrl = 'https://hook.eu2.make.com/y6xtjumg4hnaam76tbxm7e4jgnfi3isp';
+                
+                // OPTION 2: Through secure PHP handler (uncomment to use)
+                // const makeWebhookUrl = 'submit-order-handler.php';
+                
+                const response = await fetch(makeWebhookUrl, {
                     method: 'POST',
                     body: formData,
                     headers: {
@@ -190,29 +224,73 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
+                let responseData;
+                try {
+                    responseData = await response.json();
+                } catch (e) {
+                    responseData = { message: 'Order received' };
+                }
+
                 if (response.ok) {
-                    // Show success message
-                    showNotification('Order sent! Please check your email for confirmation.', 'success');
+                    // Show success message with order ID if available
+                    const successMessage = responseData.order_id 
+                        ? `Order ${responseData.order_id} submitted successfully! Check your email for confirmation.`
+                        : 'Order submitted successfully! Check your email for confirmation.';
+                    
+                    showNotification(successMessage, 'success');
                     
                     // Reset form
                     this.reset();
                     
-                    // Optional: Redirect to thank you page after a delay
+                    // Clear file input label
+                    const fileLabel = document.querySelector('label[for="payment_slip"]');
+                    if (fileLabel) {
+                        fileLabel.textContent = 'Upload Payment Slip (Image or PDF)';
+                    }
+                    
+                    // Redirect to thank you page after delay
                     setTimeout(() => {
                         window.location.href = 'thank-you.html';
                     }, 2000);
                 } else {
-                    const errorData = await response.json().catch(() => ({}));
-                    throw new Error(errorData.message || `Server error: ${response.status}`);
+                    // Handle error response
+                    const errorMessage = responseData.message || responseData.errors?.join(', ') || `Server error: ${response.status}`;
+                    throw new Error(errorMessage);
                 }
             } catch (error) {
-                console.error('Error:', error);
-                showNotification(`There was an error submitting your order: ${error.message}`, 'error');
+                console.error('Order submission error:', error);
+                showNotification(`Error submitting order: ${error.message}`, 'error');
+                
+                // Log error for debugging (remove in production)
+                console.error('Full error details:', {
+                    message: error.message,
+                    stack: error.stack
+                });
             } finally {
                 submitButton.innerHTML = originalText;
                 submitButton.disabled = false;
             }
         });
+        
+        // Add file input change handler for better UX
+        const fileInput = document.getElementById('payment_slip');
+        if (fileInput) {
+            fileInput.addEventListener('change', function() {
+                const fileLabel = document.querySelector('label[for="payment_slip"]');
+                if (this.files && this.files.length > 0) {
+                    const file = this.files[0];
+                    const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                    fileLabel.textContent = `${file.name} (${fileSizeMB} MB)`;
+                    
+                    // Quick validation feedback
+                    if (file.size > 10 * 1024 * 1024) {
+                        showNotification('Warning: File is larger than 10MB', 'warning');
+                    }
+                } else {
+                    fileLabel.textContent = 'Upload Payment Slip (Image or PDF)';
+                }
+            });
+        }
     }
 
     // Flipbook functionality
