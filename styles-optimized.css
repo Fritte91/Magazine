@@ -228,7 +228,7 @@ body {
     display: flex;
     align-items: center;
     padding: 120px 5% 80px;
-    background-image: url('./image/hero-background.jpg');
+    background-image: url('./image/hero-background.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

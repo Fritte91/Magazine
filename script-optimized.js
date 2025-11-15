@@ -651,6 +651,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize form validation
     setupFormValidation();
 
+    // Footer year
+    const footerYear = document.getElementById('currentYear');
+    if (footerYear) {
+        footerYear.textContent = new Date().getFullYear();
+    }
+
     // Performance tracking
     window.addEventListener('load', () => {
         if ('performance' in window) {

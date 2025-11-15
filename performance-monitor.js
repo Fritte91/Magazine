@@ -103,7 +103,7 @@
             const criticalImages = [
                 './image/MagazineCover.jpg?v=2.3',
                 './image/brandLogo.webp?v=2.3',
-                './image/hero-background.jpg?v=2.3'
+                './image/hero-background.webp?v=2.3'
             ];
             
             criticalImages.forEach(src => {
