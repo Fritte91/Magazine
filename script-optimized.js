@@ -481,11 +481,116 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Testimonials drag functionality - DISABLED to prevent conflicts with main script
+    // Testimonials auto-slide animation - Duplicate items for seamless loop
+    const testimonialTrack = document.querySelector('.testimonial-track');
     const testimonialsSlider = document.querySelector('.testimonials-slider');
-    if (testimonialsSlider) {
-        // Testimonial slider is handled by main script.js to prevent conflicts
-        console.log('Testimonial slider handled by main script');
+    
+    if (testimonialTrack && testimonialsSlider) {
+        // Clone all testimonial items to create seamless infinite scroll
+        const items = testimonialTrack.querySelectorAll('.testimonial-item');
+        if (items.length > 0) {
+            // Clone all items and append them to the track
+            items.forEach(item => {
+                const clone = item.cloneNode(true);
+                testimonialTrack.appendChild(clone);
+            });
+        }
+        
+        // Manual drag control with bidirectional support
+        let isDragging = false;
+        let startX = 0;
+        let currentTranslate = 0;
+        let initialTransform = 0;
+        
+        // Get current transform value from computed style
+        function getTransformX() {
+            const style = window.getComputedStyle(testimonialTrack);
+            const transform = style.transform || style.webkitTransform;
+            if (transform === 'none' || !transform) return 0;
+            
+            // Extract translateX value from matrix
+            const matrixMatch = transform.match(/matrix\([^)]+\)/);
+            if (matrixMatch) {
+                const values = matrixMatch[0].match(/-?\d+\.?\d*/g);
+                if (values && values.length >= 6) {
+                    return parseFloat(values[4]) || 0;
+                }
+            }
+            
+            const translateMatch = transform.match(/translateX\(([^)]+)\)/);
+            if (translateMatch) {
+                return parseFloat(translateMatch[1]) || 0;
+            }
+            
+            return 0;
+        }
+        
+        // Set transform
+        function setTransformX(value) {
+            testimonialTrack.style.transform = `translateX(${value}px)`;
+        }
+        
+        // Start drag - pause animation and capture current position
+        function startDrag(e) {
+            isDragging = true;
+            
+            // Get current position from animation
+            const currentPos = getTransformX();
+            initialTransform = currentPos;
+            currentTranslate = currentPos;
+            
+            // Pause animation and set current position
+            testimonialTrack.style.transform = `translateX(${currentPos}px)`;
+            testimonialTrack.style.animationPlayState = 'paused';
+            testimonialTrack.classList.add('paused');
+            
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            startX = clientX;
+            
+            testimonialsSlider.style.cursor = 'grabbing';
+            if (!e.touches) {
+                e.preventDefault();
+            }
+        }
+        
+        // Drag handler - works both directions
+        function drag(e) {
+            if (!isDragging) return;
+            
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const diff = clientX - startX;
+            currentTranslate = initialTransform + diff;
+            
+            setTransformX(currentTranslate);
+            
+            if (!e.touches) {
+                e.preventDefault();
+            }
+        }
+        
+        // End drag - resume animation (let it restart naturally)
+        function endDrag() {
+            if (!isDragging) return;
+            
+            isDragging = false;
+            testimonialsSlider.style.cursor = 'grab';
+            
+            // Remove inline transform to let CSS animation take over
+            testimonialTrack.style.transform = '';
+            testimonialTrack.style.animationDelay = '';
+            testimonialTrack.style.animationPlayState = 'running';
+            testimonialTrack.classList.remove('paused');
+        }
+        
+        // Mouse events
+        testimonialsSlider.addEventListener('mousedown', startDrag);
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', endDrag);
+        
+        // Touch events - ensure passive is false so preventDefault works
+        testimonialsSlider.addEventListener('touchstart', startDrag, { passive: false });
+        testimonialsSlider.addEventListener('touchmove', drag, { passive: false });
+        testimonialsSlider.addEventListener('touchend', endDrag);
     }
 
     // QR Code toggle functionality

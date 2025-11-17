@@ -90,15 +90,16 @@
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
     border-radius: 16px !important;
-    padding: 20px !important;
+    padding: 14px 18px !important;
 }
 
 .testimonial-item .quote {
     color: #fff !important;
     font-size: 1.1rem !important;
-    line-height: 1.6 !important;
+    line-height: 1.4 !important;
     font-weight: 500 !important;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+    margin-bottom: 8px !important;
 }
 
 .testimonial-item .name {
@@ -215,6 +216,29 @@
 /* Fix any dark mode conflicts */
 body {
     background: white !important;
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Prevent horizontal scrolling on mobile */
+html {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+main#main-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+section {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
 }
 
 /* Mobile-specific improvements */
@@ -232,24 +256,25 @@ body {
     /* Better mobile testimonials */
     /* Better mobile testimonials - FIX CRAMPED LAYOUT */
     .testimonials {
-        padding: 40px 15px !important;
+        padding: 15px 0 !important;
+        margin: 20px 0 !important;
     }
     
     .testimonials-slider {
-        padding: 20px 0 !important;
+        padding: 0 10px !important;
         overflow-x: auto !important;
         -webkit-overflow-scrolling: touch !important;
     }
     
     .testimonial-track {
-        gap: 15px !important;
-        padding: 0 15px !important;
+        gap: 12px !important;
+        padding: 0 10px !important;
     }
     
     .testimonial-item {
-        min-width: 300px !important;
-        padding: 20px !important;
-        margin: 0 10px !important;
+        min-width: 280px !important;
+        padding: 10px 14px !important;
+        margin: 0 5px !important;
         flex-shrink: 0 !important;
     }
     
