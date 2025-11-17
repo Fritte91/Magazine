@@ -7,27 +7,22 @@
     color: #333 !important;
 }
 
-/* Fix social proof section */
-.social-proof {
-    background: transparent !important;
-}
-
-.counter-item {
-    background: transparent !important;
-    box-shadow: none !important;
-}
+/* Fix social proof section - removed conflicting transparent background */
 
 /* AMAZING Social Counter Design */
 .social-proof {
-    background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(76, 175, 80, 0.1)) !important;
+    background: linear-gradient(90deg, #1b5e20, #2e7d32, #1b5e20) !important;
     backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(46, 125, 50, 0.2) !important;
-    border-radius: 20px !important;
+    border: none !important;
+    border-radius: 16px !important;
     padding: 40px 20px !important;
-    margin: 20px !important;
+    margin: 30px auto !important;
     box-shadow: 0 8px 32px rgba(46, 125, 50, 0.2) !important;
     position: relative !important;
     overflow: hidden !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    width: calc(100% - 30px) !important;
 }
 
 .social-proof::before {
@@ -330,13 +325,58 @@ section {
     
     /* Better mobile social proof */
     .social-proof {
-        padding: 20px !important;
-        gap: 15px !important;
+        padding: 30px 20px !important;
+        gap: 8px !important;
+        margin: 30px auto !important;
+        width: calc(100% - 30px) !important;
+        max-width: calc(100vw - 30px) !important;
+        box-sizing: border-box !important;
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        justify-items: center !important;
+        align-items: center !important;
+        border-radius: 16px !important;
     }
     
     .counter-item {
-        padding: 15px !important;
+        padding: 10px 5px !important;
         text-align: center !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .social-proof .counter {
+        font-size: 2.5rem !important;
+        margin-bottom: 8px !important;
+        line-height: 1 !important;
+        color: white !important;
+        -webkit-text-fill-color: white !important;
+        background: none !important;
+        -webkit-background-clip: unset !important;
+        background-clip: unset !important;
+    }
+    
+    .social-proof .counter-label {
+        font-size: 0.75rem !important;
+        letter-spacing: 0.5px !important;
+        line-height: 1.2 !important;
+        word-wrap: break-word !important;
+        max-width: 100% !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+    
+    /* Ensure proper spacing around social proof */
+    .hero {
+        margin-bottom: 0 !important;
+        padding-bottom: 20px !important;
+    }
+    
+    .journey {
+        margin-top: 0 !important;
+        padding-top: 30px !important;
     }
     
     /* Fix author section spacing on mobile */
@@ -377,6 +417,29 @@ section {
     .bio-section p {
         font-size: 0.9rem !important;
         line-height: 1.4 !important;
+    }
+    
+    /* Fix View All Stories button on mobile */
+    a.view-all-button,
+    a.view-all-button:link,
+    a.view-all-button:visited,
+    a.view-all-button:active,
+    a.view-all-button[href="stories-styled.html"] {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 15px 30px !important;
+        background: linear-gradient(135deg, #1a1a1a, #2d2d2d) !important;
+        color: white !important;
+        text-decoration: none !important;
+        border-radius: 30px !important;
+        font-weight: 500 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    }
+    
+    a.view-all-button:hover {
+        color: white !important;
+        background: linear-gradient(135deg, #2d2d2d, #1a1a1a) !important;
     }
 }
 

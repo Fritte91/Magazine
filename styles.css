@@ -2461,13 +2461,23 @@ blockquote p {
 @media (max-width: 768px) {
     .social-proof {
         grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        padding: 20px 5%;
+        gap: 8px;
+        padding: 30px 20px;
+        margin: 30px auto;
+        width: calc(100% - 30px);
+        max-width: calc(100vw - 30px);
+        box-sizing: border-box;
+        border-radius: 16px;
     }
 
     .social-proof .counter-item {
-        padding: 10px;
+        padding: 10px 5px;
         border-right: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .social-proof .counter-item:last-child {
@@ -2475,13 +2485,17 @@ blockquote p {
     }
 
     .social-proof .counter {
-        font-size: 2rem;
-        margin-bottom: 2px;
+        font-size: 2.5rem;
+        margin-bottom: 8px;
+        line-height: 1;
     }
 
     .social-proof .counter-label {
-        font-size: 0.7rem;
-        letter-spacing: 1px;
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+        line-height: 1.2;
+        word-wrap: break-word;
+        max-width: 100%;
     }
 }
 
@@ -3638,7 +3652,10 @@ blockquote {
     padding: 20px 0;
 }
 
-a.view-all-button {
+a.view-all-button,
+a.view-all-button:link,
+a.view-all-button:visited,
+a.view-all-button:active {
     display: inline-flex !important;
     align-items: center !important;
     gap: 10px !important;
@@ -3655,15 +3672,16 @@ a.view-all-button {
     font-family: inherit !important;
     position: relative !important;
     overflow: visible !important;
-    box-shadow: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
     text-transform: none !important;
     letter-spacing: normal !important;
 }
 
 a.view-all-button:hover {
     transform: translateY(-2px) !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
     background: linear-gradient(135deg, #2d2d2d, #1a1a1a) !important;
+    color: white !important;
 }
 
 a.view-all-button .arrow {
@@ -4616,7 +4634,14 @@ button.btn-preview:hover {
 }
 
 /* View All Stories Button Critical Fix */
-a.view-all-button[href="stories-styled.html"] {
+a.view-all-button,
+a.view-all-button:link,
+a.view-all-button:visited,
+a.view-all-button:active,
+a.view-all-button[href="stories-styled.html"],
+a.view-all-button[href="stories-styled.html"]:link,
+a.view-all-button[href="stories-styled.html"]:visited,
+a.view-all-button[href="stories-styled.html"]:active {
     display: inline-flex !important;
     align-items: center !important;
     gap: 10px !important;
@@ -4633,7 +4658,7 @@ a.view-all-button[href="stories-styled.html"] {
     font-family: inherit !important;
     position: relative !important;
     overflow: visible !important;
-    box-shadow: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
     text-transform: none !important;
     letter-spacing: normal !important;
     margin: 0 !important;
@@ -4644,10 +4669,12 @@ a.view-all-button[href="stories-styled.html"] {
     min-width: auto !important;
 }
 
+a.view-all-button:hover,
 a.view-all-button[href="stories-styled.html"]:hover {
     transform: translateY(-2px) !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
     background: linear-gradient(135deg, #2d2d2d, #1a1a1a) !important;
+    color: white !important;
 }
 
 /* Testimonials Critical Fix */
