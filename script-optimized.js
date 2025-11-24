@@ -431,27 +431,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
     lazyImages.forEach(img => imageObserver.observe(img));
 
-    // Scroll progress indicator
+    // Scroll progress indicator - optimized with passive listener and requestAnimationFrame
     const scrollProgress = document.getElementById('scrollProgress');
     if (scrollProgress) {
-        window.addEventListener('scroll', () => {
+        let ticking = false;
+        const updateScrollProgress = () => {
             const scrollTop = window.pageYOffset;
             const docHeight = document.body.scrollHeight - window.innerHeight;
             const scrollPercent = (scrollTop / docHeight) * 100;
             scrollProgress.style.width = scrollPercent + '%';
-        });
+            ticking = false;
+        };
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollProgress);
+                ticking = true;
+            }
+        }, { passive: true });
     }
 
-    // Back to top button
+    // Back to top button - optimized with passive listener and requestAnimationFrame
     const backToTopBtn = document.getElementById('backToTop');
     if (backToTopBtn) {
-        window.addEventListener('scroll', () => {
+        let ticking = false;
+        const updateBackToTop = () => {
             if (window.pageYOffset > 300) {
                 backToTopBtn.classList.add('visible');
             } else {
                 backToTopBtn.classList.remove('visible');
             }
-        });
+            ticking = false;
+        };
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateBackToTop);
+                ticking = true;
+            }
+        }, { passive: true });
 
         backToTopBtn.addEventListener('click', () => {
             window.scrollTo({

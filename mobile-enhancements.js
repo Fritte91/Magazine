@@ -248,7 +248,7 @@
                 characterSlider.addEventListener('touchstart', function(e) {
                     startX = e.touches[0].clientX;
                     isDragging = true;
-                });
+                }, { passive: true });
                 
                 characterSlider.addEventListener('touchmove', function(e) {
                     if (!isDragging) return;
@@ -271,7 +271,7 @@
                 
                 characterSlider.addEventListener('touchend', function() {
                     isDragging = false;
-                });
+                }, { passive: true });
             }
             
             // Pull to refresh (if needed)
@@ -284,7 +284,7 @@
                     startY = e.touches[0].clientY;
                     isPulling = true;
                 }
-            });
+            }, { passive: true });
             
             document.addEventListener('touchmove', function(e) {
                 if (!isPulling) return;
@@ -295,14 +295,14 @@
                     // Pull to refresh gesture detected
                     document.body.classList.add('pull-to-refresh');
                 }
-            });
+            }, { passive: true });
             
             document.addEventListener('touchend', function() {
                 if (isPulling) {
                     document.body.classList.remove('pull-to-refresh');
                     isPulling = false;
                 }
-            });
+            }, { passive: true });
             
         } catch (error) {
             console.warn('Mobile gestures failed:', error);

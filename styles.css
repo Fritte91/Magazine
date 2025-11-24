@@ -575,6 +575,17 @@ blockquote p {
     animation: titleGlow 3s ease-in-out infinite alternate;
 }
 
+/* Performance: Reduce animations on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 @keyframes titleGlow {
     0% {
         filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
@@ -2732,48 +2743,55 @@ html {
     }
 }
 
-/* Micro-interactions */
+/* Micro-interactions - GPU accelerated */
 @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+    0% { transform: translateY(0px) translateZ(0); }
+    50% { transform: translateY(-10px) translateZ(0); }
+    100% { transform: translateY(0px) translateZ(0); }
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0% { transform: scale(1) translateZ(0); }
+    50% { transform: scale(1.05) translateZ(0); }
+    100% { transform: scale(1) translateZ(0); }
 }
 
-/* Smooth transitions for all interactive elements */
+/* Smooth transitions for all interactive elements - GPU accelerated */
 a, button, input, .topic-card, .journal-entry {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
 
-/* Enhanced hover states */
+/* Enhanced hover states - GPU accelerated */
+.nav-links a {
+    will-change: transform;
+}
 .nav-links a:hover {
     color: #2e7d32;
-    transform: translateY(-2px);
+    transform: translateY(-2px) translateZ(0);
 }
 
 .topic-icon {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
 
 .topic-card:hover .topic-icon {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.1) rotate(5deg) translateZ(0);
 }
 
-/* Loading animation for images */
+/* Loading animation for images - GPU accelerated */
 .lazy-load {
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(20px) translateZ(0);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
 }
 
 .lazy-load.loaded {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) translateZ(0);
+    will-change: auto;
 }
 
 /* Enhanced section styling */
@@ -3265,7 +3283,7 @@ section.testimonials {
     }
 }
 
-/* Add subtle animated pattern */
+/* Add subtle animated pattern - GPU accelerated */
 .testimonials::before {
     content: '';
     position: absolute;
@@ -3281,11 +3299,13 @@ section.testimonials {
     background-size: 20px 20px;
     opacity: 0.5;
     animation: patternMove 20s linear infinite;
+    will-change: background-position;
+    transform: translateZ(0);
 }
 
 @keyframes patternMove {
-    0% { background-position: 0 0; }
-    100% { background-position: 40px 40px; }
+    0% { background-position: 0 0; transform: translateZ(0); }
+    100% { background-position: 40px 40px; transform: translateZ(0); }
 }
 
 .testimonial-track {
@@ -3298,12 +3318,14 @@ section.testimonials {
     width: max-content !important;
     visibility: visible !important;
     will-change: transform !important;
-    transform: translateX(0);
+    transform: translateX(0) translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 @keyframes slideTrack {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); /* Move by half the width for seamless loop */
+    0% { transform: translateX(0) translateZ(0); }
+    100% { transform: translateX(-50%) translateZ(0); /* Move by half the width for seamless loop */
 }
 
 .testimonial-track:hover {
@@ -4018,14 +4040,15 @@ button.btn-preview:active {
     left: 100%;
 }
 
-/* Enhanced card hover effects */
+/* Enhanced card hover effects - GPU accelerated */
 .topic-card, .journal-entry {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0) translateZ(0);
+    will-change: transform;
 }
 
 .topic-card:hover, .journal-entry:hover {
-    transform: translateY(-8px);
+    transform: translateY(-8px) translateZ(0);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
@@ -4040,13 +4063,14 @@ button:focus, input:focus, textarea:focus, a:focus {
     outline-offset: 2px;
 }
 
-/* Improved form field animations */
+/* Improved form field animations - GPU accelerated */
 .form-group input, .form-group textarea {
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
 }
 
 .form-group input:focus, .form-group textarea:focus {
-    transform: translateY(-2px);
+    transform: translateY(-2px) translateZ(0);
     box-shadow: 0 8px 25px rgba(46, 125, 50, 0.15);
 }
 
@@ -4718,7 +4742,9 @@ section.testimonials {
     width: max-content !important;
     visibility: visible !important;
     will-change: transform !important;
-    transform: translateX(0);
+    transform: translateX(0) translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .testimonial-item {

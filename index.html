@@ -85,18 +85,18 @@
     
     <!-- Preload Critical Resources -->
     <link rel="preload" href="styles.css?v=3.0" as="style">
-    <link rel="preload" href="./image/MagazineCover.jpg?v=2.3" as="image">
-    <link rel="preload" href="./image/LOGO1.png" as="image">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" as="style">
+    <link rel="preload" href="./image/Cover.webp?v=2.3" as="image" fetchpriority="high">
+    <link rel="preload" href="./image/LOGO1.png" as="image" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css?v=3.0">
     <link rel="stylesheet" href="styles-minimal-optimized.css?v=1.0">
     <link rel="stylesheet" href="mobile-optimizations.css?v=1.0">
     <link rel="stylesheet" href="mobile-fixes.css?v=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
     
     <!-- Security Headers -->
     <meta http-equiv="Content-Security-Policy" content="
@@ -249,7 +249,7 @@
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-brand">
-            <img src="./image/LOGO1.png" alt="Now Or Never Magazine Logo" class="brand-logo">
+            <img src="./image/LOGO1.png" alt="Now Or Never Magazine Logo" class="brand-logo" width="50" height="50" loading="eager" decoding="async">
             <h2>Now Or Never</h2>
         </div>
         <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -290,6 +290,8 @@
                     alt="Now Or Never 420 Magazine Cover - Limited Edition Cannabis Culture Magazine"
                     loading="eager"
                     decoding="async"
+                    width="800"
+                    height="1000"
                 >
             </div>
         </section>
@@ -324,7 +326,7 @@
                 </div>
             </div>
             <div class="journey-image">
-                <img src="./image/Cover.webp?v=2.3" alt="Open Magazine Preview">
+                <img src="./image/Cover.webp?v=2.3" alt="Open Magazine Preview" width="800" height="1000" loading="lazy" decoding="async">
             </div>
         </section>
 
@@ -337,7 +339,7 @@
 
                 <div class="character-card" role="tabpanel" aria-label="Character 2 of 4">
                     <div class="character-image">
-                        <img src="./image/kdkohtao.jpeg?v=2.3" alt="Ko Dam Koh Tao - Thai Cannabis Pioneer">
+                        <img src="./image/kdkohtao.jpeg?v=2.3" alt="Ko Dam Koh Tao - Thai Cannabis Pioneer" width="600" height="800" loading="lazy" decoding="async">
                     </div>
                     <div class="character-info">
                         <h3>Ko Dam Koh Tao</h3>
@@ -349,7 +351,7 @@
 
                 <div class="character-card" role="tabpanel" aria-label="Character 3 of 4">
                     <div class="character-image">
-                        <img src="./image/highthai.webp?v=2.3" alt="Dr.Highthai - Thai Cannabis Pioneer">
+                        <img src="./image/highthai.webp?v=2.3" alt="Dr.Highthai - Thai Cannabis Pioneer" width="600" height="800" loading="lazy" decoding="async">
                     </div>
                     <div class="character-info">
                         <h3>Dr.Highthai</h3>
@@ -362,7 +364,7 @@
 
                 <div class="character-card" role="tabpanel" aria-label="Character 4 of 4">
                     <div class="character-image">
-                        <img src="./image/kittychopaka.jpeg?v=2.3" alt="Kitty Chopaka - Thai Cannabis Advocate">
+                        <img src="./image/kittychopaka.jpeg?v=2.3" alt="Kitty Chopaka - Thai Cannabis Advocate" width="600" height="800" loading="lazy" decoding="async">
                     </div>
                     <div class="character-info">
                         <h3>Kitty Chopaka</h3>
@@ -385,7 +387,7 @@
                 <h2>The Author</h2>
                 <div class="author-grid">
                     <div class="author-image">
-                        <img src="./image/9.png" alt="Phonotype_247 - Cannabis Culture Journalist & Advocate">
+                        <img src="./image/9.png" alt="Phonotype_247 - Cannabis Culture Journalist & Advocate" width="400" height="500" loading="lazy" decoding="async">
                     </div>
                     <div class="author-info">
                         <h3>Phonotype_247</h3>
@@ -564,7 +566,7 @@
                 <div class="topics-grid">
                     <div class="topic-card">
                         <div class="topic-icon">
-                            <img src="./image/8.png" alt="Growing Cultures Icon">
+                            <img src="./image/8 (1).webp" alt="Growing Cultures Icon" width="100" height="100" loading="lazy" decoding="async">
                         </div>
                         <h3>Growing Cultures</h3>
                         <p>Discover the rich traditions and modern techniques of cannabis cultivation in Thailand. From traditional farming methods to contemporary grow operations, explore how Thai cultivators are shaping the future of cannabis.</p>
@@ -572,7 +574,7 @@
 
                     <div class="topic-card">
                         <div class="topic-icon">
-                            <img src="./image/6.png" alt="Revolution Icon">
+                            <img src="./image/6.webp" alt="Revolution Icon" width="100" height="100" loading="lazy" decoding="async">
                         </div>
                         <h3>Revolution</h3>
                         <p>Learn about the people that helped to shape Thailand's evolving cannabis culture. Their gentle efforts and open-minded vision continue to nurture growth and understanding.</p>
@@ -580,7 +582,7 @@
 
                     <div class="topic-card">
                         <div class="topic-icon">
-                            <img src="./image/7.png" alt="Spiritual Art Icon">
+                            <img src="./image/7.webp" alt="Spiritual Art Icon" width="100" height="100" loading="lazy" decoding="async">
                         </div>
                         <h3>Spiritual Art</h3>
                         <p>Journey through the intersection of cannabis and Thai spirituality. Explore diverse collection of artworks from both Thai and international artists, featuring spiritual artworks, glass arts, cannabis-inspired artworks and more.</p>
@@ -588,7 +590,7 @@
 
                     <div class="topic-card">
                         <div class="topic-icon">
-                            <img src="./image/5.png" alt="Cannabis Understanding Icon">
+                            <img src="./image/5.webp" alt="Cannabis Understanding Icon" width="100" height="100" loading="lazy" decoding="async">
                         </div>
                         <h3>The Understanding</h3>
                         <p>Delve deep into cannabis science, culture, and society. Understand the plant's role in Thai history and its impact on contemporary culture and lifestyle.</p>
@@ -604,7 +606,7 @@
             <div class="journal-grid">
                 <article class="journal-entry">
                     <div class="journal-image">
-                        <img src="./image/6. Now or never 1st.webp?v=2.3" alt="Now or Never 1st Issue">
+                        <img src="./image/6. Now or never 1st.webp?v=2.3" alt="Now or Never 1st Issue" width="600" height="400" loading="lazy" decoding="async">
                     </div>
                     <div class="journal-content">
                         <h3>Now or Never 1st Issue</h3>
@@ -618,7 +620,7 @@
 
                 <article class="journal-entry">
                     <div class="journal-image">
-                        <img src="./image/5. Root of Everything.webp?v=2.3" alt="The Root of Everything">
+                        <img src="./image/5. Root of Everything.webp?v=2.3" alt="The Root of Everything" width="600" height="400" loading="lazy" decoding="async">
                     </div>
                     <div class="journal-content">
                         <h3>The Root of Everything</h3>
@@ -632,7 +634,7 @@
 
                 <article class="journal-entry">
                     <div class="journal-image">
-                        <img src="./image/4.Through the lens.webp?v=2.3" alt="Through the Lens">
+                        <img src="./image/4.Through the lens.webp?v=2.3" alt="Through the Lens" width="600" height="400" loading="lazy" decoding="async">
                     </div>
                     <div class="journal-content">
                         <h3>Through the Lens</h3>
@@ -674,7 +676,7 @@
     <footer class="site-footer" id="connect">
         <div class="footer-content">
             <div class="footer-brand">
-                <img src="./image/LOGO1.png" alt="Now Or Never Magazine Logo">
+                <img src="./image/LOGO1.png" alt="Now Or Never Magazine Logo" width="50" height="50" loading="lazy" decoding="async">
                 <p>
                     Now Or Never 420 documents Thailand's living cannabis culture—bridging growers, artists, healers, and dreamers through limited-edition print.
                 </p>
@@ -751,14 +753,14 @@
 
    
 
-    <!-- Performance Optimization Scripts -->
-    <script src="performance-monitor.js?v=1.0"></script>
-    <script src="mobile-performance.js?v=1.0"></script>
-    <script src="mobile-enhancements.js?v=1.0"></script>
-    <script src="update-cache-version.js?v=1.0"></script>
+    <!-- Performance Optimization Scripts - Deferred for better performance -->
+    <script src="performance-monitor.js?v=1.0" defer></script>
+    <script src="mobile-performance.js?v=1.0" defer></script>
+    <script src="mobile-enhancements.js?v=1.0" defer></script>
+    <script src="update-cache-version.js?v=1.0" defer></script>
     
     <!-- Main Scripts -->
-    <script src="force-cache-clear.js?v=4.0"></script>
-    <script src="script-optimized.js?v=3.0"></script>
+    <script src="force-cache-clear.js?v=4.0" defer></script>
+    <script src="script-optimized.js?v=3.0" defer></script>
 </body>
 </html>
